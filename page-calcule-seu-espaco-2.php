@@ -19,6 +19,7 @@ $uri = get_template_directory_uri();
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"
         defer></script>
     <script src="https://unpkg.com/vue@3"></script>
+    <script src="<?= $uri ?>/cdn/js/main.js" debug_backtrace></script>
 </head>
 
 <body class="steps-bg">
@@ -136,112 +137,7 @@ $uri = get_template_directory_uri();
         </div>
     </div>
 
-    <script>
-        Vue.createApp({
-            data() {
-                return {
-                    logo: "https://www.metromax.net.br/wp-content/themes/metromax2/img/logo.png",
-                    step: 1,
-                    nome: null,
-                    email: null,
-                    telefone: null,
-                    home_office: [{
-                        title: "Armário",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Arquivo",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Balcão",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Cadeira",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Cofre",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Escrivaninha",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Estante de aço",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Fax",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Impressora/Xerox",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Mesa",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Microcomputador",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    {
-                        title: "Poltrona",
-                        id: this.key(),
-                        quantity: 0
-                    },
-                    ]
-                }
-            },
-            methods: {
-                key() {
-                    return 1;
-                },
-                back() {
-                    this.step--
-                },
-                finish() {
-                    localStorage.removeItem('form_temp')
-                    this.step = 1
-                },
-                next() {
-                    this.step++
-                    localStorage.setItem('form_temp', JSON.stringify({
-                        step: this.step,
-                        home_office: this.home_office,
-                        nome: this.nome,
-                        email: this.email,
-                        telefone: this.telefone
-                    }))
-                }
-            },
-            mounted() {
-                console.log('ok')
-                let form_temp = JSON.parse(localStorage.getItem('form_temp'))
-                console.log(form_temp)
-                if (form_temp) {
-                    Object.keys(form_temp).forEach(key => {
-                        this[key] = form_temp[key]
-                    })
-                }
-            }
-        }).mount('#js-app')
-    </script>
+    
 </body>
 
 </html>
