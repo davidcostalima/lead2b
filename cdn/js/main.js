@@ -128,68 +128,8 @@ Vue.createApp({
                     fields: []
                 },
             
-            ],
-            home_office: [{
-                title: "Armário",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Arquivo",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Balcão",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Cadeira",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Cofre",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Escrivaninha",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Estante de aço",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Fax",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Impressora/Xerox",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Mesa",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Microcomputador",
-                id: this.key(),
-                quantity: 0
-            },
-            {
-                title: "Poltrona",
-                id: this.key(),
-                quantity: 0
-            },
             ]
+            
         }
     },
     methods: {
@@ -212,12 +152,12 @@ Vue.createApp({
                 email: this.email,
                 telefone: this.telefone
             }))
+        },
+        handleCalc() {
         }
     },
-    mounted() {
-        console.log('ok')
+    mounted() {        
         let form_temp = JSON.parse(localStorage.getItem('form_temp'))
-        console.log(form_temp)
         if (form_temp) {
             Object.keys(form_temp).forEach(key => {
                 this[key] = form_temp[key]
