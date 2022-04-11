@@ -6,6 +6,7 @@ Vue.createApp({
             email: null,
             telefone: null,
             step: 1,
+            total: 0,
             steps: [
                 {
                     ico: "bi-fingerprint",
@@ -126,10 +127,8 @@ Vue.createApp({
                     ico: "bi-mailbox",
                     title: "Finalizar",
                     fields: []
-                },
-            
+                },            
             ]
-            
         }
     },
     methods: {
@@ -150,10 +149,20 @@ Vue.createApp({
                 home_office: this.home_office,
                 nome: this.nome,
                 email: this.email,
-                telefone: this.telefone
+                telefone: this.telefone,
+                total: this.total,
+                steps: this.steps
             }))
         },
         handleCalc() {
+            let total = this.steps.reduce( (acc, e) => {
+                acc = [...acc,...e.fields.map( f => f.quant * f.size)]
+                return acc
+            }, [] )
+            this.total = total.reduce( (acc, v) =>  acc + v, 0 )
+
+            console.log(total)
+
         }
     },
     mounted() {        

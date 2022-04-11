@@ -18,6 +18,7 @@
 </head>
 
 <body class="steps-bg">
+
     <div id="js-app">
         <div class="container-fluid">
             <div class="container">
@@ -25,8 +26,8 @@
                     <div> <img :src="logo" alt="logo" class="step-logo"> </div>
                     <div>
                         <div>
-                            <span class="valor"> CUBAGEM <b>0,00</b> M³ </span>
-                            <span class="valor"> ÁREA DO BOX <b>0,00</b> M² </span>
+                            <span class="valor"> CUBAGEM <b>{{total}}</b> M³ </span>
+                            <span class="valor"> ÁREA DO BOX <b>{{total}}</b> M² </span>
                         </div>
                         <span> <span class="obs" >Obs: O cálculo acima é apenas uma estimativa.</span></span>
                     </div>
