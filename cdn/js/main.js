@@ -1,133 +1,111 @@
 Vue.createApp({
     data() {
         return {
-            logo: "https://www.metromax.net.br/wp-content/themes/metromax2/img/logo.png",
-            nome: null,
-            email: null,
-            telefone: null,
             step: 1,
             total: 0,
+            subtitle: [
+                "PP (1 a 3m²: 5 malas grandes ou 8 caixas médias)",
+                "P (4 a 6m²: Mobília de 1 quarto)",
+                "M (7 a 9m²: Mobília de 1 apartamento, de aprox. 70m², com 2 quartos)",
+                "G (10 a 31m²: Mobília e eletrodomésticos de 1 casa, de aprox. 200m², com 4 quartos)",
+                "Sob medida"
+            ],
             steps: [
                 {
-                    ico: "bi-fingerprint",
-                    title: "dados pessoais",
-                    fields: []
-                },
-                {
-                    ico: "bi-easel",
-                    title: "Sala / Sala de jantar",
-                    fields: [
-                        { title: "Aparador", quant: 0, size: 0.33 },
-                        { title: "Banqueta - Puff", quant: 0, size: 0.11 },
-                        { title: "Bar grande", quant: 0, size: 1.1 },
-                        { title: "Bar pequeno", quant: 0, size: 0.66 },
-                        { title: "Baú", quant: 0, size: 0.44 },
-                        { title: "Buffet", quant: 0, size: 1.1 },
-                        { title: "Cadeira com braços", size: 0.33, quant: 0 },
-                        { title: "Cadeira simples", size: 0.22, quant: 0 },
-                        { title: "Console de parede", size: 0.33, quant: 0 },
-                        { title: "Cristaleira", size: 0.88, quant: 0 },
-                        { title: "Escrivaninha grande", size: 1.1, quant: 0 },
-                        { title: "Escrivaninha pequena", size: 0.66, quant: 0 },
-                        { title: "Estante alta", size: 0.66, quant: 0 },
-                        { title: "Estante baixa", size: 0.33, quant: 0 },
-                        { title: "Mesa de centro", size: 0.33, quant: 0 },
-                        { title: "Mesa console", size: 0.33, quant: 0 },
-                        { title: "Mesa de jantar", size: 0.88, quant: 0 },
-                        { title: "Piano armário", size: 6.6, quant: 0 },
-                        { title: "Piano de cauda", size: 6.6, quant: 0 },
-                        { title: "Poltrona simples", size: 0.55, quant: 0 },
-                        { title: "Quadros", size: 0.11, quant: 0 },
-                        { title: "Rack", size: 0.33, quant: 0 },
-                        { title: "Sofá 2 lugares", size: 1.1, quant: 0 },
-                        { title: "Sofá 3 lugares", size: 1.65, quant: 0 },
-                        { title: "Sofá 4 lugares", size: 2.2, quant: 0 },
-                        { title: "Som/Vídeo", size: 0.33, quant: 0 },
-                        { title: "TV", size: 0.33, quant: 0 },
+                    title: "Eu preciso de um box no tamanho:",
+                    fields: [],
+                    radioName: "tamanho",
+                    radio: [                        
+                        { label: "PP", value: "0" },
+                        { label: "P", value: "1" },
+                        { label: "M", value: "2" },
+                        { label: "G", value: "3" },
+                        { label: "X", value: "4" },
                     ]
                 },
                 {
-                    ico: "bi-lamp",
-                    title: "QUARTO / SUÍTE",
+                    title: "Para onde devemos enviar o orçamento instantâneo com promoção imperdível?",
                     fields: [
-                        { title: "Arca", size: 0.44, quant: 0 },
-                        { title: "Armário 2 portas desmontado", size: 1.1, quant: 0 },
-                        { title: "Armário 3 portas desmontado", size: 1.65, quant: 0 },
-                        { title: "Berço com colchão", size: 0.33, quant: 0 },
-                        { title: "Cabideiro", size: 0.33, quant: 0 },
-                        { title: "Cama beliche com colchão", size: 2.2, quant: 0 },
-                        { title: "Cama casal com colchão", size: 1.43, quant: 0 },
-                        { title: "Cama de solteiro com colchão", size: 1.1, quant: 0 },
-                        { title: "Cômoda", size: 0.44, quant: 0 },
-                        { title: "Mesa de cabeceira", size: 0.22, quant: 0 },
-                        { title: "Penteadeira", size: 0.77, quant: 0 },
-                        { title: "Quadros", size: 0.11, quant: 0 },
+                        { type: "email", title: "E-mail", value: null },
+                        { type: "text",  title: "Telefone", value: null },                        
+                    ],
+                    radioName: null,
+                    radio: []
+                },
+                {
+                    title: "Metragens",
+                    fields: [],
+                    radioName: "metragem",
+                    radio: []
+                },
+                {
+                    title: "Tempo de Locação",
+                    fields: [],
+                    radioName: "tempo",
+                    radio: [
+                        { label: "1 mês", value: "1" },
+                        { label: "2 a 3 meses", value: "3" },
+                        { label: "4 a 6 meses", value: "6" },
+                        { label: "7 a 12 meses", value: "12" },
+                        { label: "Mais de uma ano", value: "13" },
                     ]
                 },
                 {
-                    ico: "bi-cup-straw",
-                    title: "Cozinha",
-                    fields: [
-                        { title: "Armário paneleiro", size: 1.1, quant: 0 },
-                        { title: "Armário de parede pequeno com 2 portas", size: 0.22, quant: 0 },
-                        { title: "Cadeira", size: 0.66, quant: 0 },
-                        { title: "Exaustor", size: 0.11, quant: 0 },
-                        { title: "Freezer", size: 0.88, quant: 0 },
-                        { title: "Fogão (4 bocas)", size: 0.33, quant: 0 },
-                        { title: "Fogão (6 bocas)", size: 0.55, quant: 0 },
-                        { title: "Forninho", size: 0.11, quant: 0 },
-                        { title: "Geladeira", size: 0.99, quant: 0 },
-                        { title: "Máquina de lavar louça", size: 0.55, quant: 0 },
-                        { title: "Máquina de lavar/secar", size: 0.55, quant: 0 },
-                        { title: "Mesa de cozinha", size: 0.33, quant: 0 },
-                        { title: "Micro-ondas", size: 0.11, quant: 0 },
+                    title: "Olá, João. O seu orçamento é",
+                    fields: [],
+                    radioName: "orcamento",
+                    radio: [
+                        { label: "R$XX a R$XX por mês (você sabia que 80% das pessoas escolhe um box maior…) Para um orçamento mais preciso: ", value: "1" },
+                        { label: "Quero falar com uma pessoa agora mesmo", value: "3" },
+                        { label: "Ter uma cotação personalizada (X perguntas, X minutos) ", value: "6" },
                     ]
                 },
                 {
-                    ico: "step-item-active",
-                    title: "Home Office",
+                    title: "Eu sei exatamente o que quero guardar. ",
                     fields: [
-                        { title: "Armário (alto de 2 portas)", size: 1.1, quant: 0 },
-                        { title: "Arquivo", size: 0.55, quant: 0 },
-                        { title: "Balcão", size: 0.55, quant: 0 },
-                        { title: "Cadeira", size: 0.22, quant: 0 },
-                        { title: "Cofre", size: 0.55, quant: 0 },
-                        { title: "Escrivaninha", size: 0.44, quant: 0 },
-                        { title: "Estante de aço", size: 1.1, quant: 0 },
-                        { title: "Fax", size: 0.11, quant: 0 },
-                        { title: "Impressora/Xerox", size: 0.33, quant: 0 },
-                        { title: "Mesa", size: 0.55, quant: 0 },
-                        { title: "Microcomputador", size: 0.33, quant: 0 },
-                        { title: "Poltrona", size: 0.55, quant: 0 },
+                        { type: "text", title: "CEP", value: null },
+                    ],
+                    radioName: null,
+                    radio: []
+                },
+                {
+                    title: "",
+                    fields: [],
+                    radioName: "guardar",
+                    radio: [
+                        { label: "Eu vou guardar itens da minha empresa", value: "3" },
+                        { label: "Eu vou guardar itens da minha casa", value: "6" },
                     ]
                 },
                 {
-                    ico: "bi-lightbulb",
-                    title: "DIVERSOS",
-                    fields: [
-                        { title: "Ar condicionado", size: 0.33, quant: 0 },
-                        { title: "Aquecedor", size: 0.22, quant: 0 },
-                        { title: "Arquivo", size: 0.56, quant: 0 },
-                        { title: "Bancada", size: 0.33, quant: 0 },
-                        { title: "Bicicleta", size: 0.33, quant: 0 },
-                        { title: "Caixa", size: 0.22, quant: 0 },
-                        { title: "Caixa para cristais", size: 0.11, quant: 0 },
-                        { title: "Caixa plástica", size: 0.22, quant: 0 },
-                        { title: "Máquina de costura", size: 0.44, quant: 0 },
-                    ]
+                    title: "Eu vou guardar itens da sala",
+                    fields: [],
+                    radioName: "",
+                    radio: []
                 },
                 {
-                    ico: "bi-box",
-                    title: "OUTROS OBJETOS",
-                    fields: [
-                        { title: "", quant: 0, size: 0 },
-                    ]
+                    title: "Eu vou guardar itens da cozinha",
+                    fields: [],
+                    radioName: "",
+                    radio: []
                 },
                 {
-                    ico: "bi-mailbox",
-                    title: "Finalizar",
-                    fields: []
-                },            
+                    title: "Eu vou guardar itens do quarto",
+                    fields: [],
+                    radioName: "",
+                    radio: []
+                },
+                {
+                    title: "Eu gostaria que entrem em contato por",
+                    fields: [],
+                    radioName: "",
+                    radio: [
+                        { label: "WhatsApp", value: "6" },
+                        { label: "Email", value: "6" },
+                        { label: "Telefone", value: "6" },
+                    ]
+                },
+                          
             ]
         }
     },
@@ -137,6 +115,7 @@ Vue.createApp({
         },
         back() {
             this.step--
+            this.save()
         },
         finish() {
             localStorage.removeItem('form_temp')
@@ -144,6 +123,10 @@ Vue.createApp({
         },
         next() {
             this.step++
+            this.save()
+        },
+        save() {
+            return null
             localStorage.setItem('form_temp', JSON.stringify({
                 step: this.step,
                 home_office: this.home_office,
@@ -160,9 +143,6 @@ Vue.createApp({
                 return acc
             }, [] )
             this.total = total.reduce( (acc, v) =>  acc + v, 0 )
-
-            console.log(total)
-
         }
     },
     mounted() {        
@@ -171,6 +151,9 @@ Vue.createApp({
             Object.keys(form_temp).forEach(key => {
                 this[key] = form_temp[key]
             })
+        }
+        for( let i = 1; i < 32; i++) {
+            this.steps[2].radio.push( { label: `${i}m²`, value: "0" } )
         }
     }
 }).mount('#js-app')

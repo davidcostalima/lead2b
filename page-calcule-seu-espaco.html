@@ -18,105 +18,40 @@
 </head>
 
 <body class="steps-bg">
-
+    <div>
+        <img src="https://www.metromax.net.br/wp-content/themes/metromax2/img/logo.png" alt="logo" class="step-logo">
+    </div>
     <div id="js-app">
         <div class="container-fluid">
-            <div class="container">
-                <div class="d-flex justify-content-between">
-                    <div> <img :src="logo" alt="logo" class="step-logo"> </div>
-                    <div>
-                        <div>
-                            <span class="valor"> CUBAGEM <b>{{total}}</b> M³ </span>
-                            <span class="valor"> ÁREA DO BOX <b>{{total}}</b> M² </span>
-                        </div>
-                        <span> <span class="obs" >Obs: O cálculo acima é apenas uma estimativa.</span></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="container">
-                <div class="steps">
-                    <div :class="{ 'step-item': 1, 'step-item-active': step==1 ? 1 : 0}">
-                        <i class="bi bi-fingerprint"></i>
-                        <span> dados pessoais </span>
-                    </div>
-                    <div :class="{ 'step-item': 1, 'step-item-active': step==2 ? 1 : 0}">
-                        <i class="bi bi-easel"></i>
-                        <span> SALA / SALA DE JANTAR </span>
-                    </div>
-                    <div :class="{ 'step-item': 1, 'step-item-active': step==3 ? 1 : 0}">
-                        <i class="bi bi-lamp"></i>
-                        <span> QUARTO / SUÍTE </span>
-                    </div>
-                    <div :class="{ 'step-item': 1, 'step-item-active': step==4 ? 1 : 0}">
-                        <i class="bi bi-cup-straw"></i>
-                        <span> COZINHA </span>
-                    </div>
-                    <div class="step-item ">
-                        <i class="bi bi-laptop"></i>
-                        <span> HOME OFFICE </span>
-                    </div>
-                    <div :class="{ 'step-item': 1, 'step-item-active': step==5 ? 1 : 0}">
-                        <i class="bi bi-lightbulb"></i>
-                        <span> DIVERSOS </span>
-                    </div>
-                    <div :class="{ 'step-item': 1, 'step-item-active': step==6 ? 1 : 0}">
-                        <i class="bi bi-box"></i>
-                        <span> OUTROS OBJETOS </span>
-                    </div>
-                    <div :class="{ 'step-item': 1, 'step-item-active': step==7 ? 1 : 0}">
-                        <i class="bi bi-mailbox"></i>
-                        <span>Finalizar</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="container" v-show="step===1">
-                <for>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Nome*</label>
-                        <input type="text" class="form-control" v-model="nome" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Email*</label>
-                        <input type="email" class="form-control" v-model="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Telefone*</label>
-                        <input type="email" class="form-control" v-model="telefone" required>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary" v-on:click="next">Proximo</button>
-                    </div>
-
-                </for>
-            </div>            
-            <div v-for="(etapa, i) in steps">
-                <div class="container" v-show="step===(i+1) && (i+1)!=7 && (i+1)!=1  ">
-                    <form action="javascript:void(0)">
-                        <div class="row">
-                            <div class="mb-3 col-4" v-for="inp in etapa.fields">
-                                <label for="" class="form-label">{{inp.title}}</label>
-                                <input type="number" class="form-control" v-model="inp.quant" @input="handleCalc" required>
+            <div class="container-box">
+                <div v-for="(etapa, i) in steps">
+                    <div v-show="step===(i+1)">
+                        <h1 class="title">{{etapa.title}}</h1>
+                        <form action="javascript:void(0)">
+                            <div class="row mt-4">
+                                <div class="mb-3 col-12" v-for="(inp, index) in etapa.fields" v-show="inp.type!='checkbox'">
+                                    <label for="" class="form-label">{{inp.title}} </label>
+                                    <input :type="inp.type" class="form-control" v-model="inp.value" @input="handleCalc"
+                                        required>
+                                </div>
+                                <div class="mb-3 col-12 " v-for="(inp, index) in etapa.radio" >
+                                    <input  :id="'check_'+etapa.radioName+'_'+index" type="radio" :name="etapa.radioName"
+                                        v-model="inp.value" @input="handleCalc" class="quase-hidden" required>
+                                    <label class="box-model" :for="'check_'+etapa.radioName+'_'+index" >
+                                        <span class="text-center">
+                                            {{inp.label}}
+                                        </span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn btn-light" v-on:click="back">Voltar</button>
-                            <button type="submit" class="btn btn-primary" v-on:click="next">Proximo</button>
-                        </div>
-                    </form>
-                </div>
-            </div>        
-            <div class="container" v-show="step===7">
-                <h1 class="text-center">CTA</h1>
-                <form action="javascript:void(0)">
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn btn-light" v-on:click="back">Voltar</button>
-                        <button type="submit" class="btn btn-primary" v-on:click="finish">CONFIRMAR</button>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn btn-link" v-on:click="back"
+                                    v-show="1!=(i+1)">Voltar</button>
+                                <button type="submit" class="btn btn-success" v-on:click="next">Proximo</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

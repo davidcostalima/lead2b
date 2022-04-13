@@ -1,22 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
+body {
+    font-family: 'Roboto', sans-serif;
+}
 .steps-bg {
-    display: flex;
+    display: block;
     min-height: 100vh;
     align-items: center;
     justify-content: center;
-    background-image: url(../images/bg.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url(../images/bg.png);
+    background-position: center;
 }
+
+.container-box {
+    background-color: #fffff4;
+    width: 600px;
+    max-width: 90vw;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 7px #666;
+}
+
+.title {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
+    font-weight: bolder;
+    color: #58585a;
+}
+
 .step-logo {
-    height: 45px;
+    height: 100px;
     display: block;
     margin-bottom: 12px;
+    margin: 30px auto;
+    background-color: #fffff4;
+    padding: 7px 14px;
 }
+
+.quase-hidden {
+    display: block;
+    width: 1px;
+    height: 1px;
+}
+
 .obs {
     display: block;
     font-size: 11px;
     text-align: right;
 }
+
 .valor {
     display: inline-block;
     background-color: #C00;
@@ -34,6 +68,7 @@
     margin-bottom: 24px;
     margin-top: 7px;
 }
+
 .steps>:last-child {
     border: none;
 }
@@ -46,14 +81,44 @@
     border-radius: 4px;
     padding: 7px 14px;
 }
+
 .step-item>span {
     display: none;
     margin-left: 7px;
 }
+
 .step-item-active {
     background-color: #C00;
     color: #FFF;
 }
+
 .step-item-active>span {
     display: block;
+}
+
+.box-model {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 57px;
+    border: 1px solid #C006;
+    border-radius: 8px;
+    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, .2);
+    font-size: 20px;
+    font-weight: bolder;
+    color: #C00;
+    background-color: #fffff4;
+    line-height: 20px;
+}
+.box-model small {
+    font-size: 16px;
+}
+
+input:checked~.box-model {
+    background-color: #C00;
+    color: #FFF;
+}
+
+.not-click {
+    pointer-events: none;
 }
