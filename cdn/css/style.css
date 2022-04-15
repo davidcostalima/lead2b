@@ -41,8 +41,8 @@ body {
 
 .quase-hidden {
     display: block;
-    width: 1px;
-    height: 1px;
+    width: 2px;
+    height: 2px;
 }
 
 .obs {
@@ -109,6 +109,8 @@ body {
     color: #C00;
     background-color: #fffff4;
     line-height: 20px;
+    padding-bottom: 40%;
+    padding-top: 40%;
 }
 .box-model small {
     font-size: 16px;
@@ -121,4 +123,9 @@ input:checked~.box-model {
 
 .not-click {
     pointer-events: none;
+}
+
+.next {
+    pointer-events: none;
+    opacity: .5;
 }

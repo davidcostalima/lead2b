@@ -19,7 +19,7 @@
 
 <body class="steps-bg">
     <div>
-        <img src="https://www.metromax.net.br/wp-content/themes/metromax2/img/logo.png" alt="logo" class="step-logo">
+        <img src="./cdn/images/logo.png" alt="logo" class="step-logo">
     </div>
     <div id="js-app">
         <div class="container-fluid">
@@ -27,15 +27,15 @@
                 <div v-for="(etapa, i) in steps">
                     <div v-show="step===(i+1)">
                         <h1 class="title">{{etapa.title}}</h1>
-                        <form action="javascript:void(0)">
+                        <form action="javascript:void(0)" @submit="next">
                             <div class="row mt-4">
                                 <div class="mb-3 col-12" v-for="(inp, index) in etapa.fields" v-show="inp.type!='checkbox'">
                                     <label for="" class="form-label">{{inp.title}} </label>
-                                    <input :type="inp.type" class="form-control" v-model="inp.value" @input="handleCalc"
+                                    <input @input="isNext" :type="inp.type" class="form-control" v-model="inp.value" @input="handleCalc"
                                         required>
                                 </div>
-                                <div class="mb-3 col-12 " v-for="(inp, index) in etapa.radio" >
-                                    <input  :id="'check_'+etapa.radioName+'_'+index" type="radio" :name="etapa.radioName"
+                                <div class="mb-3 col-4 " v-for="(inp, index) in etapa.radio" >
+                                    <input @change="isNext"  :id="'check_'+etapa.radioName+'_'+index" type="radio" :name="etapa.radioName"
                                         v-model="inp.value" @input="handleCalc" class="quase-hidden" required>
                                     <label class="box-model" :for="'check_'+etapa.radioName+'_'+index" >
                                         <span class="text-center">
@@ -45,9 +45,9 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn btn-link" v-on:click="back"
+                                <button class="btn btn btn-link" @click="back"
                                     v-show="1!=(i+1)">Voltar</button>
-                                <button type="submit" class="btn btn-success" v-on:click="next">Proximo</button>
+                                <button type="submit" class="btn btn-success" click="next" :class="{next: onNext}">Proximo</button>
                             </div>
                         </form>
                     </div>

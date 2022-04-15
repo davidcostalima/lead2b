@@ -3,6 +3,7 @@ Vue.createApp({
         return {
             step: 1,
             total: 0,
+            onNext: true,
             subtitle: [
                 "PP (1 a 3m²: 5 malas grandes ou 8 caixas médias)",
                 "P (4 a 6m²: Mobília de 1 quarto)",
@@ -123,7 +124,11 @@ Vue.createApp({
         },
         next() {
             this.step++
+            this.onNext=true
             this.save()
+        },
+        isNext() {
+            this.onNext=false
         },
         save() {
             return null
@@ -146,12 +151,12 @@ Vue.createApp({
         }
     },
     mounted() {        
-        let form_temp = JSON.parse(localStorage.getItem('form_temp'))
-        if (form_temp) {
-            Object.keys(form_temp).forEach(key => {
-                this[key] = form_temp[key]
-            })
-        }
+        // let form_temp = JSON.parse(localStorage.getItem('form_temp'))
+        // if (form_temp) {
+        //     Object.keys(form_temp).forEach(key => {
+        //         this[key] = form_temp[key]
+        //     })
+        // }
         for( let i = 1; i < 32; i++) {
             this.steps[2].radio.push( { label: `${i}m²`, value: "0" } )
         }
