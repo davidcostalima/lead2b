@@ -12,6 +12,19 @@ if (!empty($_REQUEST['email'])) {
     }
 
     @mail($to, $subject, $message);
+
+    $post_id = wp_insert_post(array(
+        'post_type' => 'lead',
+        'post_title' => $_REQUEST['email'],
+        'post_content' => $message,
+        'post_status' => 'publish',
+        'comment_status' => 'closed',
+        'ping_status' => 'closed',
+    ));
+
+    if ($post_id) {
+        add_post_meta($post_id, '_brc_lead', json_encode($_REQUEST));
+    }
 }
 
 ?>
@@ -32,7 +45,7 @@ if (!empty($_REQUEST['email'])) {
 </head>
 
 <body class="steps-bg">
-<div>
+    <div>
         <img src="<?= $uri ?>/cdn/images/logo.png" alt="logo" class="step-logo">
     </div>
     <div id="js-app">
@@ -45,13 +58,11 @@ if (!empty($_REQUEST['email'])) {
                             <div class="row mt-4">
                                 <div class="mb-3 col-12" v-for="(inp, index) in etapa.fields" v-show="inp.type!='checkbox'">
                                     <label for="" class="form-label">{{inp.title}} </label>
-                                    <input @input="isNext" :type="inp.type" class="form-control" v-model="inp.value" @input="handleCalc"
-                                        required>
+                                    <input @input="isNext" :type="inp.type" class="form-control" v-model="inp.value" @input="handleCalc" required>
                                 </div>
-                                <div class="mb-3 col-4 " v-for="(inp, index) in etapa.radio" >
-                                    <input @change="isNext"  :id="'check_'+etapa.radioName+'_'+index" type="radio" :name="etapa.radioName"
-                                        v-model="etapa.value" :value="inp.label" @input="handleCalc" class="quase-hidden" required>
-                                    <label class="box-model" :for="'check_'+etapa.radioName+'_'+index" >
+                                <div class="mb-3 col-4 " v-for="(inp, index) in etapa.radio">
+                                    <input @change="isNext" :id="'check_'+etapa.radioName+'_'+index" type="radio" :name="etapa.radioName" v-model="etapa.value" :value="inp.label" @input="handleCalc" class="quase-hidden" required>
+                                    <label class="box-model" :for="'check_'+etapa.radioName+'_'+index">
                                         <span class="text-center">
                                             {{inp.label}}
                                         </span>
@@ -59,8 +70,7 @@ if (!empty($_REQUEST['email'])) {
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn btn-link" @click="back"
-                                    v-show="1!=(i+1)">Voltar</button>
+                                <button class="btn btn btn-link" @click="back" v-show="1!=(i+1)">Voltar</button>
                                 <button type="submit" class="btn btn-success" click="next" :class="{next: onNext}">Proximo</button>
                             </div>
                         </form>
