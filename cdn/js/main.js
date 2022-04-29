@@ -239,6 +239,10 @@ Vue.createApp({
             }))
 
         },
+        forcerSubmit() {
+            this.$refs.info.click()
+            console.log(this.$refs.info)
+        },
         handleCalc() {
             let total = this.steps.reduce((acc, e) => {
                 acc = [...acc, ...e.fields.map(f => f.quant * f.size)]
