@@ -1,16 +1,81 @@
+const pathApi = "http://dev.metromax.net.br/calcule-seu-espaco-2/"
+
+const options = {
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    method: 'POST',
+    mode: 'cors',
+    cache: 'default',
+    body: null
+}
+
+const error_default = {
+    status_code: 500,
+    next: false,
+    message: 'Não foi possível acessar api'
+}
+
+function obj_to_url(obj, next_level = null) {
+    var query = [];
+    for (var key in obj) {
+        switch (typeof obj[key]) {
+            case 'string':
+            case 'number':
+                if (next_level != null) {
+                    query.push(`${next_level}[${key}]=${obj[key]}&`)
+                } else {
+                    query.push(`${key}=${obj[key]}&`)
+                }
+                break
+            case 'object':
+                query.push(obj_to_url(obj[key], key))
+        }
+    }
+    return query.join('');
+}
+
+async function post(path, data) {
+    let base = pathApi
+    options.body = obj_to_url(data)
+    try {
+        let res = await fetch(`${base}${path}`, options)
+        let status_code = res.status
+        return await res.json()
+    } catch (error) {
+        return error_default
+    }
+}
+
+async function get(path, data = {}) {
+    let base = pathApi
+    try {
+        let res = await fetch(`${base}${path}?${obj_to_url(data)}`)
+        let res_in_json = await res.json()
+        return res_in_json
+    } catch (error) {
+        return error_default
+    }
+}
+
 Vue.createApp({
     data() {
         return {
             step: 1,
             total: 0,
             onNext: true,
-            subtitle: [
-                "PP (1 a 3m²: 5 malas grandes ou 8 caixas médias)",
-                "P (4 a 6m²: Mobília de 1 quarto)",
-                "M (7 a 9m²: Mobília de 1 apartamento, de aprox. 70m², com 2 quartos)",
-                "G (10 a 31m²: Mobília e eletrodomésticos de 1 casa, de aprox. 200m², com 4 quartos)",
-                "Sob medida"
-            ],
+            form: {
+                size: null,
+                nome: null,
+                sobreNome: null,
+                telefone: null,
+                email: null,
+                locacao: null,
+                pulou: null,
+                exato: null,
+                guard: null,
+                contato: null,
+            },
             steps: [
                 {
                     title: "Eu preciso de um box no tamanho:",
@@ -179,6 +244,9 @@ Vue.createApp({
         }
     },
     methods: {
+        setData( key, value ) {
+            this.form[key] = value
+        },
         key() {
             return 1;
         },
@@ -188,6 +256,8 @@ Vue.createApp({
             this.handleMetros()
         },
         finish() {
+            post( '', this.form )
+            alert('Dados enviado com sucesso!')
             localStorage.removeItem('form_temp')
             this.step = 1
         },
@@ -195,7 +265,9 @@ Vue.createApp({
             this.step++
             this.onNext = true
             this.save()
-            this.handleMetros()
+            console.clear()
+            console.log( this.data)
+            // this.handleMetros()
         },
         isNext() {
             this.onNext = false
@@ -227,15 +299,10 @@ Vue.createApp({
             }
         },
         save() {
-            return null
             localStorage.setItem('form_temp', JSON.stringify({
                 step: this.step,
-                home_office: this.home_office,
-                nome: this.nome,
-                email: this.email,
-                telefone: this.telefone,
+                form: this.form,
                 total: this.total,
-                steps: this.steps
             }))
 
         },
@@ -254,10 +321,13 @@ Vue.createApp({
     mounted() {
         let form_temp = JSON.parse(localStorage.getItem('form_temp'))
         if (form_temp) {
+            this.step = form_temp.step
+            this.form = { ...this.form, ...form_temp.form }
             // Object.keys(form_temp).forEach(key => {
             //     this[key] = form_temp[key]
             // })
         }
+        console.log(this.form)
 
         this.handleMetros()
     }
