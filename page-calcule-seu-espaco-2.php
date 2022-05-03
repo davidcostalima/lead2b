@@ -11,6 +11,32 @@ if (!empty($_REQUEST['email'])) {
         $message .= "{$key}:{$value} \r\n";
     }
 
+    @$size = $_REQUEST['size'];
+    @$nome = $_REQUEST['nome'];
+    @$sobreNome = $_REQUEST['sobreNome'];
+    @$telefone = $_REQUEST['telefone'];
+    @$email = $_REQUEST['email'];
+    @$locacao = $_REQUEST['locacao'];
+    @$pulou = $_REQUEST['pulou'];
+    @$exato = $_REQUEST['exato'];
+    @$guard = $_REQUEST['guard'];
+    @$contato = $_REQUEST['contato'];
+
+    $message = "
+    Eu preciso de um box no tamanho: \r\n 
+    {$size} \r\n 
+    Para onde enviaremos o orçamento instantâneo: \r\n 
+    nome: {$nome} \r\n 
+    sobreNome: {$sobreNome} \r\n 
+    telefone: {$telefone} \r\n 
+    email: {$email} \r\n 
+    Eu sei exatamente o que eu quero guardar: \r\n 
+    {$exato} \r\n 
+    O que quero guardar: \r\n 
+    {$locacao} \r\n 
+    Eu gostaria que entrem em contato por: \r\n 
+    {$contato} \r\n  ";
+
     @mail('br.rafael@outlook.com', $subject, $message);
     @mail('david@oicaribe.com.br', $subject, $message);
 
@@ -51,14 +77,14 @@ if (!empty($_REQUEST['email'])) {
         <div class="container">
             <div class="row">
                 <div class="col-5 col-md-2 logo"></div>
-                <div class="col-1 col-md-6">
+                <div class="col-1 col-md-5">
                     <span class="header_iten d-none d-md-inline">Lorem ipsum <b> * </b></span>
                     <span class="header_iten d-none d-md-inline">Lorem ipsum <b> * </b></span>
                     <span class="header_iten d-none d-md-inline">Lorem ipsum <b> * </b></span>
                 </div>
-                <div class="col-5 col-md-2">
+                <div class="col-5 col-md-3">
                     <span class="tel">
-                        <i class="bi bi-telephone-fill"></i>
+                        <i class="bi bi-whatsapp"></i>
                         <b>(12) 3455-6789</b>
                     </span>
                 </div>
@@ -120,13 +146,12 @@ if (!empty($_REQUEST['email'])) {
         </div>
         <div class="container container-box" v-show="step==2">
             <h1 class="title">
-                Para onde devemos Enviar o orçamento
-                instantâneo com promoção imperdível:
+                Para onde enviaremos o orçamento instantâneo:
             </h1>
             <form action="javascript:void(0)" @submit="next">
                 <div class="inputs_lead">
-                    <input type="text" @blur="forcerSubmit" v-model="form.nome" placeholder="Nome" required>
-                    <input type="text" @blur="forcerSubmit" v-model="form.sobreNome" placeholder="Sobrenome" required>
+                    <input type="text" @blur="forcerSubmit" v-model="form.nome" placeholder="preencheu o nome" required>
+                    <input type="text" @blur="forcerSubmit" v-model="form.sobreNome" placeholder="preencheu o sobrenome" required>
                     <input type="text" @blur="forcerSubmit" v-model="form.telefone" placeholder="Telefone" required>
                     <input type="email" @blur="forcerSubmit" v-model="form.email" placeholder="Email" required>
                 </div>
@@ -135,21 +160,24 @@ if (!empty($_REQUEST['email'])) {
             <div @click="back" class="voltar">Voltar</div>
         </div>
         <div class="container container-box" v-show="step==3">
-            <h1 class="title">Tempo de Locação</h1>
+            <h1 class="title">Eu preciso guarda por:</h1>
             <p class="text-center">
                 Tempo Aproximado não Precisa ser exato
             </p>
             <div class="tempo_box">
-                <span @click="next(); form.locacao='1'" :class="{tempo_item: true, active: form.locacao=='1'}">1
-                    mês</span>
-                <span @click="next(); form.locacao='1 a 3'" :class="{tempo_item: true, active: form.locacao=='1 a 3'}">
-                    2 a 3 meses</span>
-                <span @click="next(); form.locacao='4 a 6'" :class="{tempo_item: true, active: form.locacao=='4 a 6'}">4
-                    a 6 meses</span>
-                <span @click="next(); form.locacao='7 a 12'"
-                    :class="{tempo_item: true, active: form.locacao=='7 a 12'}">7 a 12 meses</span>
-                <span @click="next(); form.locacao='+1'" :class="{tempo_item: true, active: form.locacao=='+1'}">mais de
-                    1 ano</span>
+                <span @click="next(); form.locacao='1 a 3 meses'" :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
+                    1 a 3 meses
+                </span>
+                <span @click="next(); form.locacao='4 a 6 meses'" :class="{tempo_item: true, active: form.locacao=='4 a 6 meses'}">
+                    4 a 6 meses
+                </span>
+                <span @click="next(); form.locacao='7 a 12 meses'" :class="{tempo_item: true, active: form.locacao=='7 a 12 meses'}">
+                    7 a 12 meses
+                </span>
+                <span @click="next(); form.locacao='Não sei'" :class="{tempo_item: true, active: form.locacao=='Não sei'}">
+                    Não sei
+                </span>
+                
             </div>
             <div @click="back" class="voltar">Voltar</div>
         </div>

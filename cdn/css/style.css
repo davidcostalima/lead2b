@@ -32,7 +32,7 @@ body {
 
 .container-box {
     background-color: #FFF;
-    padding: 50px;
+    padding: 50px !important;
     border-radius: 20px;
     box-shadow: 3px 3px 7px rgba(0, 0, 0, .2);
     min-height: 60vh;
@@ -370,6 +370,10 @@ input:checked~.box-model {
     background-color: #C00;
 }
 
+.container {
+    width: 1000px;
+}
+
 @media (min-width: 800px) {
     .w-guard {
         width: 50%;
@@ -387,14 +391,21 @@ input:checked~.box-model {
     .size_item {
         grid-template-columns: 1fr;
     }
+    .size_item>span {
+        font-size: 18px;
+    }
 
     .size_item>div {
         grid-template-columns: 1fr;
         align-items: center;
+        padding: 7px;
     }
 
     .size_item>div>strong {
-        font-size: 45px;
+        font-size: 35px;
+    }    
+    .size_item>div>small {
+        font-size: 12px;
     }
 
     .inputs_lead {
@@ -402,8 +413,7 @@ input:checked~.box-model {
     }
 
     .tempo_box {
-
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .tempo_item {
