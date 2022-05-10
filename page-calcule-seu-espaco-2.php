@@ -72,7 +72,7 @@ if (!empty($_REQUEST['email'])) {
 </head>
 
 <body class="steps-bg">
-
+    <div class="rodape"></div>
     <div class="container-fluid header">
         <div class="container">
             <div class="row">
@@ -94,185 +94,237 @@ if (!empty($_REQUEST['email'])) {
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="rodape"></div>
+
     <div id="js-app">
         <div class="container-fluid">
-            <div class="container container-box" v-show="step==1">
-                <h1 class="title">Eu preciso de um box no tamanho:</h1>
-                <div class="sizes_box">
-                    <div :class="{size_item: true, active: form.size=='PP'}" @click="next(); form.size='PP'">
-                        <div>
-                            <strong>PP</strong>
-                            <small>5 malas grandes ou 8 caixas médias</small>
+            <div class="container">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="container-box">
+                                <h1 class="title">Eu preciso de um box no tamanho:</h1>
+                                <div class="sizes_box">
+                                    <div :class="{size_item: true, active: form.size=='PP'}"
+                                        @click="next(); form.size='PP'">
+                                        <div>
+                                            <strong>PP</strong>
+                                            <small>5 malas grandes ou 8 caixas médias</small>
+                                        </div>
+                                        <span>1 a 3m</span>
+                                    </div>
+                                    <div :class="{size_item: true, active: form.size=='P'}"
+                                        @click="next(); form.size='P'">
+                                        <div>
+                                            <strong>P</strong>
+                                            <small>Mobilia de um quarto</small>
+                                        </div>
+                                        <span>4 a 6m</span>
+                                    </div>
+                                    <div :class="{size_item: true, active: form.size=='M'}"
+                                        @click="next(); form.size='M'">
+                                        <div>
+                                            <strong>M</strong>
+                                            <small>Mobilia de 1 apartamento, de aproximadamente 70m, com 2
+                                                quartos</small>
+                                        </div>
+                                        <span>7 a 9m</span>
+                                    </div>
+                                    <div :class="{size_item: true, active: form.size=='G'}"
+                                        @click="next();form.size='G'">
+                                        <div>
+                                            <strong>G</strong>
+                                            <small>Mobilia e eletro eletrônico de 1 casa de aproximadamente 200m, com 4
+                                                quartos</small>
+                                        </div>
+                                        <span>10 a 31m</span>
+                                    </div>
+                                    <div :class="{size_item: true, active: form.size=='S'}"
+                                        @click="next(); form.size='S'">
+                                        <div>
+                                            <strong>
+                                                Sob <br />
+                                                Medida
+                                            </strong>
+                                            <small></small>
+                                        </div>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <span>1 a 3m</span>
-                    </div>
-                    <div :class="{size_item: true, active: form.size=='P'}" @click="next(); form.size='P'">
-                        <div>
-                            <strong>P</strong>
-                            <small>Mobilia de um quarto</small>
-                        </div>
-                        <span>4 a 6m</span>
-                    </div>
-                    <div :class="{size_item: true, active: form.size=='M'}" @click="next(); form.size='M'">
-                        <div>
-                            <strong>M</strong>
-                            <small>Mobilia de 1 apartamento, de aproximadamente 70m, com 2 quartos</small>
-                        </div>
-                        <span>7 a 9m</span>
-                    </div>
-                    <div :class="{size_item: true, active: form.size=='G'}" @click="next();form.size='G'">
-                        <div>
-                            <strong>G</strong>
-                            <small>Mobilia e eletro eletrônico de 1 casa de aproximadamente 200m, com 4 quartos</small>
-                        </div>
-                        <span>10 a 31m</span>
-                    </div>
-                    <div :class="{size_item: true, active: form.size=='S'}" @click="next(); form.size='S'">
-                        <div>
-                            <strong>
-                                Sob <br />
-                                Medida
-                            </strong>
-                            <small></small>
-                        </div>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container container-box" v-show="step==2">
-            <h1 class="title">
-                Para onde enviaremos o orçamento instantâneo:
-            </h1>
-            <form action="javascript:void(0)" @submit="next">
-                <div class="inputs_lead">
-                    <input type="text" @blur="forcerSubmit" v-model="form.nome" placeholder="preencheu o nome" required>
-                    <input type="text" @blur="forcerSubmit" v-model="form.sobreNome" placeholder="preencheu o sobrenome" required>
-                    <input type="text" @blur="forcerSubmit" v-model="form.telefone" placeholder="Telefone" required>
-                    <input type="email" @blur="forcerSubmit" v-model="form.email" placeholder="Email" required>
-                </div>
-                <input type="submit" ref="info" hidden>
-            </form>
-            <div @click="back" class="voltar">Voltar</div>
-        </div>
-        <div class="container container-box" v-show="step==3">
-            <h1 class="title">Eu preciso guarda por:</h1>
-            <p class="text-center">
-                Tempo Aproximado não Precisa ser exato
-            </p>
-            <div class="tempo_box">
-                <span @click="next(); form.locacao='1 a 3 meses'" :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
-                    1 a 3 meses
-                </span>
-                <span @click="next(); form.locacao='4 a 6 meses'" :class="{tempo_item: true, active: form.locacao=='4 a 6 meses'}">
-                    4 a 6 meses
-                </span>
-                <span @click="next(); form.locacao='7 a 12 meses'" :class="{tempo_item: true, active: form.locacao=='7 a 12 meses'}">
-                    7 a 12 meses
-                </span>
-                <span @click="next(); form.locacao='Não sei'" :class="{tempo_item: true, active: form.locacao=='Não sei'}">
-                    Não sei
-                </span>
-                
-            </div>
-            <div @click="back" class="voltar">Voltar</div>
-        </div>
-        <div class="container" v-show="step==4">
-            <div class="row">
-                <div class="col-12 col-md-8">
-                    <div class="container-box">
-                        <h1 class="title_2">Olá, {{form.nome}} {{form.sobreNome}}. o Seu orçamento é</h1>
-                        <div v-if="form.size=='PP'">
-                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
-                        </div>
-                        <div v-if="form.size=='P'">
-                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
-                        </div>
-                        <div v-if="form.size=='M'">
-                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
-                        </div>
-                        <div v-if="form.size=='G'">
-                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
-                        </div>
-                        <small>( você sabia que 80% das pessoas escolhem um box maior... )</small><br />
-                        <strong>Para ter um orçamento mais preciso:</strong>
-                        <span @click="step=7;form.pulou='sim'" :class="{call_item:true, active: form.pulou=='sim'}">
-                            Quero falar com uma pessoal agora mesmo
-                        </span>
-                        <span @click="next();form.pulou='nao'" :class="{call_item:true, active: form.pulou=='nao'}">
-                            <b>
-                                Ter uma cotação personalizada
-                            </b>
-                            <small>(25 perguntas, 3 minutos)</small>
-                        </span> <br />
-                        <div @click="back" class="voltar">Voltar</div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="container-box">
-                        {{form.nome}} {{form.sobreNome}} <br />
-                        {{form.telefone}} <br />
-                        {{form.email}} <br />
-                    </div>
-                </div>
-            </div>
+                        <div class="carousel-item">
+                            <div class="container-box">
+                                <h1 class="title">
+                                    Para onde enviaremos o orçamento instantâneo:
+                                </h1>
+                                <form action="javascript:void(0)" @submit="next">
+                                    <div class="inputs_lead">
+                                        <input type="text" @blur="forcerSubmit" v-model="form.nome"
+                                            placeholder="preencheu o nome" required>
+                                        <input type="text" @blur="forcerSubmit" v-model="form.sobreNome"
+                                            placeholder="preencheu o sobrenome" required>
+                                        <input type="text" @blur="forcerSubmit" v-model="form.telefone"
+                                            placeholder="Telefone" required>
+                                        <input type="email" @blur="forcerSubmit" v-model="form.email"
+                                            placeholder="Email" required>
+                                    </div>
+                                    <input type="submit" ref="info" hidden>
+                                </form>
+                                <div @click="back" class="voltar">Voltar</div>
+                            </div>
 
-        </div>
-        <div class="container  container-box" v-show="step==5">
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container-box">
+                                <h1 class="title">Eu preciso guarda por:</h1>
+                                <p class="text-center">
+                                    Tempo Aproximado não Precisa ser exato
+                                </p>
+                                <div class="tempo_box">
+                                    <span @click="next(); form.locacao='1 a 3 meses'"
+                                        :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
+                                        1 a 3 meses
+                                    </span>
+                                    <span @click="next(); form.locacao='4 a 6 meses'"
+                                        :class="{tempo_item: true, active: form.locacao=='4 a 6 meses'}">
+                                        4 a 6 meses
+                                    </span>
+                                    <span @click="next(); form.locacao='7 a 12 meses'"
+                                        :class="{tempo_item: true, active: form.locacao=='7 a 12 meses'}">
+                                        7 a 12 meses
+                                    </span>
+                                    <span @click="next(); form.locacao='Não sei'"
+                                        :class="{tempo_item: true, active: form.locacao=='Não sei'}">
+                                        Não sei
+                                    </span>
 
-            <h1 class="title">
-                Eu sei exatamente o que eu quero guardar.
-            </h1>
-            <div class="text-center">
-                <span :class="{link_confirm:true, active: form.exato=='sim'}"
-                    @click="next();form.exato='sim'">Sim</span>
-                <span :class="{link_confirm:true, active: form.exato=='nao'}"
-                    @click="next();form.exato='nao'">Não</span>
-            </div>
-            <div @click="back" class="voltar">Voltar</div>
-        </div>
-        <div class="container  container-box" v-show="step==6">
+                                </div>
+                                <div @click="back" class="voltar">Voltar</div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-12 col-md-8">
+                                    <div class="container-box">
+                                        <h1 class="title_2">Olá, {{form.nome}} {{form.sobreNome}}. o Seu orçamento é
+                                        </h1>
+                                        <div v-if="form.size=='PP'">
+                                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
+                                        </div>
+                                        <div v-if="form.size=='P'">
+                                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
+                                        </div>
+                                        <div v-if="form.size=='M'">
+                                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
+                                        </div>
+                                        <div v-if="form.size=='G'">
+                                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
+                                        </div>
+                                        <small>( você sabia que 80% das pessoas escolhem um box maior... )</small><br />
+                                        <strong>Para ter um orçamento mais preciso:</strong>
+                                        <div class="grid_btn_ico">
 
-            <div class="text-center w-guard">
-                <span :class="{call_item:true, active: form.guard=='empresa'}" @click="next(); form.guard='empresa'">
-                    Eu vou guardar itens da minha empresa
-                </span>
-                <span :class="{call_item:true, active: form.guard=='casa'}" @click="next(); form.guard='casa'">
-                    Eu vou guardar itens da minha casa
-                </span>
-                <span :class="{call_item:true, active: form.guard=='ambos'}" @click="next(); form.guard='ambos'">
-                    De ambos
-                </span>
+                                            <span @click="step=7;form.pulou='sim'"
+                                                :class="{ 'text-center': true, call_item:true, active: form.pulou=='sim'}">
+                                                <img src="./cdn/ico/atendimento.svg" class="ico_btn">
+                                                Quero falar com uma pessoal agora mesmo
+                                            </span>
+                                            <span @click="next();form.pulou='nao'"
+                                                :class="{ 'text-center': true, call_item:true, active: form.pulou=='nao'}">
+                                                <img src="./cdn/ico/cotacao.svg" class="ico_btn">
+                                                <b>
+                                                    Ter uma cotação personalizada
+                                                </b> <br>
+                                                <small>(25 perguntas, 3 minutos)</small>
+                                            </span>
+                                        </div>
+                                        <br />
+                                        <div @click="back" class="voltar">Voltar</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="container-box">
+                                        {{form.nome}} {{form.sobreNome}} <br />
+                                        {{form.telefone}} <br />
+                                        {{form.email}} <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container-box">
+                                <h1 class="title">
+                                    Eu sei exatamente o que eu quero guardar.
+                                </h1>
+                                <div class="text-center">
+                                    <span :class="{link_confirm:true, active: form.exato=='sim'}"
+                                        @click="next();form.exato='sim'">Sim</span>
+                                    <span :class="{link_confirm:true, active: form.exato=='nao'}"
+                                        @click="next();form.exato='nao'">Não</span>
+                                </div>
+                                <div @click="back" class="voltar">Voltar</div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container-box">
+                                <div class="text-center w-guard">
+                                    <span :class="{call_item:true, active: form.guard=='empresa'}"
+                                        @click="next(); form.guard='empresa'">
+                                        Eu vou guardar itens da minha empresa
+                                    </span>
+                                    <span :class="{call_item:true, active: form.guard=='casa'}"
+                                        @click="next(); form.guard='casa'">
+                                        Eu vou guardar itens da minha casa
+                                    </span>
+                                    <span :class="{call_item:true, active: form.guard=='ambos'}"
+                                        @click="next(); form.guard='ambos'">
+                                        De ambos
+                                    </span>
+                                </div>
+                                <div @click="back" class="voltar">Voltar</div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container-box">
+                                <h1 class="title">
+                                    Eu gostaria que entrem em contato por:
+                                </h1>
+                                <div class="call_action_grid">
+                                    <span class="call_action" @click="form.contato='whatsapp'; finish()">
+                                        <i class="bi bi-whatsapp"></i>
+                                        <span>WhatsApp</span>
+                                    </span>
+                                    <span class="call_action" @click="form.contato='email'; finish()">
+                                        <i class="bi bi-envelope-fill"></i>
+                                        <span>Email</span>
+                                    </span>
+                                    <span class="call_action" @click="form.contato='telefone'; finish()">
+                                        <i class="bi bi-telephone-fill"></i>
+                                        <span>Telefone</span>
+                                    </span>
+                                </div>
+                                <div @click="back" class="voltar">Voltar</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button hidden ref="jsBtnPrev" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button hidden ref="jsBtnNext" class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
-            <div @click="back" class="voltar">Voltar</div>
         </div>
-        <div class="container  container-box" v-show="step==7">
-            <h1 class="title">
-                Eu gostaria que entrem em contato por:
-            </h1>
-            <div class="call_action_grid">
-                <span class="call_action" @click="form.contato='whatsapp'; finish()">
-                    <i class="bi bi-whatsapp"></i>
-                    <span>WhatsApp</span>
-                </span>
-                <span class="call_action" @click="form.contato='email'; finish()">
-                    <i class="bi bi-envelope-fill"></i>
-                    <span>Email</span>
-                </span>
-                <span class="call_action" @click="form.contato='telefone'; finish()">
-                    <i class="bi bi-telephone-fill"></i>
-                    <span>Telefone</span>
-                </span>
-            </div>
-            <div @click="back" class="voltar">Voltar</div>
-        </div>
+
         <div class="container">
             <div class="steps">
-
                 <span :class="{ative: step == 1 }"></span>
                 <span :class="{ative: step == 2 }"></span>
                 <span :class="{ative: step == 3 }"></span>
@@ -280,13 +332,10 @@ if (!empty($_REQUEST['email'])) {
                 <span :class="{ative: step == 5 }"></span>
                 <span :class="{ative: step == 6 }"></span>
                 <span :class="{ative: step == 7 }"></span>
-
-
             </div>
         </div>
     </div>
 
 </body>
-
 
 </html>
