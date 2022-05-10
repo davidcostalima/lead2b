@@ -254,6 +254,7 @@ Vue.createApp({
             this.step--
             this.save()
             this.handleMetros()
+            this.$refs.jsBtnPrev.click()
         },
         finish() {
             post( '', this.form )
@@ -267,6 +268,7 @@ Vue.createApp({
             this.save()
             console.clear()
             console.log( this.data)
+            this.$refs.jsBtnNext.click()
             // this.handleMetros()
         },
         isNext() {

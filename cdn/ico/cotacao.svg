@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: CorelDRAW 2020 (64 Bit) -->
+
+<svg
+   xml:space="preserve"
+   width="91.44mm"
+   height="91.44mm"
+   version="1.1"
+   style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+   viewBox="0 0 9144 9144"
+   id="svg23"
+   sodipodi:docname="cotacao.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+   id="namedview25"
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1.0"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:document-units="mm"
+   showgrid="false"
+   inkscape:zoom="0.58107153"
+   inkscape:cx="140.25812"
+   inkscape:cy="188.44496"
+   inkscape:window-width="1366"
+   inkscape:window-height="705"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Camada_x0020_1" />
+ <defs
+   id="defs4">
+  <style
+   type="text/css"
+   id="style2">
+   <![CDATA[
+    .str1 {stroke:#666666;stroke-width:216.25;stroke-miterlimit:22.9256}
+    .str0 {stroke:#666666;stroke-width:216.25;stroke-miterlimit:22.9256}
+    .fil1 {fill:none}
+    .fil0 {fill:#666666}
+    .fil2 {fill:#666666;fill-rule:nonzero}
+   ]]>
+  </style>
+ </defs>
+ <g
+   id="Camada_x0020_1"
+   inkscape:label="Camada 1"
+   inkscape:groupmode="layer">
+  <metadata
+   id="CorelCorpID_0Corel-Layer" />
+  <g
+   id="_2181767961536"
+   transform="matrix(2.1847222,0,0,2.1847222,-5352.5185,-5352.5185)">
+   <path
+   class="fil0"
+   d="m 5350.81,4239.4 c 622.58,0 1127.28,504.7 1127.28,1127.28 0,622.58 -504.7,1127.28 -1127.28,1127.28 -622.58,0 -1127.28,-504.7 -1127.28,-1127.28 0,-622.58 504.7,-1127.28 1127.28,-1127.28 z m 0,269.28 c 473.86,0 857.99,384.14 857.99,858 0,473.86 -384.13,857.99 -857.99,857.99 -473.86,0 -857.99,-384.13 -857.99,-857.99 0,-473.86 384.13,-858 857.99,-858 z"
+   id="path7" />
+   <polyline
+   class="fil1 str0"
+   points="5364.03,4360.76 5364.03,3278.37 4735.73,2650.07 2665.94,2650.07 2665.94,6377.71 5447.4,6377.71 "
+   id="polyline9" />
+   <rect
+   class="fil0"
+   x="3015.9399"
+   y="5012.52"
+   width="1381.8199"
+   height="240.55"
+   id="rect11" />
+   <rect
+   class="fil0"
+   x="3015.9399"
+   y="4516.2202"
+   width="1656.41"
+   height="240.55"
+   id="rect13" />
+   <rect
+   class="fil0"
+   x="3015.9399"
+   y="4025.1899"
+   width="1991.95"
+   height="240.55"
+   id="rect15" />
+   <polyline
+   class="fil1 str1"
+   points="4735.73,2650.07 4735.73,3294.2 5364.03,3294.2 "
+   id="polyline17" />
+   <path
+   class="fil2"
+   d="m 5326.5,5907.86 h 119.55 v -132.44 c 153.54,-18.75 251.99,-117.2 251.99,-259.02 -4.69,-100.8 -44.54,-158.23 -112.52,-194.56 -46.88,-28.13 -72.67,-36.33 -123.06,-51.57 -65.64,-19.92 -106.66,-32.82 -123.07,-38.68 -45.71,-18.75 -67.98,-41.02 -67.98,-65.63 0,-38.68 42.2,-66.81 98.46,-66.81 55.08,0 98.45,28.13 109,64.47 l 184.01,-43.37 c -24.62,-92.59 -112.52,-166.43 -228.55,-186.35 v -134.79 h -118.38 v 132.44 c -139.47,18.75 -230.89,113.69 -230.89,248.47 0,48.06 15.24,90.25 32.82,119.55 17.58,29.3 58.6,57.43 83.21,75.01 12.89,8.21 31.65,16.41 56.26,26.96 l 57.43,21.1 c 14.06,3.51 35.16,10.54 62.12,18.75 l 11.72,3.52 c 46.88,15.23 75.01,24.61 101.97,48.05 14.06,11.72 21.09,24.61 21.09,39.85 0,43.36 -53.91,75.01 -120.72,75.01 -73.84,0 -130.09,-36.33 -142.99,-83.22 l -186.35,44.54 c 29.3,104.31 130.1,185.18 264.88,205.11 z"
+   id="path19" />
+  </g>
+ </g>
+</svg>

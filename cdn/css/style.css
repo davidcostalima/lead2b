@@ -312,8 +312,7 @@ input:checked~.box-model {
     border-radius: 8px;
     padding: 7px 20px;
     margin-top: 20px;
-    line-height: 45px;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -371,7 +370,19 @@ input:checked~.box-model {
 }
 
 .container {
-    width: 1000px;
+    width: 960px;
+}
+.ico_btn {
+    display: block;
+    height: 70px;
+    margin: 10px auto;
+}
+
+.grid_btn_ico {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
 }
 
 @media (min-width: 800px) {
