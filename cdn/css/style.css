@@ -44,7 +44,7 @@ body {
     display: block;
     margin: 0;
     padding: 0;
-    font-size: 45px;
+    font-size: 24px;
     font-weight: bolder;
     text-align: center;
     color: #C00;
@@ -192,6 +192,7 @@ input:checked~.box-model {
     grid-template-columns: 1fr 20%;
     cursor: pointer;
 }
+
 .size_item.active,
 .size_item:hover {
     background-color: #800;
@@ -205,6 +206,7 @@ input:checked~.box-model {
     border-radius: 10px;
     padding: 20px;
 }
+
 .size_item.active>div,
 .size_item:hover>div {
     background-color: #C00;
@@ -225,6 +227,7 @@ input:checked~.box-model {
 .size_item>div>small {
     color: #777;
 }
+
 .size_item.active>div>strong,
 .size_item.active>div>small,
 .size_item:hover>div>small,
@@ -272,6 +275,17 @@ input:checked~.box-model {
     border: 1px solid #C00;
 }
 
+.avancar {
+    background-color: #C00;
+    color: #FFF;
+    border: 1px solid #C00;
+}
+
+.avancar:hover {
+    background-color: #800;
+    border: 1px solid #800;
+}
+
 .tempo_box {
     display: grid;
     gap: 20px;
@@ -285,9 +299,10 @@ input:checked~.box-model {
     text-align: center;
     font-weight: bold;
     color: #777;
-    font-family: 24px;
+    font-size: 18px;
     cursor: pointer;
 }
+
 .tempo_item.active,
 .tempo_item:hover {
     background-color: #C00;
@@ -300,7 +315,7 @@ input:checked~.box-model {
 }
 
 .subtitle {
-    font-size: 40px;
+    font-size: 18px;
     font-weight: bold;
     color: #777;
 }
@@ -312,7 +327,7 @@ input:checked~.box-model {
     border-radius: 8px;
     padding: 7px 20px;
     margin-top: 20px;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -325,7 +340,7 @@ input:checked~.box-model {
 
 .link_confirm {
     display: inline-block;
-    padding: 7px 14px;
+    padding: 20px 40px;
     border-radius: 4px;
     background-color: #DDD;
     color: #777;
@@ -335,6 +350,7 @@ input:checked~.box-model {
     margin: 7px;
     cursor: pointer;
 }
+
 .link_confirm.active,
 .link_confirm:hover {
     background-color: #800;
@@ -371,21 +387,35 @@ input:checked~.box-model {
 
 .container {
     width: 960px;
+    max-width: 90vw;
 }
+
 .ico_btn {
     display: block;
-    height: 70px;
+    height: 50px;
     margin: 10px auto;
 }
 
 .grid_btn_ico {
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     width: 100%;
 }
 
+.box-btn-next {
+    display: block;
+    text-align: right;
+    margin-bottom: -75px;
+}
+.title_scape {
+    font-size: 17px !important;
+}
+
 @media (min-width: 800px) {
+    .title_scape {
+        font-size: 18px !important;
+    }
     .w-guard {
         width: 50%;
         margin: 0 auto;
@@ -402,6 +432,7 @@ input:checked~.box-model {
     .size_item {
         grid-template-columns: 1fr;
     }
+
     .size_item>span {
         font-size: 18px;
     }
@@ -414,7 +445,8 @@ input:checked~.box-model {
 
     .size_item>div>strong {
         font-size: 35px;
-    }    
+    }
+
     .size_item>div>small {
         font-size: 12px;
     }
@@ -428,7 +460,7 @@ input:checked~.box-model {
     }
 
     .tempo_item {
-        font-size: 40px;
+        font-size: 30px;
         min-height: 100%;
         align-items: center;
         padding: 30px 20px;
@@ -443,6 +475,17 @@ input:checked~.box-model {
     .call_action {
         /* display: flex; */
         cursor: pointer;
+    }
+
+    .title_2,
+    .title {
+        font-size: 45px;
+    }
+    .subtitle {
+        font-size: 40px;
+    }
+    .grid_btn_ico {
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
