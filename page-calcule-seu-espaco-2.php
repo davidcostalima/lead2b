@@ -100,9 +100,10 @@ if (!empty($_REQUEST['email'])) {
     <div id="js-app">
         <div class="container-fluid">
             <div class="container">
-                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"
+                    data-bs-interval="false">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                        <div :class="{'carousel-item': true, active: step == 1}">
                             <div class="container-box">
                                 <h1 class="title">Eu preciso de um box no tamanho:</h1>
                                 <div class="sizes_box">
@@ -154,29 +155,28 @@ if (!empty($_REQUEST['email'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div :class="{'carousel-item': true, active: step == 2}">
                             <div class="container-box">
                                 <h1 class="title">
                                     Para onde enviaremos o orçamento instantâneo:
                                 </h1>
                                 <form action="javascript:void(0)" @submit="next">
                                     <div class="inputs_lead">
-                                        <input type="text" @blur="forcerSubmit" v-model="form.nome"
-                                            placeholder="preencheu o nome" required>
-                                        <input type="text" @blur="forcerSubmit" v-model="form.sobreNome"
-                                            placeholder="preencheu o sobrenome" required>
-                                        <input type="text" @blur="forcerSubmit" v-model="form.telefone"
-                                            placeholder="Telefone" required>
-                                        <input type="email" @blur="forcerSubmit" v-model="form.email"
-                                            placeholder="Email" required>
+                                        <input type="text" v-model="form.nome" placeholder="preencheu o nome" required>
+                                        <input type="text" v-model="form.sobreNome" placeholder="preencheu o sobrenome"
+                                            required>
+                                        <input type="text" v-model="form.telefone" placeholder="Telefone" required>
+                                        <input type="email" v-model="form.email" placeholder="Email" required>
                                     </div>
-                                    <input type="submit" ref="info" hidden>
+                                    <div class="box-btn-next">
+                                        <input type="submit" ref="info" class="voltar avancar" value="Avançar">
+                                    </div>
                                 </form>
                                 <div @click="back" class="voltar">Voltar</div>
                             </div>
 
                         </div>
-                        <div class="carousel-item">
+                        <div :class="{'carousel-item': true, active: step == 3}">
                             <div class="container-box">
                                 <h1 class="title">Eu preciso guarda por:</h1>
                                 <p class="text-center">
@@ -204,23 +204,25 @@ if (!empty($_REQUEST['email'])) {
                                 <div @click="back" class="voltar">Voltar</div>
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div :class="{'carousel-item': true, active: step == 4}">
                             <div class="row">
                                 <div class="col-12 col-md-8">
                                     <div class="container-box">
-                                        <h1 class="title_2">Olá, {{form.nome}} {{form.sobreNome}}. o Seu orçamento é
+
+                                        <h1 class="title_2 title_scape">Olá, {{form.nome}} {{form.sobreNome}}. o Seu
+                                            orçamento é
                                         </h1>
                                         <div v-if="form.size=='PP'">
-                                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
+                                            <h2 class="subtitle title_scape">R$37,00 a R$70,00 por mês </h2>
                                         </div>
                                         <div v-if="form.size=='P'">
-                                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
+                                            <h2 class="subtitle title_scape">R$37,00 a R$70,00 por mês </h2>
                                         </div>
                                         <div v-if="form.size=='M'">
-                                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
+                                            <h2 class="subtitle title_scape">R$37,00 a R$70,00 por mês </h2>
                                         </div>
                                         <div v-if="form.size=='G'">
-                                            <h2 class="subtitle">R$37,00 a R$70,00 por mês </h2>
+                                            <h2 class="subtitle title_scape">R$37,00 a R$70,00 por mês </h2>
                                         </div>
                                         <small>( você sabia que 80% das pessoas escolhem um box maior... )</small><br />
                                         <strong>Para ter um orçamento mais preciso:</strong>
@@ -253,21 +255,27 @@ if (!empty($_REQUEST['email'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div :class="{'carousel-item': true, active: step == 5}">
                             <div class="container-box">
                                 <h1 class="title">
-                                    Eu sei exatamente o que eu quero guardar.
+                                    Eu sei vou guardar <br /> algum item da minha casa?
                                 </h1>
                                 <div class="text-center">
-                                    <span :class="{link_confirm:true, active: form.exato=='sim'}"
-                                        @click="next();form.exato='sim'">Sim</span>
                                     <span :class="{link_confirm:true, active: form.exato=='nao'}"
-                                        @click="next();form.exato='nao'">Não</span>
+                                        @click="next();form.exato='nao'">
+                                        <i class="bi bi-hand-thumbs-down display-4"></i> <br />
+                                        Não
+                                    </span>
+                                    <span :class="{link_confirm:true, active: form.exato=='sim'}"
+                                        @click="next();form.exato='sim'">
+                                        <i class="bi bi-hand-thumbs-up display-4"></i> <br />
+                                        Sim
+                                    </span>
                                 </div>
                                 <div @click="back" class="voltar">Voltar</div>
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div :class="{'carousel-item': true, active: step == 6}">
                             <div class="container-box">
                                 <div class="text-center w-guard">
                                     <span :class="{call_item:true, active: form.guard=='empresa'}"
@@ -286,7 +294,7 @@ if (!empty($_REQUEST['email'])) {
                                 <div @click="back" class="voltar">Voltar</div>
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div :class="{'carousel-item': true, active: step == 7}">
                             <div class="container-box">
                                 <h1 class="title">
                                     Eu gostaria que entrem em contato por:
@@ -309,13 +317,13 @@ if (!empty($_REQUEST['email'])) {
                             </div>
                         </div>
                     </div>
-                    <button hidden ref="jsBtnPrev" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="prev">
+                    <button hidden ref="jsBtnPrev" class="carousel-control-prev" type="button"
+                        data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button hidden ref="jsBtnNext" class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="next">
+                    <button hidden ref="jsBtnNext" class="carousel-control-next" type="button"
+                        data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -337,5 +345,6 @@ if (!empty($_REQUEST['email'])) {
     </div>
 
 </body>
+
 
 </html>
