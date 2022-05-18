@@ -1,106 +1,205 @@
 const calculadora = [
     {
-        ico: "bi-easel",
-        title: "Sala / Sala de jantar",
-        fields: [
-            { title: "Aparador", quant: 0, size: 0.33 },
-            { title: "Banqueta - Puff", quant: 0, size: 0.11 },
-            { title: "Bar grande", quant: 0, size: 1.1 },
-            { title: "Bar pequeno", quant: 0, size: 0.66 },
-            { title: "Baú", quant: 0, size: 0.44 },
-            { title: "Buffet", quant: 0, size: 1.1 },
-            { title: "Cadeira com braços", size: 0.33, quant: 0 },
-            { title: "Cadeira simples", size: 0.22, quant: 0 },
-            { title: "Console de parede", size: 0.33, quant: 0 },
-            { title: "Cristaleira", size: 0.88, quant: 0 },
-            { title: "Escrivaninha grande", size: 1.1, quant: 0 },
-            { title: "Escrivaninha pequena", size: 0.66, quant: 0 },
-            { title: "Estante alta", size: 0.66, quant: 0 },
-            { title: "Estante baixa", size: 0.33, quant: 0 },
-            { title: "Mesa de centro", size: 0.33, quant: 0 },
-            { title: "Mesa console", size: 0.33, quant: 0 },
-            { title: "Mesa de jantar", size: 0.88, quant: 0 },
-            { title: "Piano armário", size: 6.6, quant: 0 },
-            { title: "Piano de cauda", size: 6.6, quant: 0 },
-            { title: "Poltrona simples", size: 0.55, quant: 0 },
-            { title: "Quadros", size: 0.11, quant: 0 },
-            { title: "Rack", size: 0.33, quant: 0 },
-            { title: "Sofá 2 lugares", size: 1.1, quant: 0 },
-            { title: "Sofá 3 lugares", size: 1.65, quant: 0 },
-            { title: "Sofá 4 lugares", size: 2.2, quant: 0 },
-            { title: "Som/Vídeo", size: 0.33, quant: 0 },
-            { title: "TV", size: 0.33, quant: 0 },
-        ]
+        title: "Eu sei vou guardar algum item da minha Sala?",
+        fields: [],
+        yesNot: true,
+        saltNot: 5
     },
+    {
+        title: "Sala / Sala de jantar 1 de 5",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
 
-    {
-        ico: "bi-lamp",
-        title: "QUARTO / SUÍTE",
-        fields: [
-            { title: "Arca", size: 0.44, quant: 0 },
-            { title: "Armário 2 portas desmontado", size: 1.1, quant: 0 },
-            { title: "Armário 3 portas desmontado", size: 1.65, quant: 0 },
-            { title: "Berço com colchão", size: 0.33, quant: 0 },
-            { title: "Cabideiro", size: 0.33, quant: 0 },
-            { title: "Cama beliche com colchão", size: 2.2, quant: 0 },
-            { title: "Cama casal com colchão", size: 1.43, quant: 0 },
-            { title: "Cama de solteiro com colchão", size: 1.1, quant: 0 },
-            { title: "Cômoda", size: 0.44, quant: 0 },
-            { title: "Mesa de cabeceira", size: 0.22, quant: 0 },
-            { title: "Penteadeira", size: 0.77, quant: 0 },
-            { title: "Quadros", size: 0.11, quant: 0 },
+            { ico: "APARADOR", title: "Aparador", value: 0, size: 0.33 },
+            { ico: "BANQUETA-PUFF", title: "Banqueta - Puff", value: 0, size: 0.11 },
+            { ico: "BAR-GRANDE", title: "Bar grande", value: 0, size: 1.1 },
+            { ico: "BAR-PEQUENO", title: "Bar pequeno", value: 0, size: 0.66 },
+            { ico: "BAU", title: "Baú", value: 0, size: 0.44 },
+            { ico: "", title: "Buffet", value: 0, size: 1.1 },
         ]
     },
     {
-        ico: "bi-cup-straw",
-        title: "Cozinha",
+        title: "Sala / Sala de jantar 2 de 5",
+        yesNot: false,
+        saltNot: 0,
         fields: [
-            { title: "Armário paneleiro", size: 1.1, quant: 0 },
-            { title: "Armário de parede pequeno com 2 portas", size: 0.22, quant: 0 },
-            { title: "Cadeira", size: 0.66, quant: 0 },
-            { title: "Exaustor", size: 0.11, quant: 0 },
-            { title: "Freezer", size: 0.88, quant: 0 },
-            { title: "Fogão (4 bocas)", size: 0.33, quant: 0 },
-            { title: "Fogão (6 bocas)", size: 0.55, quant: 0 },
-            { title: "Forninho", size: 0.11, quant: 0 },
-            { title: "Geladeira", size: 0.99, quant: 0 },
-            { title: "Máquina de lavar louça", size: 0.55, quant: 0 },
-            { title: "Máquina de lavar/secar", size: 0.55, quant: 0 },
-            { title: "Mesa de cozinha", size: 0.33, quant: 0 },
-            { title: "Micro-ondas", size: 0.11, quant: 0 },
+
+            { ico: "CADEIRA-COM-BRACOS", title: "Cadeira com braços", size: 0.33, value: 0 },
+            { ico: "CADEIRA-SIMPLES", title: "Cadeira simples", size: 0.22, value: 0 },
+            { ico: "CONSOLE-DE-PAREDE", title: "Console de parede", size: 0.33, value: 0 },
+            { ico: "CRISTALEIRA", title: "Cristaleira", size: 0.88, value: 0 },
+            { ico: "ESCRIVANINHA-GRANDE", title: "Escrivaninha grande", size: 1.1, value: 0 },
+            { ico: "ESCRIVANINHA-PEQUENA", title: "Escrivaninha pequena", size: 0.66, value: 0 },
         ]
     },
     {
-        ico: "step-item-active",
-        title: "Home Office",
+        title: "Sala / Sala de jantar 3 de 5",
+        yesNot: false,
+        saltNot: 0,
         fields: [
-            { title: "Armário (alto de 2 portas)", size: 1.1, quant: 0 },
-            { title: "Arquivo", size: 0.55, quant: 0 },
-            { title: "Balcão", size: 0.55, quant: 0 },
-            { title: "Cadeira", size: 0.22, quant: 0 },
-            { title: "Cofre", size: 0.55, quant: 0 },
-            { title: "Escrivaninha", size: 0.44, quant: 0 },
-            { title: "Estante de aço", size: 1.1, quant: 0 },
-            { title: "Fax", size: 0.11, quant: 0 },
-            { title: "Impressora/Xerox", size: 0.33, quant: 0 },
-            { title: "Mesa", size: 0.55, quant: 0 },
-            { title: "Microcomputador", size: 0.33, quant: 0 },
-            { title: "Poltrona", size: 0.55, quant: 0 },
+            { ico: "ESTANTE-ALTA", title: "Estante alta", size: 0.66, value: 0 },
+            { ico: "ESTANTE-BAIXA", title: "Estante baixa", size: 0.33, value: 0 },
+            { ico: "MESA-DE-CENTRO", title: "Mesa de centro", size: 0.33, value: 0 },
+            { ico: "MESA-CONSOLE", title: "Mesa console", size: 0.33, value: 0 },
+            { ico: "MESA-DE-JANTAR", title: "Mesa de jantar", size: 0.88, value: 0 },
+            { ico: "", title: "Piano armário", size: 6.6, value: 0 },
         ]
     },
     {
-        ico: "bi-lightbulb",
-        title: "DIVERSOS",
+        title: "Sala / Sala de jantar 4 de 5",
+        yesNot: false,
+        saltNot: 0,
         fields: [
-            { title: "Ar condicionado", size: 0.33, quant: 0 },
-            { title: "Aquecedor", size: 0.22, quant: 0 },
-            { title: "Arquivo", size: 0.56, quant: 0 },
-            { title: "Bancada", size: 0.33, quant: 0 },
-            { title: "Bicicleta", size: 0.33, quant: 0 },
-            { title: "Caixa", size: 0.22, quant: 0 },
-            { title: "Caixa para cristais", size: 0.11, quant: 0 },
-            { title: "Caixa plástica", size: 0.22, quant: 0 },
-            { title: "Máquina de costura", size: 0.44, quant: 0 },
+            { ico: "PIANO-DE-CAUDA", title: "Piano de cauda", size: 6.6, value: 0 },
+            { ico: "POLTRONA-SIMPLES", title: "Poltrona simples", size: 0.55, value: 0 },
+            { ico: "QUADROS", title: "Quadros", size: 0.11, value: 0 },
+            { ico: "RACK", title: "Rack", size: 0.33, value: 0 },
+            { ico: "SOFA-2-LUGARES", title: "Sofá 2 lugares", size: 1.1, value: 0 },
+            { ico: "SOFA-3-LUGARES", title: "Sofá 3 lugares", size: 1.65, value: 0 },
+        ]
+    },
+    {
+        title: "Sala / Sala de jantar 5 de 5",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "SOFA-4-LUGARES", title: "Sofá 4 lugares", size: 2.2, value: 0 },
+            { ico: "SOM", title: "Som/Vídeo", size: 0.33, value: 0 },
+            { ico: "TV", title: "TV", size: 0.33, value: 0 },
+        ]
+    },
+    {
+        title: "Eu sei vou guardar algum item do meu quarto?",
+        fields: [],
+        yesNot: true,
+        saltNot: 2
+    },
+    {
+        title: "QUARTO / SUÍTE 1 de 2",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "ARCA", title: "Arca", size: 0.44, value: 0 },
+            { ico: "ARMARIO-2-PORTAS", title: "Armário 2 portas desmontado", size: 1.1, value: 0 },
+            { ico: "ARMARIO-3-PORTAS", title: "Armário 3 portas desmontado", size: 1.65, value: 0 },
+            { ico: "BERCO-COM-COLCHAO", title: "Berço com colchão", size: 0.33, value: 0 },
+            { ico: "CABIDEIRO", title: "Cabideiro", size: 0.33, value: 0 },
+            { ico: "BELICHE", title: "Cama beliche com colchão", size: 2.2, value: 0 },
+        ]
+    },
+    {
+        title: "QUARTO / SUÍTE 2 de 2",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "CAMA-CASAL", title: "Cama casal com colchão", size: 1.43, value: 0 },
+            { ico: "CAMA-SOLTEIRO", title: "Cama de solteiro com colchão", size: 1.1, value: 0 },
+            { ico: "COMODA", title: "Cômoda", size: 0.44, value: 0 },
+            { ico: "MESA-DE-CABECEIRA", title: "Mesa de cabeceira", size: 0.22, value: 0 },
+            { ico: "PENTEADEIRA", title: "Penteadeira", size: 0.77, value: 0 },
+            { ico: "QUADROS", title: "Quadros", size: 0.11, value: 0 },
+        ]
+    },
+    {
+        title: "Eu sei vou guardar algum item da minha cozinha?",
+        fields: [],
+        yesNot: true,
+        saltNot: 3
+    },
+    {
+        title: "Cozinha 1 de 3",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "ARMARIO-PANELEIRO", title: "Armário paneleiro", size: 1.1, value: 0 },
+            { ico: "ARMARIO-DE-PAREDE-2-PORTAS", title: "Armário de parede pequeno com 2 portas", size: 0.22, value: 0 },
+            { ico: "CADEIRA", title: "Cadeira", size: 0.66, value: 0 },
+            { ico: "EXAUSTOR", title: "Exaustor", size: 0.11, value: 0 },
+            { ico: "FREEZER", title: "Freezer", size: 0.88, value: 0 },
+            { ico: "FOGAO-4-BOCAS", title: "Fogão (4 bocas)", size: 0.33, value: 0 },
+        ]
+    },
+    {
+        title: "Cozinha 2 de 3",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "FOGAO-6-BOCAS", title: "Fogão (6 bocas)", size: 0.55, value: 0 },
+            { ico: "FORNINHO", title: "Forninho", size: 0.11, value: 0 },
+            { ico: "GELADEIRA", title: "Geladeira", size: 0.99, value: 0 },
+            { ico: "MAQUINA-LAVA-LOUCA", title: "Máquina de lavar louça", size: 0.55, value: 0 },
+            { ico: "MAQUINA-DE-LAVAR-SECAR", title: "Máquina de lavar/secar", size: 0.55, value: 0 },
+            { ico: "MESA-DE-COZINHA", title: "Mesa de cozinha", size: 0.33, value: 0 },
+        ]
+    },
+    {
+        title: "Cozinha 3 de 3",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "MICROONDAS", title: "Micro-ondas", size: 0.11, value: 0 },
+        ]
+    },
+    {
+        title: "Eu sei vou guardar algum item do meu home office?",
+        fields: [],
+        yesNot: true,
+        saltNot: 2
+    },
+    {
+        title: "Home Office 1 de 2",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "ARMARIO-2-PORTAS", title: "Armário (alto de 2 portas)", size: 1.1, value: 0 },
+            { ico: "ARQUIVO", title: "Arquivo", size: 0.55, value: 0 },
+            { ico: "", title: "Balcão", size: 0.55, value: 0 },
+            { ico: "CADEIRA", title: "Cadeira", size: 0.22, value: 0 },
+            { ico: "COFRE", title: "Cofre", size: 0.55, value: 0 },
+            { ico: "ESCRIVANINHA", title: "Escrivaninha", size: 0.44, value: 0 },
+        ]
+    },
+    {
+        title: "Home Office 2 de 2",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "ESTANTE-DE-ACO", title: "Estante de aço", size: 1.1, value: 0 },
+            { ico: "FAX", title: "Fax", size: 0.11, value: 0 },
+            { ico: "IMPRESSORA", title: "Impressora/Xerox", size: 0.33, value: 0 },
+            { ico: "MESA", title: "Mesa", size: 0.55, value: 0 },
+            { ico: "MICROCOMPUTADOR", title: "Microcomputador", size: 0.33, value: 0 },
+            { ico: "POLTRONA", title: "Poltrona", size: 0.55, value: 0 },
+        ]
+    },
+    {
+        title: "Eu sei vou guardar algum item diversos?",
+        fields: [],
+        yesNot: true,
+        saltNot: 2
+    },
+    {
+        title: "DIVERSOS 1 de 2",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "ARCONDICIONADO", title: "Ar condicionado", size: 0.33, value: 0 },
+            { ico: "AQUECEDOR", title: "Aquecedor", size: 0.22, value: 0 },
+            { ico: "BANCADA", title: "Arquivo", size: 0.56, value: 0 },
+            { ico: "BICICLETA", title: "Bancada", size: 0.33, value: 0 },
+            { ico: "BICICLETA", title: "Bicicleta", size: 0.33, value: 0 },
+            { ico: "CAIXA", title: "Caixa", size: 0.22, value: 0 },
+        ]
+    },
+    {
+        title: "DIVERSOS 2 de 2",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "CAIXA-PARA-CRISTAIS", title: "Caixa para cristais", size: 0.11, value: 0 },
+            { ico: "CAIXA-PLASTICA", title: "Caixa plástica", size: 0.22, value: 0 },
+            { ico: "MAQUINA-DE-COSTURA", title: "Máquina de costura", size: 0.44, value: 0 },
         ]
     }
 ]

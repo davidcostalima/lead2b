@@ -203,44 +203,68 @@
                         </div>
                         <div :class="{'carousel-item': true, active: step == 5}">
                             <div class="container-box">
-                                <h1 class="title">
-                                    Eu sei vou guardar <br /> algum item da minha casa?
-                                </h1>
-                                <div class="text-center">
-                                    <span :class="{link_confirm:true, active: form.exato=='nao'}"
-                                        @click="next();form.exato='nao'">
-                                        <i class="bi bi-hand-thumbs-down display-4"></i> <br />
-                                        Não
-                                    </span>
-                                    <span :class="{link_confirm:true, active: form.exato=='sim'}"
-                                        @click="next();form.exato='sim'">
-                                        <i class="bi bi-hand-thumbs-up display-4"></i> <br />
-                                        Sim
-                                    </span>
-                                </div>
-                                <div @click="back" class="voltar">Voltar</div>
-                            </div>
-                        </div>
-                        <div :class="{'carousel-item': true, active: step == 6}">
-                            <div class="container-box">
                                 <div class="text-center w-guard">
                                     <span :class="{call_item:true, active: form.guard=='empresa'}"
                                         @click="next(); form.guard='empresa'">
-                                        Eu vou guardar itens da minha empresa
+                                        <i class="bi bi-building"></i>
+                                        empresa
                                     </span>
                                     <span :class="{call_item:true, active: form.guard=='casa'}"
                                         @click="next(); form.guard='casa'">
-                                        Eu vou guardar itens da minha casa
+                                        <i class="bi bi-house-door"></i>
+                                        casa
                                     </span>
                                     <span :class="{call_item:true, active: form.guard=='ambos'}"
                                         @click="next(); form.guard='ambos'">
+                                        <i class="bi bi-arrow-left-right"></i>
                                         De ambos
                                     </span>
                                 </div>
                                 <div @click="back" class="voltar">Voltar</div>
                             </div>
                         </div>
-                        <div :class="{'carousel-item': true, active: step == 7}">
+                        <div v-for="(c, i) in cubagem" :class="{'carousel-item': true, active: step == (i+6)}">
+                            <div class="row">
+                                <div class="col-12 col-md-9">
+                                    <div class="container-box">
+                                        <h1 class="title">
+                                            {{c.title}}
+                                        </h1>
+                                        <div v-show="!c.yesNot" class="cubo-grid">
+                                            <div v-for="campo in c.fields" class="cubo">
+                                                <span :style="{'background-image': 'url(./cdn/icons/'+campo.ico+'.svg)'}">
+                                                    {{campo.title}}
+                                                </span>
+                                                <input type="number" v-model="campo.value">
+                                            </div>
+                                        </div>
+                                        <div v-show="c.yesNot">
+                                            <div class="text-center">
+                                                <span :class="{link_confirm:true, active: form.exato=='nao'}"
+                                                    @click="next">
+                                                    <i class="bi bi-hand-thumbs-down display-4"></i> <br />
+                                                    Não
+                                                </span>
+                                                <span :class="{link_confirm:true, active: form.exato=='sim'}"
+                                                    @click="next">
+                                                    <i class="bi bi-hand-thumbs-up display-4"></i> <br />
+                                                    Sim
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="box-btn-next">
+                                            <input @click="next(c.saltNot)" type="submit" ref="info"
+                                                class="voltar avancar" value="Avançar">
+                                        </div>
+                                        <div @click="back" class="voltar">Voltar</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="container-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div :class="{'carousel-item': true, active: step == totalStep}">
                             <div class="container-box">
                                 <h1 class="title">
                                     Eu gostaria que entrem em contato por:
@@ -279,13 +303,7 @@
 
         <div class="container">
             <div class="steps">
-                <span :class="{ative: step == 1 }"></span>
-                <span :class="{ative: step == 2 }"></span>
-                <span :class="{ative: step == 3 }"></span>
-                <span :class="{ative: step == 4 }"></span>
-                <span :class="{ative: step == 5 }"></span>
-                <span :class="{ative: step == 6 }"></span>
-                <span :class="{ative: step == 7 }"></span>
+                <span v-for="(s, i) in totalStep" :key="s" :class="{ative: step == (i+1) }"></span>
             </div>
         </div>
     </div>

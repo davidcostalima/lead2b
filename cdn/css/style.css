@@ -82,12 +82,13 @@ body {
 
 .steps {
     display: flex;
+    justify-content: space-between;
     margin-top: 30px;
     margin-bottom: 30px;
 
 }
 
-.steps>span {
+.steps span {
     border-radius: 50px;
     background-color: rgba(0, 0, 0, .2);
     height: 10px;
@@ -95,7 +96,7 @@ body {
     margin: 0 7px;
 }
 
-.steps>span.ative {
+.steps span.ative {
     background-color: #FFF;
 }
 
@@ -321,15 +322,21 @@ input:checked~.box-model {
 }
 
 .call_item {
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
     background-color: #DDD;
     border-radius: 8px;
     padding: 7px 20px;
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 24px;
+    justify-content: center;
     font-weight: bold;
     cursor: pointer;
+}
+
+.call_item i {
+    margin-right: 25px;
 }
 
 .call_item.active,
@@ -408,14 +415,55 @@ input:checked~.box-model {
     text-align: right;
     margin-bottom: -75px;
 }
+
 .title_scape {
     font-size: 17px !important;
 }
 
+.cubo-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
+
+.cubo {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    gap: 20px;
+}
+
+.cubo span {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    background-color: #DDD;
+    border-radius: 5px;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    padding-left: 70px;
+}
+
+.cubo input {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #DDD;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    border: none;
+    padding-left: 10px;
+}
+
 @media (min-width: 800px) {
+    .cubo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .title_scape {
         font-size: 18px !important;
     }
+
     .w-guard {
         width: 50%;
         margin: 0 auto;
@@ -481,11 +529,18 @@ input:checked~.box-model {
     .title {
         font-size: 45px;
     }
+
     .subtitle {
         font-size: 40px;
     }
+
     .grid_btn_ico {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .call_item {
+        width: 270px;
+        margin: 10px auto;
+        font-size: 30px;
+    }
 }
