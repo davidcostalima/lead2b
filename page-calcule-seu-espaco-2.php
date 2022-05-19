@@ -71,7 +71,6 @@ if (!empty($_REQUEST['email'])) {
     <script src="<?= $uri ?>/cdn/js/main.js" debug_backtrace></script>
 </head>
 
-
 <body class="steps-bg">
     <div class="rodape"></div>
     <div class="container-fluid header">
@@ -280,9 +279,9 @@ if (!empty($_REQUEST['email'])) {
                         </div>
                         <div v-for="(c, i) in cubagem" :class="{'carousel-item': true, active: step == (i+6)}">
                             <div class="row">
-                                <div class="col-12 col-md-9">
+                                <div class="col-12 col-md-8">
                                     <div class="container-box">
-                                        <h1 class="title">
+                                        <h1 class="title fs-4">
                                             {{c.title}}
                                         </h1>
                                         <div v-show="!c.yesNot" class="cubo-grid">
@@ -290,7 +289,7 @@ if (!empty($_REQUEST['email'])) {
                                                 <span :style="{'background-image': 'url('+base+'/cdn/icons/'+campo.ico+'.svg)'}">
                                                     {{campo.title}}
                                                 </span>
-                                                <input type="number" v-model="campo.value">
+                                                <input type="number" @input="calcularM3" v-model="campo.value">
                                             </div>
                                         </div>
                                         <div v-show="c.yesNot">
@@ -314,8 +313,20 @@ if (!empty($_REQUEST['email'])) {
                                         <div @click="back" class="voltar">Voltar</div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="container-box"></div>
+                                <div class="col-12 col-md-4">
+                                    <div class="container-box p-1">
+                                        <h1 class="title fs-6 p-1">
+                                            Metragem:
+                                            {{metros}}m3
+                                        </h1>
+                                        <div class="bg-danger text-white rounded-2 py-2">
+                                            <ul v-for="item in cubagem">
+                                                <li v-for="c in item.fields" v-show="c.value" style="font-size: 11px;">
+                                                    {{c.title}} - {{c.value}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -364,6 +375,7 @@ if (!empty($_REQUEST['email'])) {
     </div>
 
 </body>
+
 
 
 </html>

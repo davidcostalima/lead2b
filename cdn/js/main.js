@@ -272,6 +272,7 @@ Vue.createApp({
             total: 0,
             onNext: true,
             cubagem: [],
+            metros:  0,
             base: 'http://dev.metromax.net.br/wp-content/themes/metromax2',
             form: {
                 size: null,
@@ -527,6 +528,13 @@ Vue.createApp({
                 return acc
             }, [])
             this.total = total.reduce((acc, v) => acc + v, 0)
+        },
+        calcularM3() {
+            this.metros = this.cubagem.reduce((acc, e) => {
+                const subTotal = e.fields.map( c => c.value * c.size )
+                const total = subTotal.reduce( (a, v) => a + v, 0)
+                return acc + total 
+            }, 0).toFixed(2)
         }
     },
     mounted() {

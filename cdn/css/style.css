@@ -465,6 +465,7 @@ input:checked~.box-model {
     background-size: auto 100%;
     background-repeat: no-repeat;
     padding-left: 70px;
+    font-size: 12px;
 }
 
 .cubo input {
