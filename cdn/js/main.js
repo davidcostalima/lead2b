@@ -272,6 +272,7 @@ Vue.createApp({
             total: 0,
             onNext: true,
             cubagem: [],
+            base: 'http://dev.metromax.net.br/wp-content/themes/metromax2',
             form: {
                 size: null,
                 nome: null,
@@ -541,6 +542,9 @@ Vue.createApp({
         const totalStep = calculadora.length + 6
         this.totalStep = Array(totalStep).fill(Math.random()) 
 
+        if( window.location.host.indexOf('5500') > 1 ) {
+           this.base = 'http://127.0.0.1:5500'
+        }
         
         this.handleMetros()
     }

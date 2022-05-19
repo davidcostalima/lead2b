@@ -71,6 +71,7 @@ if (!empty($_REQUEST['email'])) {
     <script src="<?= $uri ?>/cdn/js/main.js" debug_backtrace></script>
 </head>
 
+
 <body class="steps-bg">
     <div class="rodape"></div>
     <div class="container-fluid header">
@@ -229,13 +230,13 @@ if (!empty($_REQUEST['email'])) {
                                         <div class="grid_btn_ico">
 
                                             <span @click="step=7;form.pulou='sim'"
-                                                :class="{ 'text-center': true, call_item:true, active: form.pulou=='sim'}">
-                                                <img src="./cdn/ico/atendimento.svg" class="ico_btn">
+                                                :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='sim'}">
+                                                <img :src="base+'/cdn/ico/atendimento.svg'" class="ico_btn">
                                                 Quero falar com uma pessoal agora mesmo
                                             </span>
                                             <span @click="next();form.pulou='nao'"
-                                                :class="{ 'text-center': true, call_item:true, active: form.pulou=='nao'}">
-                                                <img src="./cdn/ico/cotacao.svg" class="ico_btn">
+                                                :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='nao'}">
+                                                <img :src="base+'/cdn/ico/cotacao.svg'" class="ico_btn">
                                                 <b>
                                                     Ter uma cotação personalizada
                                                 </b> <br>
@@ -286,7 +287,7 @@ if (!empty($_REQUEST['email'])) {
                                         </h1>
                                         <div v-show="!c.yesNot" class="cubo-grid">
                                             <div v-for="campo in c.fields" class="cubo">
-                                                <span :style="{'background-image': 'url(./cdn/icons/'+campo.ico+'.svg)'}">
+                                                <span :style="{'background-image': 'url('+base+'/cdn/icons/'+campo.ico+'.svg)'}">
                                                     {{campo.title}}
                                                 </span>
                                                 <input type="number" v-model="campo.value">

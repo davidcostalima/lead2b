@@ -345,6 +345,30 @@ input:checked~.box-model {
     color: #FFF;
 }
 
+.call_item_salt {
+    display: block;
+    align-items: center;
+    width: 100%;
+    background-color: #DDD;
+    border-radius: 8px;
+    padding: 7px 20px;
+    margin-top: 20px;
+    font-size: 18px;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.call_item_salt i {
+    margin-right: 25px;
+}
+
+.call_item_salt.active,
+.call_item_salt:hover {
+    background-color: #C00;
+    color: #FFF;
+}
+
 .link_confirm {
     display: inline-block;
     padding: 20px 40px;
@@ -542,5 +566,11 @@ input:checked~.box-model {
         width: 270px;
         margin: 10px auto;
         font-size: 30px;
+    }
+
+    .call_item_salt {
+        width: 100%;
+        margin: 10px auto;
+        font-size: 12px;
     }
 }
