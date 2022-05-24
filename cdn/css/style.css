@@ -1,7 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
 
+:root {
+
+    --cor-primary-500: #e51937;
+    --cor-primary-900: #8A102A;
+
+    --cor-secondary-50: #E6E6E6;
+    --cor-secondary-100: #B3B3B3;
+    --cor-secondary-700: #666666;
+
+
+    --font-size-title: 24px;
+    --font-size-subtitle: 24px;
+    --font-size-text: 24px;
+
+    --raio-g: 40px;
+    --raio-p: 24px;
+
+
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
+}
+
+.btn-raio {
+    border-radius: var(--raio-p);
 }
 
 .header {
@@ -33,10 +58,13 @@ body {
 .container-box {
     background-color: #FFF;
     padding: 50px !important;
-    border-radius: 20px;
+    border-radius: var(--raio-g);
     box-shadow: 3px 3px 7px rgba(0, 0, 0, .2);
-    min-height: 60vh;
+    min-height: 500px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .title_2,
@@ -186,7 +214,7 @@ input:checked~.box-model {
 }
 
 .size_item {
-    border-radius: 10px;
+    border-radius: var(--raio-p);
     text-align: center;
     background-color: #666;
     display: grid;
@@ -204,7 +232,7 @@ input:checked~.box-model {
     grid-template-columns: 20% 1fr;
     align-items: center;
     background-color: #DDD;
-    border-radius: 10px;
+    border-radius: var(--raio-p);
     padding: 20px;
 }
 
@@ -468,6 +496,22 @@ input:checked~.box-model {
     font-size: 12px;
 }
 
+.box-red {
+    background-color: var(--cor-primary-500);
+    border-radius: var(--raio-p) !important;
+    height: 300px;
+    overflow-y: scroll;
+    scrollbar-color: #000;
+}
+.box-red::-webkit-scrollbar,
+.box-red::-webkit-scrollbar-track {
+    background: transparent;
+    width: 5px;
+}
+.box-red::-webkit-scrollbar-thumb {
+    background-color: var(--cor-primary-900);
+    border-radius: 50px;
+}
 .cubo input {
     display: flex;
     align-items: center;
