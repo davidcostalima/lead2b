@@ -21,6 +21,8 @@ if (!empty($_REQUEST['email'])) {
     @$exato = $_REQUEST['exato'];
     @$guard = $_REQUEST['guard'];
     @$contato = $_REQUEST['contato'];
+    @$itens = $_REQUEST['itens'];
+    $itens = implode("\r\n", explode(',', $itens));
 
     $message = "
     Eu preciso de um box no tamanho: \r\n 
@@ -35,8 +37,12 @@ if (!empty($_REQUEST['email'])) {
     O que quero guardar: \r\n 
     {$locacao} \r\n 
     Eu gostaria que entrem em contato por: \r\n 
-    {$contato} \r\n  ";
+    {$contato} \r\n      
+    Lista de itens a serem armazenados: \r\n 
+    {$itens} \r\n  
+    ";
 
+    @mail($email, $subject, $message);
     @mail('br.rafael@outlook.com', $subject, $message);
     @mail('david@oicaribe.com.br', $subject, $message);
 
@@ -77,9 +83,8 @@ if (!empty($_REQUEST['email'])) {
         <div class="container">
             <div class="row">
                 <div class="col-6 col-md-9 logo"></div>
-                
                 <div class="col-6 col-md-3">
-                    <div class="d-none d-md-inline">
+                    <div class=" d-md-inline">
                         <button class="btn btn-danger btn-raio">
                             <i class="bi bi-whatsapp"></i>
                             <b>(12) 3455-6789</b>
@@ -93,8 +98,8 @@ if (!empty($_REQUEST['email'])) {
     <div id="js-app">
         <div class="container-fluid">
             <div class="container">
-                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"
-                    data-bs-interval="false">
+                <div id="carouselExampleCaptions" x-class="carousel slide" x-data-bs-ride="carousel"
+                    x-data-bs-interval="false">
                     <div class="carousel-inner">
                         <div :class="{'carousel-item': true, active: step == 1}">
                             <div class="container-box">
@@ -130,7 +135,8 @@ if (!empty($_REQUEST['email'])) {
                                             @click="next();form.size='G'">
                                             <div>
                                                 <strong>G</strong>
-                                                <small>Mobilia e eletro eletrônico de 1 casa de aproximadamente 200m, com 4
+                                                <small>Mobilia e eletro eletrônico de 1 casa de aproximadamente 200m,
+                                                    com 4
                                                     quartos</small>
                                             </div>
                                             <span>10 a 31m</span>
@@ -158,11 +164,22 @@ if (!empty($_REQUEST['email'])) {
                                     </h1>
                                     <form action="javascript:void(0)" @submit="next">
                                         <div class="inputs_lead">
-                                            <input type="text" v-model="form.nome" placeholder="preencheu o nome" required>
-                                            <input type="text" v-model="form.sobreNome" placeholder="preencheu o sobrenome"
-                                                required>
-                                            <input type="text" v-model="form.telefone" placeholder="Telefone" required>
-                                            <input type="email" v-model="form.email" placeholder="Email" required>
+                                            <div>
+                                                <label for="">Primeiro nome</label>
+                                                <input class="w-100" type="text" v-model="form.nome" required>
+                                            </div>
+                                            <div>
+                                                <label for="">Sobrenome</label>
+                                                <input class="w-100" type="text" v-model="form.sobreNome" required>
+                                            </div>
+                                            <div>
+                                                <label for="">WhatsApp (com DDD)</label>
+                                                <input class="w-100" type="text" v-model="form.telefone" required>
+                                            </div>
+                                            <div>
+                                                <label for="">Email</label>
+                                                <input class="w-100" type="email" v-model="form.email" required>
+                                            </div>
                                         </div>
                                         <div class="box-btn-next">
                                             <input type="submit" ref="info" class="voltar avancar" value="Avançar">
@@ -178,7 +195,7 @@ if (!empty($_REQUEST['email'])) {
                                 <div>
                                     <h1 class="title">Eu preciso guarda por:</h1>
                                     <p class="text-center">
-                                        Tempo Aproximado não Precisa ser exato
+                                        Tempo aproximado, não precisa ser exato
                                     </p>
                                     <div class="tempo_box">
                                         <span @click="next(); form.locacao='1 a 3 meses'"
@@ -197,7 +214,7 @@ if (!empty($_REQUEST['email'])) {
                                             :class="{tempo_item: true, active: form.locacao=='Não sei'}">
                                             Não sei
                                         </span>
-    
+
                                     </div>
                                     <div @click="back" class="voltar">Voltar</div>
                                 </div>
@@ -208,25 +225,29 @@ if (!empty($_REQUEST['email'])) {
                                 <div class="col-12 col-md-8">
                                     <div class="container-box">
                                         <div>
-                                            <h1 class="title_2 title_scape">Olá, {{form.nome}} {{form.sobreNome}}. o Seu
-                                                orçamento é
+                                            <h1 class="title_2 title_scape text-center">
+                                                Olá, {{form.nome}}. O seu orçamento fica entre:
                                             </h1>
                                             <div v-if="form.size=='PP'">
-                                                <h2 class="subtitle title_scape">R$37,00 a R$70,00 por mês </h2>
+                                                <h2 class="subtitle  text-center">R$37,00 a R$70,00 por mês </h2>
                                             </div>
                                             <div v-if="form.size=='P'">
-                                                <h2 class="subtitle title_scape">R$37,00 a R$70,00 por mês </h2>
+                                                <h2 class="subtitle  text-center">R$137,00 a R$170,00 por mês </h2>
                                             </div>
                                             <div v-if="form.size=='M'">
-                                                <h2 class="subtitle title_scape">R$37,00 a R$70,00 por mês </h2>
+                                                <h2 class="subtitle  text-center">R$237,00 a R$270,00 por mês </h2>
                                             </div>
                                             <div v-if="form.size=='G'">
-                                                <h2 class="subtitle title_scape">R$37,00 a R$70,00 por mês </h2>
+                                                <h2 class="subtitle  text-center">R$337,00 a R$370,00 por mês </h2>
                                             </div>
-                                            <small>( você sabia que 80% das pessoas escolhem um box maior... )</small><br />
-                                            <strong>Para ter um orçamento mais preciso:</strong>
-                                            <div class="grid_btn_ico">    
-                                                <span @click="step=7;form.pulou='sim'"
+                                            <small class="d-block text-center title_2 title_scape" style="font-size: 12px !important;">
+                                                Você sabia que 80% das pessoas escolhem um tamanho de box maior do que elas precisam?
+                                            </small>
+                                            <hr>
+                                            <strong class="d-block text-center subtitle title_scape">Para entender
+                                                melhor:</strong>
+                                            <div class="grid_btn_ico">
+                                                <span @click="step=totalStep.length;form.pulou='sim'"
                                                     :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='sim'}">
                                                     <img :src="base+'/cdn/ico/atendimento.svg'" class="ico_btn">
                                                     Quero falar com uma pessoal agora mesmo
@@ -247,16 +268,22 @@ if (!empty($_REQUEST['email'])) {
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="container-box" style="display: block;">
-                                        {{form.nome}} {{form.sobreNome}} <br />
-                                        {{form.telefone}} <br />
-                                        {{form.email}} <br />
+                                        {{dataPrint()}}
+                                        <hr>
+                                        <ul>
+                                            <li>{{form.nome}} {{form.sobreNome}} </li>
+                                            <li>{{form.telefone}} </li>
+                                            <li>{{form.email}} </li>
+                                        </ul>
+                                        <hr>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div :class="{'carousel-item': true, active: step == 5}">
                             <div class="container-box">
-                                <div style="width: 100%;">                                    
+                                <div style="width: 100%;">
+                                    <h1 class="title">Eu vou guardar objetos:</h1>
                                     <div class="text-center w-guard">
                                         <span :class="{call_item:true, active: form.guard=='empresa'}"
                                             @click="next(); form.guard='empresa'">
@@ -282,13 +309,14 @@ if (!empty($_REQUEST['email'])) {
                             <div class="row">
                                 <div class="col-12 col-md-8">
                                     <div class="container-box">
-                                        <div>                                            
+                                        <div>
                                             <h1 class="title fs-4">
                                                 {{c.title}}
                                             </h1>
                                             <div v-show="!c.yesNot" class="cubo-grid">
                                                 <div v-for="campo in c.fields" class="cubo">
-                                                    <span :style="{'background-image': 'url('+base+'/cdn/icons/'+campo.ico+'.svg)'}">
+                                                    <span
+                                                        :style="{'background-image': 'url('+base+'/cdn/icons/'+campo.ico+'.svg)'}">
                                                         {{campo.title}}
                                                     </span>
                                                     <input type="number" @input="calcularM3" v-model="campo.value">
@@ -297,12 +325,12 @@ if (!empty($_REQUEST['email'])) {
                                             <div v-show="c.yesNot">
                                                 <div class="text-center">
                                                     <span :class="{link_confirm:true, active: form.exato=='nao'}"
-                                                        @click="next">
+                                                        @click="next(c.saltNot)">
                                                         <i class="bi bi-hand-thumbs-down display-4"></i> <br />
                                                         Não
                                                     </span>
                                                     <span :class="{link_confirm:true, active: form.exato=='sim'}"
-                                                        @click="next">
+                                                        @click="next(1)">
                                                         <i class="bi bi-hand-thumbs-up display-4"></i> <br />
                                                         Sim
                                                     </span>
@@ -317,8 +345,8 @@ if (!empty($_REQUEST['email'])) {
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <div class="container-box p-1" style="display: block;">
-                                        <h1 class="title fs-6 p-1">
+                                    <div class="container-box " style="display: block;">
+                                        <h1 class="title fs-6">
                                             Metragem:
                                             {{metros}}m3
                                         </h1>
@@ -333,7 +361,7 @@ if (!empty($_REQUEST['email'])) {
                                 </div>
                             </div>
                         </div>
-                        <div :class="{'carousel-item': true, active: step == totalStep}">
+                        <div :class="{'carousel-item': true, active: step == totalStep.length}">
                             <div class="container-box">
                                 <div>
 
@@ -354,7 +382,13 @@ if (!empty($_REQUEST['email'])) {
                                             <span>Telefone</span>
                                         </span>
                                     </div>
-                                    <div @click="back" class="voltar">Voltar</div>
+                                    <div v-show="form.pulou == 'nao'">
+                                        <h1 class="title_2 title_scape text-center">
+                                            Olá, {{form.nome}}. O seu orçamento ficou aproximadamente:
+                                        </h1>
+                                        <h2 class="subtitle text-center">R${{valorReal(metros)}} por mês </h2>
+                                    </div>
+                                    <div @click="form.pulou == 'sim' ? step=4 : back()" class="voltar">Voltar</div>
                                 </div>
                             </div>
                         </div>
@@ -375,13 +409,11 @@ if (!empty($_REQUEST['email'])) {
 
         <div class="container">
             <div class="steps">
-                <span v-for="(s, i) in totalStep" :key="s" :class="{ative: step == (i+1) }"></span>
+                <span v-for="(s, i) in totalStep" :key="s" :class="{ative: step == (i+1) }" @click="step=i+1"></span>
             </div>
         </div>
     </div>
 
 </body>
-
-
 
 </html>

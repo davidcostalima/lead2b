@@ -5,7 +5,7 @@ const calculadora = [
         title: "Eu sei vou guardar algum item da minha Sala?",
         fields: [],
         yesNot: true,
-        saltNot: 5
+        saltNot: 6
     },
     {
         title: "Sala / Sala de jantar 1 de 5",
@@ -75,7 +75,7 @@ const calculadora = [
         title: "Eu sei vou guardar algum item do meu quarto?",
         fields: [],
         yesNot: true,
-        saltNot: 2
+        saltNot: 3
     },
     {
         title: "QUARTO / SUÍTE 1 de 2",
@@ -107,7 +107,7 @@ const calculadora = [
         title: "Eu sei vou guardar algum item da minha cozinha?",
         fields: [],
         yesNot: true,
-        saltNot: 3
+        saltNot: 4
     },
     {
         title: "Cozinha 1 de 3",
@@ -147,7 +147,7 @@ const calculadora = [
         title: "Eu sei vou guardar algum item do meu home office?",
         fields: [],
         yesNot: true,
-        saltNot: 2
+        saltNot: 3
     },
     {
         title: "Home Office 1 de 2",
@@ -179,7 +179,7 @@ const calculadora = [
         title: "Eu sei vou guardar algum item diversos?",
         fields: [],
         yesNot: true,
-        saltNot: 2
+        saltNot: 3
     },
     {
         title: "DIVERSOS 1 de 2",
@@ -272,7 +272,7 @@ Vue.createApp({
             total: 0,
             onNext: true,
             cubagem: [],
-            metros:  0,
+            metros: 0,
             base: 'http://dev.metromax.net.br/wp-content/themes/metromax2',
             form: {
                 size: null,
@@ -285,7 +285,51 @@ Vue.createApp({
                 exato: null,
                 guard: null,
                 contato: null,
+                itens: null
             },
+            tablePrice: [
+                { metros: 1 * 1, price: 119 },
+                { metros: 1 * 2.7, price: 175 },
+                { metros: 1.5 * 1.5, price: 140 },
+                { metros: 1.5 * 2.7, price: 197 },
+                { metros: 2 * 2.7, price: 247 },
+                { metros: 2.5 * 2.7, price: 258 },
+                { metros: 3 * 1.6, price: 240 },
+                { metros: 3 * 2, price: 280 },
+                { metros: 3 * 2.70, price: 280 },
+                { metros: 3.5 * 2.70, price: 315 },
+                { metros: 4 * 2.70, price: 360 },
+                { metros: 5, price: 2.70, price: 410 },
+                { metros: 5.5 * 2.70, price: 450 },
+                { metros: 6 * 2.70, price: 460 },
+                { metros: 6.5 * 2.70, price: 480 },
+                { metros: 7 * 2.70, price: 515 },
+                { metros: 7.5 * 2.70, price: 550 },
+                { metros: 8 * 2.70, price: 585 },
+                { metros: 8.5 * 2.70, price: 620 },
+                { metros: 9 * 2.70, price: 650 },
+                { metros: 9.5 * 2.70, price: 685 },
+                { metros: 10 * 2.70, price: 720 },
+                { metros: 10.5 * 2.70, price: 756 },
+                { metros: 11 * 2.70, price: 770 },
+                { metros: 12 * 2.70, price: 840 },
+                { metros: 12.5 * 2.70, price: 875 },
+                { metros: 13 * 2.70, price: 910 },
+                { metros: 14.5 * 2.70, price: 1010 },
+                { metros: 15 * 2.70, price: 1050 },
+                { metros: 16 * 2.70, price: 1120 },
+                { metros: 17.5 * 2.70, price: 1205 },
+                { metros: 18 * 2.70, price: 1240 },
+                { metros: 18.5 * 2.70, price: 1275 },
+                { metros: 19 * 2.70, price: 1300 },
+                { metros: 19.5 * 2.70, price: 1330 },
+                { metros: 20 * 2.70, price: 1360 },
+                { metros: 21 * 2.70, price: 1425 },
+                { metros: 22 * 2.70, price: 1495 },
+                { metros: 24 * 2.70, price: 1630 },
+                { metros: 25.5 * 2.70, price: 1660 },
+                { metros: 28 * 2.70, price: 2000 },
+            ],
             steps: [
                 {
                     title: "Eu preciso de um box no tamanho:",
@@ -454,7 +498,7 @@ Vue.createApp({
         }
     },
     methods: {
-        setData( key, value ) {
+        setData(key, value) {
             this.form[key] = value
         },
         key() {
@@ -467,19 +511,28 @@ Vue.createApp({
             this.$refs.jsBtnPrev.click()
         },
         finish() {
-            post( '', this.form )
+            post('', this.form)
             alert('Dados enviado com sucesso!')
             localStorage.removeItem('form_temp')
             this.step = 1
         },
-        next() {
-            this.step++
+        next(salt = 0) {
+            
+            if (this.step <= this.totalStep.length) {
+                if(salt) {
+                    this.step += salt 
+                } else {    
+                    this.step++
+                }
+            }
             this.onNext = true
             this.save()
             console.clear()
-            console.log( this.data)
             this.$refs.jsBtnNext.click()
             // this.handleMetros()
+            // if(salt) {
+            //     Location.reload(true)
+            // }
         },
         isNext() {
             this.onNext = false
@@ -515,6 +568,7 @@ Vue.createApp({
                 step: this.step,
                 form: this.form,
                 total: this.total,
+                cubagem: this.cubagem,
             }))
 
         },
@@ -531,29 +585,44 @@ Vue.createApp({
         },
         calcularM3() {
             this.metros = this.cubagem.reduce((acc, e) => {
-                const subTotal = e.fields.map( c => c.value * c.size )
-                const total = subTotal.reduce( (a, v) => a + v, 0)
-                return acc + total 
+                const subTotal = e.fields.map(c => c.value * c.size)
+                const total = subTotal.reduce((a, v) => a + v, 0)
+                return acc + total
             }, 0).toFixed(2)
+
+            this.form.itens = this.cubagem.reduce((acc, e) => {
+                return [...acc, ...e.fields]
+            }, []).filter(e => e.value).map(e => ` ${e.value}-${e.title}`).join(',')
+        },
+        dataPrint() {
+            let now = new Date
+            return "Hoje é "  + now.getDate() + " de " + now.getMonth() + " de " + now.getFullYear()
+        },
+        valorReal(metros) {
+            let list = {...this.tablePrice.find( i => i.metros <= metros)}
+            let valor = list?.price || 0
+            return valor.toLocaleString('pt-br', {minimumFractionDigits: 2}) 
         }
     },
     mounted() {
         let form_temp = JSON.parse(localStorage.getItem('form_temp'))
+        this.cubagem = calculadora
         if (form_temp) {
             this.step = form_temp.step
             this.form = { ...this.form, ...form_temp.form }
+            this.cubagem = form_temp.cubagem
             // Object.keys(form_temp).forEach(key => {
             //     this[key] = form_temp[key]
             // })
         }
-        this.cubagem = calculadora        
         const totalStep = calculadora.length + 6
-        this.totalStep = Array(totalStep).fill(Math.random()) 
+        this.totalStep = Array(totalStep).fill(Math.random())
+        this.calcularM3()
 
-        if( window.location.host.indexOf('5500') > 1 ) {
-           this.base = 'http://127.0.0.1:5500'
+        if (window.location.host.indexOf('5500') > 1) {
+            this.base = 'http://127.0.0.1:5500'
         }
-        
+
         this.handleMetros()
     }
 }).mount('#js-app')
