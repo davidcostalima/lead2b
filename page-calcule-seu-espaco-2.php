@@ -162,7 +162,7 @@ if (!empty($_REQUEST['email'])) {
                                     <h1 class="title">
                                         Para onde enviaremos o orçamento instantâneo:
                                     </h1>
-                                    <form action="javascript:void(0)" @submit="next">
+                                    <form action="javascript:void(0)" @submit="next(1)">
                                         <div class="inputs_lead">
                                             <div>
                                                 <label for="">Primeiro nome</label>
@@ -286,7 +286,7 @@ if (!empty($_REQUEST['email'])) {
                                     <h1 class="title">Eu vou guardar objetos:</h1>
                                     <div class="text-center w-guard">
                                         <span :class="{call_item:true, active: form.guard=='empresa'}"
-                                            @click="next(); form.guard='empresa'">
+                                            @click="next(18); form.guard='empresa'">
                                             <i class="bi bi-building"></i>
                                             empresa
                                         </span>

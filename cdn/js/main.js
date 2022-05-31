@@ -142,6 +142,35 @@ const calculadora = [
         fields: [
             { ico: "MICROONDAS", title: "Micro-ondas", size: 0.11, value: 0 },
         ]
+    },    
+    {
+        title: "Eu sei vou guardar algum item diversos?",
+        fields: [],
+        yesNot: true,
+        saltNot: 3
+    },
+    {
+        title: "DIVERSOS 1 de 2",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "ARCONDICIONADO", title: "Ar condicionado", size: 0.33, value: 0 },
+            { ico: "AQUECEDOR", title: "Aquecedor", size: 0.22, value: 0 },
+            { ico: "BANCADA", title: "Arquivo", size: 0.56, value: 0 },
+            { ico: "BICICLETA", title: "Bancada", size: 0.33, value: 0 },
+            { ico: "BICICLETA", title: "Bicicleta", size: 0.33, value: 0 },
+            { ico: "CAIXA", title: "Caixa", size: 0.22, value: 0 },
+        ]
+    },
+    {
+        title: "DIVERSOS 2 de 2",
+        yesNot: false,
+        saltNot: 0,
+        fields: [
+            { ico: "CAIXA-PARA-CRISTAIS", title: "Caixa para cristais", size: 0.11, value: 0 },
+            { ico: "CAIXA-PLASTICA", title: "Caixa plástica", size: 0.22, value: 0 },
+            { ico: "MAQUINA-DE-COSTURA", title: "Máquina de costura", size: 0.44, value: 0 },
+        ]
     },
     {
         title: "Eu sei vou guardar algum item do meu home office?",
@@ -175,35 +204,6 @@ const calculadora = [
             { ico: "POLTRONA", title: "Poltrona", size: 0.55, value: 0 },
         ]
     },
-    {
-        title: "Eu sei vou guardar algum item diversos?",
-        fields: [],
-        yesNot: true,
-        saltNot: 3
-    },
-    {
-        title: "DIVERSOS 1 de 2",
-        yesNot: false,
-        saltNot: 0,
-        fields: [
-            { ico: "ARCONDICIONADO", title: "Ar condicionado", size: 0.33, value: 0 },
-            { ico: "AQUECEDOR", title: "Aquecedor", size: 0.22, value: 0 },
-            { ico: "BANCADA", title: "Arquivo", size: 0.56, value: 0 },
-            { ico: "BICICLETA", title: "Bancada", size: 0.33, value: 0 },
-            { ico: "BICICLETA", title: "Bicicleta", size: 0.33, value: 0 },
-            { ico: "CAIXA", title: "Caixa", size: 0.22, value: 0 },
-        ]
-    },
-    {
-        title: "DIVERSOS 2 de 2",
-        yesNot: false,
-        saltNot: 0,
-        fields: [
-            { ico: "CAIXA-PARA-CRISTAIS", title: "Caixa para cristais", size: 0.11, value: 0 },
-            { ico: "CAIXA-PLASTICA", title: "Caixa plástica", size: 0.22, value: 0 },
-            { ico: "MAQUINA-DE-COSTURA", title: "Máquina de costura", size: 0.44, value: 0 },
-        ]
-    }
 ];
 
 const options = {
