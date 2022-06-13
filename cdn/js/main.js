@@ -2,15 +2,17 @@ const pathApi = "http://dev.metromax.net.br/calcule-seu-espaco-2/"
 
 const calculadora = [
     {
-        title: "Eu sei vou guardar algum item da minha Sala?",
+        title: "Eu vou guardar itens da Sala?",
         fields: [],
         yesNot: true,
-        saltNot: 6
+        saltNot: 6,
+        tipo: "sala",
     },
     {
         title: "Sala / Sala de jantar 1 de 5",
         yesNot: false,
         saltNot: 0,
+        tipo: "sala",
         fields: [
 
             { ico: "APARADOR", title: "Aparador", value: 0, size: 0.33 },
@@ -25,6 +27,7 @@ const calculadora = [
         title: "Sala / Sala de jantar 2 de 5",
         yesNot: false,
         saltNot: 0,
+        tipo: "sala",
         fields: [
 
             { ico: "CADEIRA-COM-BRACOS", title: "Cadeira com braços", size: 0.33, value: 0 },
@@ -39,6 +42,7 @@ const calculadora = [
         title: "Sala / Sala de jantar 3 de 5",
         yesNot: false,
         saltNot: 0,
+        tipo: "sala",
         fields: [
             { ico: "ESTANTE-ALTA", title: "Estante alta", size: 0.66, value: 0 },
             { ico: "ESTANTE-BAIXA", title: "Estante baixa", size: 0.33, value: 0 },
@@ -52,6 +56,7 @@ const calculadora = [
         title: "Sala / Sala de jantar 4 de 5",
         yesNot: false,
         saltNot: 0,
+        tipo: "sala",
         fields: [
             { ico: "PIANO-DE-CAUDA", title: "Piano de cauda", size: 6.6, value: 0 },
             { ico: "POLTRONA-SIMPLES", title: "Poltrona simples", size: 0.55, value: 0 },
@@ -65,6 +70,7 @@ const calculadora = [
         title: "Sala / Sala de jantar 5 de 5",
         yesNot: false,
         saltNot: 0,
+        tipo: "sala",
         fields: [
             { ico: "SOFA-4-LUGARES", title: "Sofá 4 lugares", size: 2.2, value: 0 },
             { ico: "SOM", title: "Som/Vídeo", size: 0.33, value: 0 },
@@ -72,15 +78,17 @@ const calculadora = [
         ]
     },
     {
-        title: "Eu sei vou guardar algum item do meu quarto?",
+        title: "Eu vou guardar itens do quarto?",
         fields: [],
         yesNot: true,
-        saltNot: 3
+        saltNot: 3,
+        tipo: "quarto",
     },
     {
         title: "QUARTO / SUÍTE 1 de 2",
         yesNot: false,
         saltNot: 0,
+        tipo: "quarto",
         fields: [
             { ico: "ARCA", title: "Arca", size: 0.44, value: 0 },
             { ico: "ARMARIO-2-PORTAS", title: "Armário 2 portas desmontado", size: 1.1, value: 0 },
@@ -94,6 +102,7 @@ const calculadora = [
         title: "QUARTO / SUÍTE 2 de 2",
         yesNot: false,
         saltNot: 0,
+        tipo: "quarto",
         fields: [
             { ico: "CAMA-CASAL", title: "Cama casal com colchão", size: 1.43, value: 0 },
             { ico: "CAMA-SOLTEIRO", title: "Cama de solteiro com colchão", size: 1.1, value: 0 },
@@ -104,15 +113,17 @@ const calculadora = [
         ]
     },
     {
-        title: "Eu sei vou guardar algum item da minha cozinha?",
+        title: "Eu vou guardar itens da cozinha?",
         fields: [],
         yesNot: true,
-        saltNot: 4
+        saltNot: 4,
+        tipo: "cozinha",
     },
     {
         title: "Cozinha 1 de 3",
         yesNot: false,
         saltNot: 0,
+        tipo: "cozinha",
         fields: [
             { ico: "ARMARIO-PANELEIRO", title: "Armário paneleiro", size: 1.1, value: 0 },
             { ico: "ARMARIO-DE-PAREDE-2-PORTAS", title: "Armário de parede pequeno com 2 portas", size: 0.22, value: 0 },
@@ -126,6 +137,7 @@ const calculadora = [
         title: "Cozinha 2 de 3",
         yesNot: false,
         saltNot: 0,
+        tipo: "cozinha",
         fields: [
             { ico: "FOGAO-6-BOCAS", title: "Fogão (6 bocas)", size: 0.55, value: 0 },
             { ico: "FORNINHO", title: "Forninho", size: 0.11, value: 0 },
@@ -139,20 +151,23 @@ const calculadora = [
         title: "Cozinha 3 de 3",
         yesNot: false,
         saltNot: 0,
+        tipo: "cozinha",
         fields: [
             { ico: "MICROONDAS", title: "Micro-ondas", size: 0.11, value: 0 },
         ]
-    },    
+    },
     {
-        title: "Eu sei vou guardar algum item diversos?",
+        title: "Eu vou guardar itens diversos?",
         fields: [],
         yesNot: true,
-        saltNot: 3
+        saltNot: 3,
+        tipo: "diversos",
     },
     {
         title: "DIVERSOS 1 de 2",
         yesNot: false,
         saltNot: 0,
+        tipo: "diversos",
         fields: [
             { ico: "ARCONDICIONADO", title: "Ar condicionado", size: 0.33, value: 0 },
             { ico: "AQUECEDOR", title: "Aquecedor", size: 0.22, value: 0 },
@@ -166,6 +181,7 @@ const calculadora = [
         title: "DIVERSOS 2 de 2",
         yesNot: false,
         saltNot: 0,
+        tipo: "diversos",
         fields: [
             { ico: "CAIXA-PARA-CRISTAIS", title: "Caixa para cristais", size: 0.11, value: 0 },
             { ico: "CAIXA-PLASTICA", title: "Caixa plástica", size: 0.22, value: 0 },
@@ -173,15 +189,17 @@ const calculadora = [
         ]
     },
     {
-        title: "Eu sei vou guardar algum item do meu home office?",
+        title: "Eu vou guardar itens do home office?",
         fields: [],
         yesNot: true,
-        saltNot: 3
+        saltNot: 3,
+        tipo: "home",
     },
     {
         title: "Home Office 1 de 2",
         yesNot: false,
         saltNot: 0,
+        tipo: "home",
         fields: [
             { ico: "ARMARIO-2-PORTAS", title: "Armário (alto de 2 portas)", size: 1.1, value: 0 },
             { ico: "ARQUIVO", title: "Arquivo", size: 0.55, value: 0 },
@@ -195,6 +213,7 @@ const calculadora = [
         title: "Home Office 2 de 2",
         yesNot: false,
         saltNot: 0,
+        tipo: "home",
         fields: [
             { ico: "ESTANTE-DE-ACO", title: "Estante de aço", size: 1.1, value: 0 },
             { ico: "FAX", title: "Fax", size: 0.11, value: 0 },
@@ -274,6 +293,14 @@ Vue.createApp({
             cubagem: [],
             metros: 0,
             base: 'http://dev.metromax.net.br/wp-content/themes/metromax2',
+            jump: {
+                home: 0,
+                diversos: 0,
+                cozinha: 0,
+                quarto: 0,
+                sala: 0,
+                zero: 0
+            },
             form: {
                 size: null,
                 nome: null,
@@ -504,11 +531,20 @@ Vue.createApp({
         key() {
             return 1;
         },
-        back() {
+        back(tipo = "zero") {
+
             this.step--
             this.save()
             this.handleMetros()
             this.$refs.jsBtnPrev.click()
+            if (tipo != "zero" ) {
+                let atualStep = Array.from(this.cubagem).map(_ => ({ ..._ }))
+                let nowType = atualStep[this.step - 6]?.tipo  || "zero"
+
+                this.step =  this.step + this.jump[nowType] 
+            }
+            console.log({...this.jump})
+
         },
         finish() {
             post('', this.form)
@@ -517,22 +553,18 @@ Vue.createApp({
             this.step = 1
         },
         next(salt = 0) {
-            
+
             if (this.step <= this.totalStep.length) {
-                if(salt) {
-                    this.step += salt 
-                } else {    
+                if (salt) {
+                    this.step += salt
+                } else {
                     this.step++
                 }
             }
             this.onNext = true
             this.save()
-            console.clear()
             this.$refs.jsBtnNext.click()
-            // this.handleMetros()
-            // if(salt) {
-            //     Location.reload(true)
-            // }
+
         },
         isNext() {
             this.onNext = false
@@ -596,21 +628,25 @@ Vue.createApp({
         },
         dataPrint() {
             let now = new Date
-            return "Hoje é "  + now.getDate() + " de " + now.getMonth() + " de " + now.getFullYear()
+            return "Hoje é " + (now.getDate() + "").padStart(2, "0") + "/" + (now.getMonth() + "").padStart(2, "0") + "/" + now.getFullYear()
         },
         valorReal(metros) {
-            let list = {...this.tablePrice.find( i => i.metros <= metros)}
+            let list = { ...this.tablePrice.find(i => i.metros <= metros) }
             let valor = list?.price || 0
-            return valor.toLocaleString('pt-br', {minimumFractionDigits: 2}) 
+            return valor.toLocaleString('pt-br', { minimumFractionDigits: 2 })
+        },
+        metrosReal(metros) {
+            let list = { ...this.tablePrice.find(i => i.metros <= metros) }
+            return list?.metros || 0
         }
     },
     mounted() {
         let form_temp = JSON.parse(localStorage.getItem('form_temp'))
         this.cubagem = calculadora
         if (form_temp) {
-            this.step = form_temp.step
-            this.form = { ...this.form, ...form_temp.form }
-            this.cubagem = form_temp.cubagem
+            // this.step = form_temp.step
+            // this.form = { ...this.form, ...form_temp.form }
+            // this.cubagem = form_temp.cubagem
             // Object.keys(form_temp).forEach(key => {
             //     this[key] = form_temp[key]
             // })

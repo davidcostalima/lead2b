@@ -185,7 +185,7 @@ if (!empty($_REQUEST['email'])) {
                                             <input type="submit" ref="info" class="voltar avancar" value="Avançar">
                                         </div>
                                     </form>
-                                    <div @click="back" class="voltar">Voltar</div>
+                                    <div @click="back('zero')" class="voltar">Voltar</div>
                                 </div>
                             </div>
 
@@ -216,7 +216,7 @@ if (!empty($_REQUEST['email'])) {
                                         </span>
 
                                     </div>
-                                    <div @click="back" class="voltar">Voltar</div>
+                                    <div @click="back('zero')" class="voltar">Voltar</div>
                                 </div>
                             </div>
                         </div>
@@ -258,11 +258,11 @@ if (!empty($_REQUEST['email'])) {
                                                     <b>
                                                         Ter uma cotação personalizada
                                                     </b> <br>
-                                                    <small>(25 perguntas, 3 minutos)</small>
+                                                    <small>(Menos de 2 minutos)</small>
                                                 </span>
                                             </div>
                                             <br />
-                                            <div @click="back" class="voltar">Voltar</div>
+                                            <div @click="back('zero')" class="voltar">Voltar</div>
                                         </div>
                                     </div>
                                 </div>
@@ -288,12 +288,12 @@ if (!empty($_REQUEST['email'])) {
                                         <span :class="{call_item:true, active: form.guard=='empresa'}"
                                             @click="next(18); form.guard='empresa'">
                                             <i class="bi bi-building"></i>
-                                            empresa
+                                            Da empresa
                                         </span>
                                         <span :class="{call_item:true, active: form.guard=='casa'}"
                                             @click="next(); form.guard='casa'">
                                             <i class="bi bi-house-door"></i>
-                                            casa
+                                            Da casa
                                         </span>
                                         <span :class="{call_item:true, active: form.guard=='ambos'}"
                                             @click="next(); form.guard='ambos'">
@@ -301,7 +301,7 @@ if (!empty($_REQUEST['email'])) {
                                             De ambos
                                         </span>
                                     </div>
-                                    <div @click="back" class="voltar">Voltar</div>
+                                    <div @click="back('zero')" class="voltar">Voltar</div>
                                 </div>
                             </div>
                         </div>
@@ -325,22 +325,22 @@ if (!empty($_REQUEST['email'])) {
                                             <div v-show="c.yesNot">
                                                 <div class="text-center">
                                                     <span :class="{link_confirm:true, active: form.exato=='nao'}"
-                                                        @click="next(c.saltNot)">
+                                                        @click="next(c.saltNot); jump[c.tipo]=(c.saltNot-1)*-1">
                                                         <i class="bi bi-hand-thumbs-down display-4"></i> <br />
                                                         Não
                                                     </span>
                                                     <span :class="{link_confirm:true, active: form.exato=='sim'}"
-                                                        @click="next(1)">
+                                                        @click="next(1);jump[c.tipo]=0">
                                                         <i class="bi bi-hand-thumbs-up display-4"></i> <br />
                                                         Sim
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="box-btn-next">
+                                            <div class="box-btn-next" v-show="!c.yesNot">
                                                 <input @click="next(c.saltNot)" type="submit" ref="info"
                                                     class="voltar avancar" value="Avançar">
                                             </div>
-                                            <div @click="back" class="voltar">Voltar</div>
+                                            <div @click="back(c.tipo)" class="voltar">Voltar</div>
                                         </div>
                                     </div>
                                 </div>
@@ -386,7 +386,10 @@ if (!empty($_REQUEST['email'])) {
                                         <h1 class="title_2 title_scape text-center">
                                             Olá, {{form.nome}}. O seu orçamento ficou aproximadamente:
                                         </h1>
-                                        <h2 class="subtitle text-center">R${{valorReal(metros)}} por mês </h2>
+                                        <h2 class="subtitle text-center">
+                                            Metragem necessária: {{metros}}m³ <br>
+                                            O box para você é de {{metrosReal(metros)}}m²  e o valor é R${{valorReal(metros)}} por mês. 
+                                        </h2>
                                     </div>
                                     <div @click="form.pulou == 'sim' ? step=4 : back()" class="voltar">Voltar</div>
                                 </div>
