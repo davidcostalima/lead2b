@@ -4,7 +4,7 @@ $uri = get_template_directory_uri();
 
 if (!empty($_REQUEST['email'])) {
 
-    $to = $_REQUEST['email'];
+    @$to = $_REQUEST['email'];
     $subject = "Email - Site";
     $message = "";
     foreach ($_REQUEST as $key => $value) {
@@ -42,6 +42,21 @@ if (!empty($_REQUEST['email'])) {
     {$itens} \r\n  
     ";
 
+    
+    
+    @$id_post =  $_REQUEST['id_post'];
+    if( $id_post ) {
+        $post = get_post(  $id_post );
+        $post->post_content = $message;
+        wp_update_post( $post );
+        echo json_encode([
+            "next" => true,
+            "message" => "Atualizado com sucesso",
+            "ID" => $id_post
+        ]);
+        die;
+    }
+
     @mail($email, $subject, $message);
     @mail('br.rafael@outlook.com', $subject, $message);
     @mail('david@oicaribe.com.br', $subject, $message);
@@ -58,6 +73,12 @@ if (!empty($_REQUEST['email'])) {
     if ($post_id) {
         add_post_meta($post_id, '_brc_lead', json_encode($_REQUEST));
     }
+    echo json_encode([
+        "next" => true,
+        "message" => "Registrado com sucesso",
+        "ID" =>$post_id
+    ]);
+    die;
 }
 
 ?>
@@ -250,7 +271,7 @@ if (!empty($_REQUEST['email'])) {
                                                 <span @click="step=totalStep.length;form.pulou='sim'"
                                                     :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='sim'}">
                                                     <img :src="base+'/cdn/ico/atendimento.svg'" class="ico_btn">
-                                                    Quero falar com uma pessoal agora mesmo
+                                                    Quero falar com uma pessoa agora mesmo
                                                 </span>
                                                 <span @click="next();form.pulou='nao'"
                                                     :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='nao'}">

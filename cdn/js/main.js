@@ -302,6 +302,7 @@ Vue.createApp({
                 zero: 0
             },
             form: {
+                id_post: null,
                 size: null,
                 nome: null,
                 sobreNome: null,
@@ -532,19 +533,19 @@ Vue.createApp({
             return 1;
         },
         back(tipo = "zero") {
-
             this.step--
             this.save()
             this.handleMetros()
             this.$refs.jsBtnPrev.click()
-            if (tipo != "zero" ) {
+            if (tipo != "zero") {
                 let atualStep = Array.from(this.cubagem).map(_ => ({ ..._ }))
-                let nowType = atualStep[this.step - 6]?.tipo  || "zero"
+                let nowType = atualStep[this.step - 6]?.tipo || "zero"
 
-                this.step =  this.step + this.jump[nowType] 
+                this.step = this.step + this.jump[nowType]
             }
-            console.log({...this.jump})
-
+            if (this.form.guard == "empresa") {
+                this.step = 5
+            }
         },
         finish() {
             post('', this.form)
@@ -552,7 +553,7 @@ Vue.createApp({
             localStorage.removeItem('form_temp')
             this.step = 1
         },
-        next(salt = 0) {
+        async next(salt = 0) {
 
             if (this.step <= this.totalStep.length) {
                 if (salt) {
@@ -564,6 +565,8 @@ Vue.createApp({
             this.onNext = true
             this.save()
             this.$refs.jsBtnNext.click()
+            let res = await post('', this.form)
+            this.form.id_post = res?.ID || null
 
         },
         isNext() {
