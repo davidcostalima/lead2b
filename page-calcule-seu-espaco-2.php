@@ -42,13 +42,13 @@ if (!empty($_REQUEST['email'])) {
     {$itens} \r\n  
     ";
 
-    
-    
+
+
     @$id_post =  $_REQUEST['id_post'];
-    if( $id_post ) {
-        $post = get_post(  $id_post );
+    if ($id_post) {
+        $post = get_post($id_post);
         $post->post_content = $message;
-        wp_update_post( $post );
+        wp_update_post($post);
         echo json_encode([
             "next" => true,
             "message" => "Atualizado com sucesso",
@@ -57,9 +57,16 @@ if (!empty($_REQUEST['email'])) {
         die;
     }
 
-    @mail($email, $subject, $message);
-    @mail('br.rafael@outlook.com', $subject, $message);
-    @mail('david@oicaribe.com.br', $subject, $message);
+    $headers[] = 'MIME-Version: 1.0';
+    $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+
+    $headers[] = "From: {$nome} <{$email}>";
+
+
+    @mail($email, $subject, $message, implode("\r\n", $headers));
+    @mail('br.rafael@outlook.com', $subject, $message, implode("\r\n", $headers));
+    @mail('david@oicaribe.com.br', $subject, $message, implode("\r\n", $headers));
+    @mail('lead-gen@metromax.net.br', $subject, $message, implode("\r\n", $headers));
 
     $post_id = wp_insert_post(array(
         'post_type' => 'lead',
@@ -76,7 +83,7 @@ if (!empty($_REQUEST['email'])) {
     echo json_encode([
         "next" => true,
         "message" => "Registrado com sucesso",
-        "ID" =>$post_id
+        "ID" => $post_id
     ]);
     die;
 }
@@ -103,15 +110,15 @@ if (!empty($_REQUEST['email'])) {
     <div class="container-fluid header">
         <div class="container">
             <div class="row">
-                <div class="col-6 col-md-9 logo"></div>
-                <div class="col-6 col-md-3">
+                <div class="col-12  logo"></div>
+                <!-- <div class="col-6 col-md-3">
                     <div class=" d-md-inline">
                         <button class="btn btn-danger btn-raio">
                             <i class="bi bi-whatsapp"></i>
                             <b>(12) 3455-6789</b>
                         </button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

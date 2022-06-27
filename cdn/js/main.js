@@ -533,6 +533,7 @@ Vue.createApp({
             return 1;
         },
         back(tipo = "zero") {
+            
             this.step--
             this.save()
             this.handleMetros()
@@ -543,7 +544,7 @@ Vue.createApp({
 
                 this.step = this.step + this.jump[nowType]
             }
-            if (this.form.guard == "empresa") {
+            if (this.form.guard == "empresa" && this.step != 22 && this.step != 23) {
                 this.step = 5
             }
         },
@@ -631,7 +632,7 @@ Vue.createApp({
         },
         dataPrint() {
             let now = new Date
-            return "Hoje é " + (now.getDate() + "").padStart(2, "0") + "/" + (now.getMonth() + "").padStart(2, "0") + "/" + now.getFullYear()
+            return "Hoje é " + (now.getDate() + "").padStart(2, "0") + "/" + ((now.getMonth() + 1) + "").padStart(2, "0") + "/" + now.getFullYear()
         },
         valorReal(metros) {
             let list = { ...this.tablePrice.find(i => i.metros <= metros) }
