@@ -125,7 +125,7 @@ if (!empty($_REQUEST['email'])) {
 
     <div id="js-app">
         <div class="container-fluid">
-            <div class="container">
+            <div class="container-lg">
                 <div id="carouselExampleCaptions" x-class="carousel slide" x-data-bs-ride="carousel"
                     x-data-bs-interval="false">
                     <div class="carousel-inner">
