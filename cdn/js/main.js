@@ -642,7 +642,10 @@ Vue.createApp({
         metrosReal(metros) {
             let list = { ...this.tablePrice.find(i => i.metros <= metros) }
             return list?.metros || 0
-        }
+        },
+        whats() {
+            window.location.href = "https://api.whatsapp.com/send?phone=5521971524026"
+        },
     },
     mounted() {
         let form_temp = JSON.parse(localStorage.getItem('form_temp'))

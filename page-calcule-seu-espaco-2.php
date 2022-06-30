@@ -422,7 +422,7 @@ if (!empty($_REQUEST['email'])) {
                                             O box necessário é de {{metrosReal(metros)}}m² e
                                             o valor é de R${{valorReal(metros)}} por mês. <br>
                                             Falar com alguém agora mesmo!
-                                            <span class="btn btn-success" @click="form.contato='whatsapp'; finish()">
+                                            <span class="btn btn-success" @click="form.contato='whatsapp'; finish(); whats()">
                                                 <i class="bi bi-whatsapp"></i>
                                                 <span class="ms-2">WhatsApp</span>
                                             </span>
