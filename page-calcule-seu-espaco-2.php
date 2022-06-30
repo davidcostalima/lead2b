@@ -268,8 +268,10 @@ if (!empty($_REQUEST['email'])) {
                                             <div v-if="form.size=='G'">
                                                 <h2 class="subtitle  text-center">R$337,00 a R$370,00 por mês </h2>
                                             </div>
-                                            <small class="d-block text-center title_2 title_scape" style="font-size: 12px !important;">
-                                                Você sabia que 80% das pessoas escolhem um tamanho de box maior do que elas precisam?
+                                            <small class="d-block text-center title_2 title_scape"
+                                                style="font-size: 12px !important;">
+                                                Você sabia que 80% das pessoas escolhem um tamanho de box maior do que
+                                                elas precisam?
                                             </small>
                                             <hr>
                                             <strong class="d-block text-center subtitle title_scape">Para entender
@@ -412,11 +414,18 @@ if (!empty($_REQUEST['email'])) {
                                     </div>
                                     <div v-show="form.pulou == 'nao'">
                                         <h1 class="title_2 title_scape text-center">
-                                            Olá, {{form.nome}}. O seu orçamento ficou aproximadamente:
+
+                                            Olá, {{form.nome}}. O seu orçamento é aproximadamente de:
                                         </h1>
                                         <h2 class="subtitle text-center">
                                             Metragem necessária: {{metros}}m³ <br>
-                                            O box para você é de {{metrosReal(metros)}}m²  e o valor é R${{valorReal(metros)}} por mês. 
+                                            O box necessário é de {{metrosReal(metros)}}m² e
+                                            o valor é de R${{valorReal(metros)}} por mês. <br>
+                                            Falar com alguém agora mesmo!
+                                            <span class="btn btn-success" @click="form.contato='whatsapp'; finish()">
+                                                <i class="bi bi-whatsapp"></i>
+                                                <span class="ms-2">WhatsApp</span>
+                                            </span>
                                         </h2>
                                     </div>
                                     <div @click="form.pulou == 'sim' ? step=4 : back()" class="voltar">Voltar</div>
