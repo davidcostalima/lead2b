@@ -307,7 +307,7 @@
                             <div class="container-box">
                                 <div>
 
-                                    <h1 class="title">
+                                    <!-- <h1 class="title">
                                         Eu gostaria que entrem em contato por:
                                     </h1>
                                     <div class="call_action_grid">
@@ -323,21 +323,23 @@
                                             <i class="bi bi-telephone-fill"></i>
                                             <span>Telefone</span>
                                         </span>
-                                    </div>
-                                    <div v-show="form.pulou == 'nao'">
-                                        <h1 class="title_2 title_scape text-center">
-
-                                            Olá, {{form.nome}}. O seu orçamento é aproximadamente de:
+                                    </div> -->
+                                    <div >
+                                        <h1 class="title_2 text-center">
+                                            Olá, {{form.nome}}. O seu orçamento <br>
+                                            é aproximadamente de:
                                         </h1>
                                         <h2 class="subtitle text-center">
                                             Metragem necessária: {{metros}}m³ <br>
                                             O box necessário é de {{metrosReal(metros)}}m² e
                                             o valor é de R${{valorReal(metros)}} por mês. <br>
-                                            Falar com alguém agora mesmo!
-                                            <span class="btn btn-success" @click="form.contato='whatsapp'; finish(); whats()">
-                                                <i class="bi bi-whatsapp"></i>
-                                                <span class="ms-2">WhatsApp</span>
-                                            </span>
+                                            Falar com alguém agora mesmo! <br>
+                                            <div class="text-center mt-4">
+                                                <span class="btn btn-success" @click="form.contato='whatsapp'; finish(); whats()">
+                                                    <i class="bi bi-whatsapp"></i>
+                                                    <span class="ms-2">Entrem em contato por WhatsApp</span>
+                                                </span>
+                                            </div>
                                         </h2>
                                     </div>
                                     <div @click="form.pulou == 'sim' ? step=4 : back()" class="voltar">Voltar</div>
