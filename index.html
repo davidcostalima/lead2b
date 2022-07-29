@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -23,14 +23,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-12  logo"></div>
-                <!-- <div class="col-6 col-md-3">
-                    <div class=" d-md-inline">
-                        <button class="btn btn-danger btn-raio">
-                            <i class="bi bi-whatsapp"></i>
-                            <b>(12) 3455-6789</b>
-                        </button>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -306,25 +298,7 @@
                         <div :class="{'carousel-item': true, active: step == totalStep.length}">
                             <div class="container-box">
                                 <div>
-
-                                    <!-- <h1 class="title">
-                                        Eu gostaria que entrem em contato por:
-                                    </h1>
-                                    <div class="call_action_grid">
-                                        <span class="call_action" @click="form.contato='whatsapp'; finish()">
-                                            <i class="bi bi-whatsapp"></i>
-                                            <span>WhatsApp</span>
-                                        </span>
-                                        <span class="call_action" @click="form.contato='email'; finish()">
-                                            <i class="bi bi-envelope-fill"></i>
-                                            <span>Email</span>
-                                        </span>
-                                        <span class="call_action" @click="form.contato='telefone'; finish()">
-                                            <i class="bi bi-telephone-fill"></i>
-                                            <span>Telefone</span>
-                                        </span>
-                                    </div> -->
-                                    <div >
+                                    <div>
                                         <h1 class="title_2 text-center">
                                             Olá, {{form.nome}}. O seu orçamento <br>
                                             é aproximadamente de:
@@ -335,7 +309,8 @@
                                             o valor é de R${{valorReal(metros)}} por mês. <br>
                                             Falar com alguém agora mesmo! <br>
                                             <div class="text-center mt-4">
-                                                <span class="btn btn-success" @click="form.contato='whatsapp'; finish(); whats()">
+                                                <span class="btn btn-success"
+                                                    @click="form.contato='whatsapp'; finish(); whats()">
                                                     <i class="bi bi-whatsapp"></i>
                                                     <span class="ms-2">Entrem em contato por WhatsApp</span>
                                                 </span>

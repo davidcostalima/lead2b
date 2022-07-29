@@ -1,4 +1,4 @@
-const pathApi = "http://dev.metromax.net.br/calcule-seu-espaco-2/"
+const pathApi = "http://dev.metromax.net.br/api-lead/"
 
 const calculadora = [
     {
