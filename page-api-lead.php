@@ -1,7 +1,5 @@
 <?php
 
-$uri = get_template_directory_uri();
-
 if (!empty($_REQUEST['email'])) {
 
     @$to = $_REQUEST['email'];
@@ -42,8 +40,6 @@ if (!empty($_REQUEST['email'])) {
     {$itens} \r\n  
     ";
 
-
-
     @$id_post =  $_REQUEST['id_post'];
     if ($id_post) {
         $post = get_post($id_post);
@@ -56,19 +52,6 @@ if (!empty($_REQUEST['email'])) {
         ]);
         die;
     }
-
-    $headers[] = 'MIME-Version: 1.0';
-    $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-
-    $headers[] = "From: {$nome} <{$email}>";
-
-    // implode("\r\n", $headers)
-    // wp_mail
-    @mail($email, $subject, $message );
-    @mail('br.rafael@outlook.com', $subject, $message);
-    @mail('david@oicaribe.com.br', $subject, $message);
-    @mail('lead-gen@metromax.net.br', $subject, $message);
-
     $post_id = wp_insert_post(array(
         'post_type' => 'lead',
         'post_title' => $_REQUEST['email'],
@@ -77,7 +60,6 @@ if (!empty($_REQUEST['email'])) {
         'comment_status' => 'closed',
         'ping_status' => 'closed',
     ));
-
     if ($post_id) {
         add_post_meta($post_id, '_brc_lead', json_encode($_REQUEST));
     }
