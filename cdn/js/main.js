@@ -1,5 +1,9 @@
 const pathApi = "http://dev.metromax.net.br/api-lead/"
 
+console.log(window.location.href)
+
+
+
 const calculadora = [
     {
         title: "Eu vou guardar itens da Sala?",
@@ -49,7 +53,7 @@ const calculadora = [
             { ico: "MESA-DE-CENTRO", title: "Mesa de centro", size: 0.33, value: 0 },
             { ico: "MESA-CONSOLE", title: "Mesa console", size: 0.33, value: 0 },
             { ico: "MESA-DE-JANTAR", title: "Mesa de jantar", size: 0.88, value: 0 },
-            { ico: "", title: "Piano armário", size: 6.6, value: 0 },
+            { ico: "PIANO", title: "Piano armário", size: 6.6, value: 0 },
         ]
     },
     {
@@ -171,8 +175,8 @@ const calculadora = [
         fields: [
             { ico: "ARCONDICIONADO", title: "Ar condicionado", size: 0.33, value: 0 },
             { ico: "AQUECEDOR", title: "Aquecedor", size: 0.22, value: 0 },
-            { ico: "BANCADA", title: "Arquivo", size: 0.56, value: 0 },
-            { ico: "BICICLETA", title: "Bancada", size: 0.33, value: 0 },
+            { ico: "ARQUIVO", title: "Arquivo", size: 0.56, value: 0 },
+            { ico: "BANCADA", title: "Bancada", size: 0.33, value: 0 },
             { ico: "BICICLETA", title: "Bicicleta", size: 0.33, value: 0 },
             { ico: "CAIXA", title: "Caixa", size: 0.22, value: 0 },
         ]
@@ -203,7 +207,7 @@ const calculadora = [
         fields: [
             { ico: "ARMARIO-2-PORTAS", title: "Armário (alto de 2 portas)", size: 1.1, value: 0 },
             { ico: "ARQUIVO", title: "Arquivo", size: 0.55, value: 0 },
-            { ico: "", title: "Balcão", size: 0.55, value: 0 },
+            { ico: "BALCAO", title: "Balcão", size: 0.55, value: 0 },
             { ico: "CADEIRA", title: "Cadeira", size: 0.22, value: 0 },
             { ico: "COFRE", title: "Cofre", size: 0.55, value: 0 },
             { ico: "ESCRIVANINHA", title: "Escrivaninha", size: 0.44, value: 0 },
@@ -260,9 +264,18 @@ function obj_to_url(obj, next_level = null) {
     return query.join('');
 }
 
-async function post(path, data) {
+async function post(path, data, isSendBlue = false) {
     let base = pathApi
+    if( isSendBlue ) {
+        options.headers.accept = "application/json"
+        options.headers["api-key"] = "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"
+        options.headers["content-type"] = "application/json"
+    }
     options.body = obj_to_url(data)
+    if(isSendBlue) {
+        options.body = JSON.stringify(data)
+        base = ""
+    }
     try {
         let res = await fetch(`${base}${path}`, options)
         let status_code = res.status
@@ -292,7 +305,9 @@ Vue.createApp({
             onNext: true,
             cubagem: [],
             metros: 0,
+            action: "google.com",
             base: 'http://dev.metromax.net.br/wp-content/themes/metromax2',
+            content: '',
             jump: {
                 home: 0,
                 diversos: 0,
@@ -533,7 +548,7 @@ Vue.createApp({
             return 1;
         },
         back(tipo = "zero") {
-            
+
             this.step--
             this.save()
             this.handleMetros()
@@ -554,7 +569,12 @@ Vue.createApp({
             localStorage.removeItem('form_temp')
             this.step = 1
         },
-        async next(salt = 0) {
+        async next(salt = 0, step = 0) {
+
+            if (step == 18) {
+                await this.sendBlue()
+                window.location.href = `//${this.action}`
+            }
 
             if (this.step <= this.totalStep.length) {
                 if (salt) {
@@ -646,8 +666,35 @@ Vue.createApp({
         whats() {
             window.location.href = "https://api.whatsapp.com/send?phone=5521971524026"
         },
+        getParams(name) {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams.get(name)
+        },
+        async sendBlue() {
+
+            await post("https://api.sendinblue.com/v3/smtp/email", {
+                "sender": {
+                    "name": "Davi",
+                    "email": "contato@metromax.net.br"
+                },
+                "to": [
+                    {
+                        "email": this.form.email,
+                        "name":  this.form.name
+                    }
+                ],
+                "subject": 'Contato Via Site',
+                "htmlContent": this.content
+            }, true)
+        }
+
     },
     mounted() {
+
+
+        this.action = this.getParams("action")
+        console.log(this.action)
         let form_temp = JSON.parse(localStorage.getItem('form_temp'))
         this.cubagem = calculadora
         if (form_temp) {

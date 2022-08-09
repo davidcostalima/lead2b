@@ -114,7 +114,13 @@
                                             </div>
                                         </div>
                                         <div class="box-btn-next">
-                                            <input type="submit" ref="info" class="voltar avancar" value="Avançar">
+                                            <div v-if="form.nome && form.sobreNome && form.telefone && form.email">
+                                                <input type="submit" ref="info" class="voltar avancar" value="Avançar">
+                                            </div>
+                                            <div v-else> 
+                                                <div class="mb-5"></div>
+                                                <div class="mb-1"></div>
+                                            </div>
                                         </div>
                                     </form>
                                     <div @click="back('zero')" class="voltar">Voltar</div>
@@ -154,8 +160,8 @@
                         </div>
                         <div :class="{'carousel-item': true, active: step == 4}">
                             <div class="row">
-                                <div class="col-12 col-md-8">
-                                    <div class="container-box">
+                                <div class="col-12 col-md-8 ">
+                                    <div class="container-box mb-5">
                                         <div>
                                             <h1 class="title_2 title_scape text-center">
                                                 Olá, {{form.nome}}. O seu orçamento fica entre:
@@ -271,8 +277,8 @@
                                                 </div>
                                             </div>
                                             <div class="box-btn-next" v-show="!c.yesNot">
-                                                <input @click="next(c.saltNot)" type="submit" ref="info"
-                                                    class="voltar avancar" value="Avançar">
+                                                <input @click="next(c.saltNot, i)" type="submit" ref="info"
+                                                    class="voltar avancar" :value="'Avançar'">
                                             </div>
                                             <div @click="back(c.tipo)" class="voltar">Voltar</div>
                                         </div>
