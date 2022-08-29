@@ -22,7 +22,7 @@ o site funciona com um iframe basta executar o script abaixo, os envios de email
 ~~~html
 <iframe 
     frameborder="0" 
-    src="https://davidcostalima.github.io/lead2b/?action=dev.metromax.net.br/api-lead&api_key=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" 
+    src="https://davidcostalima.github.io/lead2b/?action=dev.metromax.net.br/api-lead&api_key=API_KEY" 
     width="100%" 
     style="border: 0; min-height: 100vh;"
     >

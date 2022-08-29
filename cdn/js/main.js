@@ -268,7 +268,7 @@ async function post(path, data, isSendBlue = false) {
     let base = pathApi
     if( isSendBlue ) {
         options.headers.accept = "application/json"
-        options.headers["api-key"] = "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"
+        options.headers["api-key"] = ""
         options.headers["content-type"] = "application/json"
     }
     options.body = obj_to_url(data)
