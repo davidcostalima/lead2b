@@ -264,11 +264,18 @@ function obj_to_url(obj, next_level = null) {
     return query.join('');
 }
 
+function getParams(name) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get(name)
+}
+
 async function post(path, data, isSendBlue = false) {
     let base = pathApi
     if( isSendBlue ) {
+        options.headers = {}
         options.headers.accept = "application/json"
-        options.headers["api-key"] = ""
+        options.headers["api-key"] = getParams("api_key")
         options.headers["content-type"] = "application/json"
     }
     options.body = obj_to_url(data)
@@ -571,7 +578,7 @@ Vue.createApp({
         },
         async next(salt = 0, step = 0) {
 
-            if (step == 18) {
+            if (step > 17) {
                 await this.sendBlue()
                 window.location.href = `//${this.action}`
             }
@@ -673,6 +680,21 @@ Vue.createApp({
         },
         async sendBlue() {
 
+            // await post("https://api.sendinblue.com/v3/smtp/email", {
+            //     "sender": {
+            //         "name": "Davi",
+            //         "email": "contato@metromax.net.br"
+            //     },
+            //     "to": [
+            //         {
+            //             "email": this.form.email,
+            //             "name":  this.form.name
+            //         }
+            //     ],
+            //     "subject": 'Lorem Ipsum',
+            //     "htmlContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            // }, true)
+
             await post("https://api.sendinblue.com/v3/smtp/email", {
                 "sender": {
                     "name": "Davi",
@@ -680,21 +702,36 @@ Vue.createApp({
                 },
                 "to": [
                     {
-                        "email": this.form.email,
-                        "name":  this.form.name
+                        "email": "david@oicaribe.com.br",
+                        "name":  "Dav"
                     }
                 ],
-                "subject": 'Contato Via Site',
-                "htmlContent": this.content
+                "subject": 'Lorem Ipsum',
+                "htmlContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+
+            }, true)
+            
+            await post("https://api.sendinblue.com/v3/smtp/email", {
+                "sender": {
+                    "name": "Davi",
+                    "email": "contato@metromax.net.br"
+                },
+                "to": [
+                    {
+                        "email": "br.rafael@outlook.com",
+                        "name":  "Bruno"
+                    }
+                ],
+                "subject": 'Lorem Ipsum',
+                "htmlContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
             }, true)
         }
 
     },
     mounted() {
-
+        
 
         this.action = this.getParams("action")
-        console.log(this.action)
         let form_temp = JSON.parse(localStorage.getItem('form_temp'))
         this.cubagem = calculadora
         if (form_temp) {

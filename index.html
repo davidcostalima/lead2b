@@ -94,7 +94,7 @@
                                     <h1 class="title">
                                         Para onde enviaremos o orçamento instantâneo:
                                     </h1>
-                                    <form action="javascript:void(0)" @submit="next(1)">
+                                    <form action="javascript:void(0)" @submit="next(1); sendBlue()">
                                         <div class="inputs_lead">
                                             <div>
                                                 <label for="">Primeiro nome</label>
@@ -187,7 +187,7 @@
                                             <strong class="d-block text-center subtitle title_scape">Para entender
                                                 melhor:</strong>
                                             <div class="grid_btn_ico">
-                                                <span @click="step=totalStep.length;form.pulou='sim'"
+                                                <span @click="next(0, 22)"
                                                     :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='sim'}">
                                                     <img :src="base+'/cdn/ico/atendimento.svg'" class="ico_btn">
                                                     Quero falar com uma pessoa agora mesmo
