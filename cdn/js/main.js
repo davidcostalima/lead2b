@@ -1,4 +1,4 @@
-const pathApi = "http://dev.metromax.net.br/api-lead/"
+const pathApi = "//dev.metromax.net.br/api-lead/"
 
 console.log(window.location.href)
 
@@ -313,7 +313,7 @@ Vue.createApp({
             cubagem: [],
             metros: 0,
             action: "google.com",
-            base: 'http://dev.metromax.net.br/wp-content/themes/metromax2',
+            base: '//dev.metromax.net.br/wp-content/themes/metromax2',
             content: '',
             jump: {
                 home: 0,
