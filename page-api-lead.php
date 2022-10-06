@@ -1,5 +1,10 @@
 <?php
 
+header("Access-Control-Allow-Headers: Authorization, Content-Type");
+header("Access-Control-Allow-Origin: *");
+set_time_limit(20);
+date_default_timezone_set('America/Sao_Paulo');
+
 if (!empty($_REQUEST['email'])) {
 
     @$to = $_REQUEST['email'];
