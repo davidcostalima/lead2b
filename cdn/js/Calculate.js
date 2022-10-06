@@ -1,4 +1,4 @@
-export default class Calculate_by_Steps {
+class Calculate_by_Steps {
     calc(){
         return [
             {

@@ -1,4 +1,4 @@
-export default class ErrorDefault{
+class ErrorDefault{
     error_default(){
         return {
             status_code: 500,
