@@ -1,10 +1,13 @@
+import Produtos from './module/product.js';
+
 const pathApi = "//dev.metromax.net.br/api-lead/"
 
 
 console.log(window.location.href)
 
 const calculadora = new Calculate_by_Steps().calc()
-
+const produto = new Produtos()
+console.log(produto);
 const options = {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
