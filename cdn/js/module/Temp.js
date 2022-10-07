@@ -1,13 +1,15 @@
-export default class Temp{
+export default class Temp {
     constructor() {
+        this.name = 'tempJson'
     }
-    save(payload){
-        window.localStorage.setItem(JSON.stringify(payload))
+    save(payload) {
+        let persist = this.info()
+        localStorage.setItem( this.name, JSON.stringify({...persist,...payload}))
     }
-    info(){
-        window.localStorage.getItem('tempJson')
+    info() {
+        return JSON.parse( localStorage.getItem(this.name) || '{}' )
     }
-    delete(){
-        window.localStorage.removeItem('tempJson')
+    delete() {
+        localStorage.removeItem(this.name)
     }
 }
