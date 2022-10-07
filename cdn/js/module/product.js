@@ -80,7 +80,7 @@ export default class Produtos {
         this.produto = {}
     }
     set_product(ID) {
-        this.produto = itens.find(i => i.ico == ID)
+        this.produto = itens.find(i => i.ico == ID) ||  {}
     }
     get_title() {
         return this.produto?.title || 'Não encontrado'
