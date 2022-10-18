@@ -1,15 +1,11 @@
 import TablePrice from "./module/TablePrice.js"
-<<<<<<< HEAD
 import WhatsApp from "./module/Whats.js"
 
 const table_price = new TablePrice()
 const whats = new WhatsApp()
-=======
 import BoxPrice from "./module/BoxPrice.js"
 
-const table_price = new TablePrice()
 const box_price = new BoxPrice()
->>>>>>> 8d1cbd408a05d160d72d15ef696d42012cd79575
 
 Vue.createApp({
     data() {
