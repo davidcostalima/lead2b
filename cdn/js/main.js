@@ -16,7 +16,6 @@ Vue.createApp({
             onNext: true,
             cubagem: [],
             metros: 0,
-            action: "google.com",
 
             content: '',
             allbox: box_price.get_all_Price(),
@@ -217,7 +216,6 @@ Vue.createApp({
             return 1;
         },
         back(tipo = "zero") {
-
             this.step--
             this.save()
             this.handleMetros()
@@ -225,7 +223,6 @@ Vue.createApp({
             if (tipo != "zero") {
                 let atualStep = Array.from(this.cubagem).map(_ => ({ ..._ }))
                 let nowType = atualStep[this.step - 6]?.tipo || "zero"
-
                 this.step = this.step + this.jump[nowType]
             }
             if (this.form.guard == "empresa" && this.step != 22 && this.step != 23) {
@@ -233,16 +230,12 @@ Vue.createApp({
             }
         },
         finish() {
-            post('', this.form)
-            alert('Dados enviado com sucesso!')
-            localStorage.removeItem('form_temp')
             this.step = 1
         },
         async next(salt = 0, step = 0) {
 
             if (step > 17) {
                 await this.sendBlue()
-                window.location.href = `//${this.action}`
             }
 
             if (this.step <= this.totalStep.length) {
@@ -255,7 +248,6 @@ Vue.createApp({
             this.onNext = true
             this.save()
             this.$refs.jsBtnNext.click()
-            let res = await post('', this.form)
             this.form.id_post = res?.ID || null
 
         },
@@ -289,17 +281,9 @@ Vue.createApp({
             }
         },
         save() {
-            localStorage.setItem('form_temp', JSON.stringify({
-                step: this.step,
-                form: this.form,
-                total: this.total,
-                cubagem: this.cubagem,
-            }))
-
         },
         forcerSubmit() {
             this.$refs.info.click()
-            console.log(this.$refs.info)
         },
         handleCalc() {
             let total = this.steps.reduce((acc, e) => {
@@ -341,7 +325,6 @@ Vue.createApp({
 
     },
     mounted() {
-        this.action = this.getParams("action")
         const totalStep = this.steps.length + 6
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
