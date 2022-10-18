@@ -44,4 +44,13 @@ export default class TablePrice {
             { metros: 28 * 2.70, price: 2000 },
         ]
     }
+    valor(metros) {
+        let list = this.all().find(i => i.metros <= metros) 
+        let valor = list?.price || 0
+        return valor.toLocaleString('pt-br', { minimumFractionDigits: 2 })
+    }
+    metros(metros) {
+        let list = this.all().find(i => i.metros <= metros) 
+        return list?.metros || 0
+    }
 }

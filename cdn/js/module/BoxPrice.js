@@ -38,7 +38,7 @@ export default class BoxPrice {
             }
         }
     }
-    getPtrice(typeSize) {
+    getPrice(typeSize) {
        return this.lb[typeSize] || this.lb.pp 
     }
 }

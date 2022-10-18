@@ -1,82 +1,6 @@
-import Produtos from './module/product.js';
+import TablePrice from "./module/TablePrice.js"
 
-const pathApi = "//dev.metromax.net.br/api-lead/"
-
-
-console.log(window.location.href)
-
-const calculadora = new Calculate_by_Steps().calc()
-const produto = new Produtos()
-console.log(produto);
-const options = {
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    method: 'POST',
-    mode: 'cors',
-    cache: 'default',
-    body: null
-}
-
-const error_default = new ErrorDefault().error_default()
-
-function obj_to_url(obj, next_level = null) {
-    var query = [];
-    for (var key in obj) {
-        switch (typeof obj[key]) {
-            case 'string':
-            case 'number':
-                if (next_level != null) {
-                    query.push(`${next_level}[${key}]=${obj[key]}&`)
-                } else {
-                    query.push(`${key}=${obj[key]}&`)
-                }
-                break
-            case 'object':
-                query.push(obj_to_url(obj[key], key))
-        }
-    }
-    return query.join('');
-}
-
-function getParams(name) {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    return urlParams.get(name)
-}
-
-async function post(path, data, isSendBlue = false) {
-    let base = pathApi
-    if( isSendBlue ) {
-        options.headers = {}
-        options.headers.accept = "application/json"
-        options.headers["api-key"] = getParams("api_key")
-        options.headers["content-type"] = "application/json"
-    }
-    options.body = obj_to_url(data)
-    if(isSendBlue) {
-        options.body = JSON.stringify(data)
-        base = ""
-    }
-    try {
-        let res = await fetch(`${base}${path}`, options)
-        let status_code = res.status
-        return await res.json()
-    } catch (error) {
-        return error_default
-    }
-}
-
-async function get(path, data = {}) {
-    let base = pathApi
-    try {
-        let res = await fetch(`${base}${path}?${obj_to_url(data)}`)
-        let res_in_json = await res.json()
-        return res_in_json
-    } catch (error) {
-        return error_default
-    }
-}
+const table_price = new TablePrice()
 
 Vue.createApp({
     data() {
@@ -112,49 +36,6 @@ Vue.createApp({
                 contato: null,
                 itens: null
             },
-            tablePrice: [
-                { metros: 1 * 1, price: 119 },
-                { metros: 1 * 2.7, price: 175 },
-                { metros: 1.5 * 1.5, price: 140 },
-                { metros: 1.5 * 2.7, price: 197 },
-                { metros: 2 * 2.7, price: 247 },
-                { metros: 2.5 * 2.7, price: 258 },
-                { metros: 3 * 1.6, price: 240 },
-                { metros: 3 * 2, price: 280 },
-                { metros: 3 * 2.70, price: 280 },
-                { metros: 3.5 * 2.70, price: 315 },
-                { metros: 4 * 2.70, price: 360 },
-                { metros: 5, price: 2.70, price: 410 },
-                { metros: 5.5 * 2.70, price: 450 },
-                { metros: 6 * 2.70, price: 460 },
-                { metros: 6.5 * 2.70, price: 480 },
-                { metros: 7 * 2.70, price: 515 },
-                { metros: 7.5 * 2.70, price: 550 },
-                { metros: 8 * 2.70, price: 585 },
-                { metros: 8.5 * 2.70, price: 620 },
-                { metros: 9 * 2.70, price: 650 },
-                { metros: 9.5 * 2.70, price: 685 },
-                { metros: 10 * 2.70, price: 720 },
-                { metros: 10.5 * 2.70, price: 756 },
-                { metros: 11 * 2.70, price: 770 },
-                { metros: 12 * 2.70, price: 840 },
-                { metros: 12.5 * 2.70, price: 875 },
-                { metros: 13 * 2.70, price: 910 },
-                { metros: 14.5 * 2.70, price: 1010 },
-                { metros: 15 * 2.70, price: 1050 },
-                { metros: 16 * 2.70, price: 1120 },
-                { metros: 17.5 * 2.70, price: 1205 },
-                { metros: 18 * 2.70, price: 1240 },
-                { metros: 18.5 * 2.70, price: 1275 },
-                { metros: 19 * 2.70, price: 1300 },
-                { metros: 19.5 * 2.70, price: 1330 },
-                { metros: 20 * 2.70, price: 1360 },
-                { metros: 21 * 2.70, price: 1425 },
-                { metros: 22 * 2.70, price: 1495 },
-                { metros: 24 * 2.70, price: 1630 },
-                { metros: 25.5 * 2.70, price: 1660 },
-                { metros: 28 * 2.70, price: 2000 },
-            ],
             steps: [
                 {
                     title: "Eu preciso de um box no tamanho:",
@@ -437,13 +318,10 @@ Vue.createApp({
             return "Hoje é " + (now.getDate() + "").padStart(2, "0") + "/" + ((now.getMonth() + 1) + "").padStart(2, "0") + "/" + now.getFullYear()
         },
         valorReal(metros) {
-            let list = { ...this.tablePrice.find(i => i.metros <= metros) }
-            let valor = list?.price || 0
-            return valor.toLocaleString('pt-br', { minimumFractionDigits: 2 })
+            return table_price.valor(metros)
         },
         metrosReal(metros) {
-            let list = { ...this.tablePrice.find(i => i.metros <= metros) }
-            return list?.metros || 0
+            return table_price.metros(metros)
         },
         whats() {
             window.location.href = "https://api.whatsapp.com/send?phone=5521971524026"
@@ -508,7 +386,6 @@ Vue.createApp({
 
         this.action = this.getParams("action")
         let form_temp = JSON.parse(localStorage.getItem('form_temp'))
-        this.cubagem = calculadora
         if (form_temp) {
             // this.step = form_temp.step
             // this.form = { ...this.form, ...form_temp.form }
@@ -517,7 +394,7 @@ Vue.createApp({
             //     this[key] = form_temp[key]
             // })
         }
-        const totalStep = calculadora.length + 6
+        const totalStep = this.steps.length + 6
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
 
