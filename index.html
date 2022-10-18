@@ -38,7 +38,7 @@
                                 <div>
                                     <h1 class="title">Eu preciso de um box no tamanho:</h1>
                                     <div class="sizes_box">
-                                        <div v-for="l in allbox" :class="{size_item: true, active: form.size=='P'}"
+                                        <div v-for="l in allbox" :class="{size_item: true, active: form.size==l.nome}"
                                             @click="next(); form.size=l.nome">
                                             <div>
                                                 <strong>{{l.nome}}</strong>
@@ -128,10 +128,10 @@
                                             <h1 class="title_2 title_scape text-center">
                                                 Olá, {{form.nome}}. O seu orçamento fica entre:
                                             </h1>
-                                            <div v-if="form.size=='PP'">
-                                                <h2 class="subtitle  text-center">R$37,00 a R$70,00 por mês </h2>
+                                            <div>
+                                                <h2 class="subtitle  text-center">{{allbox[form.size].primaryPrice}} a {{allbox[form.size].secondPrice}} por mês</h2>
                                             </div>
-                                            <div v-if="form.size=='P'">
+                                            <!-- <div v-if="form.size=='P'">
                                                 <h2 class="subtitle  text-center">R$137,00 a R$170,00 por mês </h2>
                                             </div>
                                             <div v-if="form.size=='M'">
@@ -144,7 +144,7 @@
                                                 style="font-size: 12px !important;">
                                                 Você sabia que 80% das pessoas escolhem um tamanho de box maior do que
                                                 elas precisam?
-                                            </small>
+                                            </small> -->
                                             <hr>
                                             <strong class="d-block text-center subtitle title_scape">Para entender
                                                 melhor:</strong>
