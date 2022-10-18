@@ -248,7 +248,6 @@ Vue.createApp({
             this.onNext = true
             this.save()
             this.$refs.jsBtnNext.click()
-            this.form.id_post = res?.ID || null
 
         },
         isNext() {
