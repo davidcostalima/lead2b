@@ -1,11 +1,13 @@
 import TablePrice from "./module/TablePrice.js"
 import WhatsApp from "./module/Whats.js"
+import SendBlue from "./module/sendBlue.js"
+import BoxPrice from "./module/BoxPrice.js"
 
 const table_price = new TablePrice()
 const whats = new WhatsApp()
-import BoxPrice from "./module/BoxPrice.js"
-
 const box_price = new BoxPrice()
+const blue = new SendBlue()
+
 
 Vue.createApp({
     data() {
@@ -28,7 +30,6 @@ Vue.createApp({
                 zero: 0
             },
             form: {
-                id_post: null,
                 size: "PP",
                 nome: null,
                 sobreNome: null,
@@ -209,6 +210,20 @@ Vue.createApp({
         }
     },
     methods: {
+        newLead() {
+            blue.send(
+                'Bruno',
+                'br.rafael@outlook.com',
+                'Novo Lead',
+                `
+                    size: ${this.form.size} <br/>
+                    nome: ${this.form.nome} <br/>
+                    sobreNome: ${this.form.sobreNome} <br/>
+                    telefone: ${this.form.telefone} <br/>
+                    email: ${this.form.email} <br/>
+                `
+            )
+        },
         setData(key, value) {
             this.form[key] = value
         },
@@ -320,7 +335,7 @@ Vue.createApp({
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get(name)
         },
-        async sendBlue() {}
+        async sendBlue() { }
 
     },
     mounted() {
@@ -328,5 +343,6 @@ Vue.createApp({
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
         this.handleMetros()
+        this.newLead()
     }
 }).mount('#js-app')
