@@ -1,6 +1,8 @@
 import TablePrice from "./module/TablePrice.js"
+import WhatsApp from "./module/Whats.js"
 
 const table_price = new TablePrice()
+const whats = new WhatsApp()
 
 Vue.createApp({
     data() {
@@ -324,7 +326,7 @@ Vue.createApp({
             return table_price.metros(metros)
         },
         whats() {
-            window.location.href = "https://api.whatsapp.com/send?phone=5521971524026"
+            whats.send('Olá')
         },
         getParams(name) {
             const queryString = window.location.search;
