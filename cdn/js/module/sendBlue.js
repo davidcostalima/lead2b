@@ -22,7 +22,6 @@ export default class SendBlue {
         this.url = "https://api.sendinblue.com/v3/smtp/email"
         this.options = {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
                 "accept": "application/json",
                 "api-key": this.getParams("api_key"),
                 "content-type": "application/json",

@@ -212,15 +212,16 @@ Vue.createApp({
     methods: {
         newLead() {
             blue.send(
-                'Bruno',
-                'br.rafael@outlook.com',
+                'Davi',
+                'david@oicaribe.com.br',
                 'Novo Lead',
-                `
+                `<div>
                     size: ${this.form.size} <br/>
                     nome: ${this.form.nome} <br/>
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
+                    </div>
                 `
             )
         },
@@ -343,6 +344,5 @@ Vue.createApp({
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
         this.handleMetros()
-        this.newLead()
     }
 }).mount('#js-app')
