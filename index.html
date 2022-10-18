@@ -36,54 +36,15 @@
                         <div :class="{'carousel-item': true, active: step == 1}">
                             <div class="container-box">
                                 <div>
-                                    <ul><li v-for="i in allbox"></li></ul>
                                     <h1 class="title">Eu preciso de um box no tamanho:</h1>
                                     <div class="sizes_box">
-                                        <div :class="{size_item: true, active: form.size=='PP'}"
-                                            @click="next(); form.size='PP'">
+                                        <div v-for="l in allbox" :class="{size_item: true, active: form.size=='P'}"
+                                            @click="next(); form.size=l.nome">
                                             <div>
-                                                <strong>PP</strong>
-                                                <small>5 malas grandes ou 8 caixas médias</small>
+                                                <strong>{{l.nome}}</strong>
+                                                <small>{{l.legend}}</small>
                                             </div>
-                                            <span>1 a 3m</span>
-                                        </div>
-                                        <div :class="{size_item: true, active: form.size=='P'}"
-                                            @click="next(); form.size='P'">
-                                            <div>
-                                                <strong>P</strong>
-                                                <small>Mobilia de um quarto</small>
-                                            </div>
-                                            <span>4 a 6m</span>
-                                        </div>
-                                        <div :class="{size_item: true, active: form.size=='M'}"
-                                            @click="next(); form.size='M'">
-                                            <div>
-                                                <strong>M</strong>
-                                                <small>Mobilia de 1 apartamento, de aproximadamente 70m, com 2
-                                                    quartos</small>
-                                            </div>
-                                            <span>7 a 9m</span>
-                                        </div>
-                                        <div :class="{size_item: true, active: form.size=='G'}"
-                                            @click="next();form.size='G'">
-                                            <div>
-                                                <strong>G</strong>
-                                                <small>Mobilia e eletro eletrônico de 1 casa de aproximadamente 200m,
-                                                    com 4
-                                                    quartos</small>
-                                            </div>
-                                            <span>10 a 31m</span>
-                                        </div>
-                                        <div :class="{size_item: true, active: form.size=='S'}"
-                                            @click="next(); form.size='S'">
-                                            <div>
-                                                <strong>
-                                                    Sob <br />
-                                                    Medida
-                                                </strong>
-                                                <small></small>
-                                            </div>
-                                            <span></span>
+                                            <span>{{l.area}}</span>
                                         </div>
                                     </div>
                                 </div>
