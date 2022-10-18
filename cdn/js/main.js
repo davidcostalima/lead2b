@@ -12,7 +12,7 @@ Vue.createApp({
             cubagem: [],
             metros: 0,
             action: "google.com",
-            base: '//dev.metromax.net.br/wp-content/themes/metromax2',
+
             content: '',
             jump: {
                 home: 0,
@@ -331,77 +331,14 @@ Vue.createApp({
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get(name)
         },
-        async sendBlue() {
-
-            // await post("https://api.sendinblue.com/v3/smtp/email", {
-            //     "sender": {
-            //         "name": "Davi",
-            //         "email": "contato@metromax.net.br"
-            //     },
-            //     "to": [
-            //         {
-            //             "email": this.form.email,
-            //             "name":  this.form.name
-            //         }
-            //     ],
-            //     "subject": 'Lorem Ipsum',
-            //     "htmlContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-            // }, true)
-
-            await post("//api.sendinblue.com/v3/smtp/email", {
-                "sender": {
-                    "name": "Davi",
-                    "email": "contato@metromax.net.br"
-                },
-                "to": [
-                    {
-                        "email": "david@oicaribe.com.br",
-                        "name":  "Dav"
-                    }
-                ],
-                "subject": 'Lorem Ipsum',
-                "htmlContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-
-            }, true)
-            
-            await post("//api.sendinblue.com/v3/smtp/email", {
-                "sender": {
-                    "name": "Davi",
-                    "email": "contato@metromax.net.br"
-                },
-                "to": [
-                    {
-                        "email": "br.rafael@outlook.com",
-                        "name":  "Bruno"
-                    }
-                ],
-                "subject": 'Lorem Ipsum',
-                "htmlContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-            }, true)
-        }
+        async sendBlue() {}
 
     },
     mounted() {
-        
-
         this.action = this.getParams("action")
-        let form_temp = JSON.parse(localStorage.getItem('form_temp'))
-        if (form_temp) {
-            // this.step = form_temp.step
-            // this.form = { ...this.form, ...form_temp.form }
-            // this.cubagem = form_temp.cubagem
-            // Object.keys(form_temp).forEach(key => {
-            //     this[key] = form_temp[key]
-            // })
-        }
         const totalStep = this.steps.length + 6
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
-
-        if (window.location.host.indexOf('5500') > 1) {
-            this.base = 'http://127.0.0.1:5500'
-        }
-
         this.handleMetros()
     }
 }).mount('#js-app')
