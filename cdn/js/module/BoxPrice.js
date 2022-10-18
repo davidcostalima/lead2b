@@ -41,4 +41,7 @@ export default class BoxPrice {
     getPrice(typeSize) {
        return this.lb[typeSize] || this.lb.pp 
     }
+    get_allPrice(){
+       return this.lb || {} 
+    }
 }

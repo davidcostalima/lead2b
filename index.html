@@ -36,6 +36,7 @@
                         <div :class="{'carousel-item': true, active: step == 1}">
                             <div class="container-box">
                                 <div>
+                                    <ul><li v-for="i in allbox"></li></ul>
                                     <h1 class="title">Eu preciso de um box no tamanho:</h1>
                                     <div class="sizes_box">
                                         <div :class="{size_item: true, active: form.size=='PP'}"

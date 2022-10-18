@@ -1,4 +1,5 @@
 import TablePrice from "./module/TablePrice.js"
+import BoxPrice from "./module/BoxPrice.js"
 
 const table_price = new TablePrice()
 
@@ -14,6 +15,7 @@ Vue.createApp({
             action: "google.com",
             base: '//dev.metromax.net.br/wp-content/themes/metromax2',
             content: '',
+            allbox: [],
             jump: {
                 home: 0,
                 diversos: 0,
