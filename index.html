@@ -37,6 +37,7 @@
                             <div class="container-box">
                                 <div>
                                     <h1 class="title">Eu preciso de um box no tamanho:</h1>
+                                    
                                     <div class="sizes_box">
                                         <div v-for="l in allbox" :class="{size_item: true, active: form.size==l.nome}"
                                             @click="next(); form.size=l.nome">
@@ -127,6 +128,7 @@
                                         <div>
                                             <h1 class="title_2 title_scape text-center">
                                                 Olá, {{form.nome}}. O seu orçamento fica entre:
+                                                
                                             </h1>
                                             <div>
                                                 <h2 class="subtitle  text-center">{{allbox[form.size].primaryPrice}} a {{allbox[form.size].secondPrice}} por mês</h2>

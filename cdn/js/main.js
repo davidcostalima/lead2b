@@ -29,7 +29,7 @@ Vue.createApp({
             },
             form: {
                 id_post: null,
-                size: "pp",
+                size: "PP",
                 nome: null,
                 sobreNome: null,
                 telefone: null,
