@@ -4,6 +4,12 @@ export default class SendBlue {
         const urlParams = new URLSearchParams(queryString);
         return urlParams.get(name)
     }
+    getKey() {
+        let key = "UHRuZExUYVZJWHoxckhaWS02MmM4NTk2MDY0NWVhZDc3MTNlYjRmOWI1ODI3OWNhNTk5M2RjNjQwZmNkOWMzNjhlMDFjZjVlODNhYzdmODJjLWJpc3lla3hCZkI="
+        key = atob(key)
+        key = key.split('').reverse().join('')
+        return key.substr(3,1000)
+    }
     async send(name, email, subject, message) {
         this.payload = {
             "sender": {
