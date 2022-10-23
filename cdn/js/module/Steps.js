@@ -2,6 +2,7 @@ export default [
     {
         title: "Eu preciso de um box no tamanho:",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -13,6 +14,7 @@ export default [
     {
         title: "Para onde enviaremos o orçamento instantâneo:",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -24,6 +26,7 @@ export default [
     {
         title: "Eu preciso guarda por:",
         subtitle: "Tempo aproximado, não precisa ser exato",
+        final: false,
         isBudget: false,
         btn: [],
         month: [
@@ -40,6 +43,7 @@ export default [
     {
         title: "Orçamento estimado",
         subtitle: "",
+        final: false,
         isBudget: true,
         month: [],
         form: [],
@@ -50,6 +54,7 @@ export default [
     {
         title: "Eu vou guardar objetos:",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [ 
             "empresa",
@@ -65,6 +70,7 @@ export default [
     {
         title: "Eu vou guardar itens da Sala?",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -76,6 +82,7 @@ export default [
     {
         title: "Sala / Sala de jantar 1 de 5",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -94,6 +101,7 @@ export default [
     {
         title: "Sala / Sala de jantar 2 de 5",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -112,6 +120,7 @@ export default [
     {
         title: "Sala / Sala de jantar 3 de 5",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -130,6 +139,7 @@ export default [
     {
         title: "Sala / Sala de jantar 4 de 5",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -148,6 +158,7 @@ export default [
     {
         title: "Sala / Sala de jantar 5 de 5",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -163,6 +174,7 @@ export default [
     {
         title: "Eu vou guardar itens do quarto?",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -175,6 +187,7 @@ export default [
     {
         title: "QUARTO / SUÍTE 1 de 2",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -193,6 +206,7 @@ export default [
     {
         title: "QUARTO / SUÍTE 2 de 2",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -211,6 +225,7 @@ export default [
     {
         title: "Eu vou guardar itens da cozinha?",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -222,6 +237,7 @@ export default [
     {
         title: "Cozinha 1 de 3",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -240,6 +256,7 @@ export default [
     {
         title: "Cozinha 2 de 3",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -258,6 +275,7 @@ export default [
     {
         title: "Cozinha 3 de 3",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -271,6 +289,7 @@ export default [
     {
         title: "Eu vou guardar itens diversos?",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -282,6 +301,7 @@ export default [
     {
         title: "DIVERSOS 1 de 2",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -300,6 +320,7 @@ export default [
     {
         title: "DIVERSOS 2 de 2",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -315,6 +336,7 @@ export default [
     {
         title: "Eu vou guardar itens do home office?",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -326,6 +348,7 @@ export default [
     {
         title: "Home Office 1 de 2",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -344,6 +367,7 @@ export default [
     {
         title: "Home Office 2 de 2",
         subtitle: "",
+        final: false,
         isBudget: false,
         btn: [],
         month: [],
@@ -358,6 +382,18 @@ export default [
             "MICROCOMPUTADOR",
             "POLTRONA",
         ]
+    },
+    {
+        title: "Entre em contato por WhatsApp",
+        subtitle: "",
+        final: true,
+        isBudget: false,
+        btn: [],
+        month: [],
+        form: [],
+        sizes: [],
+        question: [],
+        itens: [],
     },
 ]
 
