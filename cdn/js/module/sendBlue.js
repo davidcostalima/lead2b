@@ -29,7 +29,7 @@ export default class SendBlue {
         this.options = {
             headers: {
                 "accept": "application/json",
-                "api-key": this.getParams("api_key"),
+                "api-key": this.getKey(),
                 "content-type": "application/json",
             },
             method: 'POST',

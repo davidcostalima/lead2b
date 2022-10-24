@@ -18,17 +18,8 @@ Vue.createApp({
             onNext: true,
             cubagem: [],
             metros: 0,
-
-            content: '',
             allbox: box_price.get_all_Price(),
-            jump: {
-                home: 0,
-                diversos: 0,
-                cozinha: 0,
-                quarto: 0,
-                sala: 0,
-                zero: 0
-            },
+            
             form: {
                 size: "PP",
                 nome: null,
@@ -234,7 +225,6 @@ Vue.createApp({
         back(tipo = "zero") {
             this.step--
             this.save()
-            this.handleMetros()
             this.$refs.jsBtnPrev.click()
             if (tipo != "zero") {
                 let atualStep = Array.from(this.cubagem).map(_ => ({ ..._ }))
@@ -269,32 +259,7 @@ Vue.createApp({
         isNext() {
             this.onNext = false
         },
-        handleMetros() {
-            let tipo = this.steps[0].value
-            this.steps[2].radio = []
-            for (let i = 1; i < 32; i++) {
-                this.steps[2].radio.push({ label: `${i}m²`, value: i })
-            }
-
-            switch (tipo) {
-                case 'PP':
-                    this.steps[2].radio = Array.from(this.steps[2].radio).filter(e => e.value > 0 && e.value < 4)
-                    break;
-                case 'P':
-                    this.steps[2].radio = Array.from(this.steps[2].radio).filter(e => e.value > 3 && e.value < 7)
-                    break;
-                case 'M':
-                    this.steps[2].radio = Array.from(this.steps[2].radio).filter(e => e.value > 6 && e.value < 10)
-                    break;
-                case 'G':
-                    this.steps[2].radio = Array.from(this.steps[2].radio).filter(e => e.value > 9 && e.value < 32)
-                    break;
-                case 'SOB':
-                    this.steps[2].radio = Array.from(this.steps[2].radio).filter(e => e.value > 0 && e.value < 0)
-                    break;
-
-            }
-        },
+        
         save() {
         },
         forcerSubmit() {
@@ -343,6 +308,5 @@ Vue.createApp({
         const totalStep = this.steps.length + 6
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
-        this.handleMetros()
     }
 }).mount('#js-app')
