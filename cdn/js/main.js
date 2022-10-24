@@ -2,11 +2,14 @@ import TablePrice from "./module/TablePrice.js"
 import WhatsApp from "./module/Whats.js"
 import SendBlue from "./module/sendBlue.js"
 import BoxPrice from "./module/BoxPrice.js"
+import DataPages from "./module/DataPages.js"
+
 
 const table_price = new TablePrice()
 const whats = new WhatsApp()
 const box_price = new BoxPrice()
 const blue = new SendBlue()
+const data_pages = new DataPages()
 
 
 Vue.createApp({
@@ -215,6 +218,13 @@ Vue.createApp({
                     </div>
                 `
             )
+        },
+        set_data_pages(){
+            data_pages.set_data_camps(
+                this.form.nome,
+                this.form.sobreNome,
+                this.form.telefone,
+                this.form.email)
         },
         setData(key, value) {
             this.form[key] = value
