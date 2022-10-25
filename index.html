@@ -23,13 +23,15 @@
                 <div class="progress-bar bg-danger" style="width: 25%"></div>
             </div>
         </div>
-        <div class="box-steps">
+        
+        <div v-for="(e, s) in steps" v-show="step == s">
             <div class="container-fluid">
                 <div class="container-lg">
-                    <div v-show="true" class="container-box">
+                    <div class="container-box">
                         <div>
-                            <h1 class="title">Eu preciso de um box no tamanho:</h1>
-                            <div class="sizes_box">
+                            <h1 class="title">{{e.title}}</h1>
+                            <p class="text-center" v-show="e.subtitle.length > 1">{{e.subtitle}}</p>
+                            <div class="sizes_box" v-show="e.tamanhos.length > 1">
                                 <div v-for="l in allbox" :class="{size_item: true, active: form.size==l.nome}"
                                     @click="next(); form.size=l.nome">
                                     <div>
@@ -39,72 +41,74 @@
                                     <span>{{l.area}}</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div v-show="false" class="container-box">
-                        <div>
-                            <h1 class="title">
-                                Para onde enviaremos o orçamento instantâneo:
-                            </h1>
-                            <form action="javascript:void(0)" @submit="next(1); sendBlue(); newLead(); set_data_pages()">
-                                <div class="inputs_lead">
-                                    <div>
-                                        <label for="">Primeiro nome</label>
-                                        <input class="w-100" type="text" v-model="form.nome" required>
+                            <div v-show="e.form.length > 1">
+                                <form action="javascript:void(0)" @submit="next(1); sendBlue(); newLead(); set_data_pages()">
+                                    <div class="inputs_lead">
+                                        <div>
+                                            <label for="">Primeiro nome</label>
+                                            <input class="w-100" type="text" v-model="form.nome" required>
+                                        </div>
+                                        <div>
+                                            <label for="">Sobrenome</label>
+                                            <input class="w-100" type="text" v-model="form.sobreNome" required>
+                                        </div>
+                                        <div>
+                                            <label for="">WhatsApp (com DDD)</label>
+                                            <input class="w-100" type="text" v-model="form.telefone" required>
+                                        </div>
+                                        <div>
+                                            <label for="">Email</label>
+                                            <input class="w-100" type="email" v-model="form.email" required>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label for="">Sobrenome</label>
-                                        <input class="w-100" type="text" v-model="form.sobreNome" required>
+                                    <div class="box-btn-next">
+                                        <div v-if="form.nome && form.sobreNome && form.telefone && form.email">
+                                            <input type="submit" ref="info" class="voltar avancar" value="Avançar">
+                                        </div>
+                                        <div v-else>
+                                            <div class="mb-5"></div>
+                                            <div class="mb-1"></div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label for="">WhatsApp (com DDD)</label>
-                                        <input class="w-100" type="text" v-model="form.telefone" required>
-                                    </div>
-                                    <div>
-                                        <label for="">Email</label>
-                                        <input class="w-100" type="email" v-model="form.email" required>
-                                    </div>
-                                </div>
-                                <div class="box-btn-next">
-                                    <div v-if="form.nome && form.sobreNome && form.telefone && form.email">
-                                        <input type="submit" ref="info" class="voltar avancar" value="Avançar">
-                                    </div>
-                                    <div v-else>
-                                        <div class="mb-5"></div>
-                                        <div class="mb-1"></div>
-                                    </div>
-                                </div>
-                            </form>
-                            <div @click="back('zero')" class="voltar">Voltar</div>
-                        </div>
-                    </div>
-                    <div v-show="false" class="container-box">
-                        <div>
-                            <h1 class="title">Eu preciso guarda por:</h1>
-                            <p class="text-center">
-                                Tempo aproximado, não precisa ser exato
-                            </p>
-                            <div class="tempo_box">
-                                <span @click="next(); form.locacao='1 a 3 meses'"
-                                    :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
-                                    1 a 3 meses
-                                </span>
-                                <span @click="next(); form.locacao='4 a 6 meses'"
-                                    :class="{tempo_item: true, active: form.locacao=='4 a 6 meses'}">
-                                    4 a 6 meses
-                                </span>
-                                <span @click="next(); form.locacao='7 a 12 meses'"
-                                    :class="{tempo_item: true, active: form.locacao=='7 a 12 meses'}">
-                                    7 a 12 meses
-                                </span>
-                                <span @click="next(); form.locacao='Não sei'"
-                                    :class="{tempo_item: true, active: form.locacao=='Não sei'}">
-                                    Não sei
-                                </span>
-
+                                </form>
                             </div>
-                            <div @click="back('zero')" class="voltar">Voltar</div>
+                            <div>
+                                <div class="tempo_box" v-show="e.month.length > 1">
+                                    <span @click="next(1); form.locacao='1 a 3 meses'"
+                                        :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
+                                        1 a 3 meses
+                                    </span>
+                                    <span @click="next(1); form.locacao='4 a 6 meses'"
+                                        :class="{tempo_item: true, active: form.locacao=='4 a 6 meses'}">
+                                        4 a 6 meses
+                                    </span>
+                                    <span @click="next(1); form.locacao='7 a 12 meses'"
+                                        :class="{tempo_item: true, active: form.locacao=='7 a 12 meses'}">
+                                        7 a 12 meses
+                                    </span>
+                                    <span @click="next(1); form.locacao='Não sei'"
+                                        :class="{tempo_item: true, active: form.locacao=='Não sei'}">
+                                        Não sei
+                                    </span>
+    
+                                </div>
+                            </div>
+                            <br>
+                            <div>
+                                <div @click="back" class="voltar">Voltar</div>
+                                <div @click="next(1)" class="voltar avancar">Avançar</div>
+                            </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-steps">
+            <div class="container-fluid">
+                <div class="container-lg">
+                    
+                    <div v-show="false" class="container-box">
+                        
                     </div>
                     <div v-show="false" class="row">
                         <div class="col-12 col-md-8 ">

@@ -8,7 +8,7 @@ export default [
         month: [],
         form: [],
         question: [],
-        sizes: ["PP", "P", "M", "G", "S",],
+        tamanhos: ["PP", "P", "M", "G", "S"],
         itens: [],
     },
     {
@@ -20,7 +20,7 @@ export default [
         month: [],
         form: ["nome", "sobreNome", "telefone", "email"],
         question: [],
-        sizes: [],
+        tamanhos: [],
         itens: [],
     },
     {
@@ -37,7 +37,7 @@ export default [
         ],
         form: [],
         question: [],
-        sizes: [],
+        tamanhos: [],
         itens: [],
     },
     {
@@ -48,7 +48,7 @@ export default [
         month: [],
         form: [],
         question: [],
-        sizes: [],
+        tamanhos: [],
         itens: [],
     },
     {
@@ -64,7 +64,7 @@ export default [
         month: [],
         form: [],
         question: [],
-        sizes: [],
+        tamanhos: [],
         itens: [],
     },
     {
@@ -75,7 +75,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [-1, 1],
         itens: [],
     },
@@ -87,7 +87,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "APARADOR",
@@ -106,7 +106,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "CADEIRA-COM-BRACOS",
@@ -125,7 +125,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "ESTANTE-ALTA",
@@ -144,7 +144,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "PIANO-DE-CAUDA",
@@ -163,7 +163,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "SOFA-4-LUGARES",
@@ -179,7 +179,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [-1, 3],
         itens: [],
 
@@ -192,7 +192,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "ARCA",
@@ -211,7 +211,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "CAMA-CASAL",
@@ -230,7 +230,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [],
     },
@@ -242,7 +242,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "ARMARIO-PANELEIRO",
@@ -261,7 +261,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "FOGAO-6-BOCAS",
@@ -280,7 +280,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "MICROONDAS",
@@ -294,7 +294,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [-1, 3],
         itens: [],
     },
@@ -306,7 +306,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "ARCONDICIONADO",
@@ -325,7 +325,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "CAIXA-PARA-CRISTAIS",
@@ -341,7 +341,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: true,
         itens: [],
     },
@@ -353,7 +353,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "ARMARIO-2-PORTAS",
@@ -372,7 +372,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [
             "ESTANTE-DE-ACO",
@@ -391,7 +391,7 @@ export default [
         btn: [],
         month: [],
         form: [],
-        sizes: [],
+        tamanhos: [],
         question: [],
         itens: [],
     },
