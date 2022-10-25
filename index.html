@@ -92,6 +92,43 @@
     
                                 </div>
                             </div>
+                            <div v-show="s == 3">
+                                <h1 class="title_2 title_scape text-center">
+                                    Olá, {{form.nome}}. O seu orçamento fica entre:
+                                </h1>
+                                <br>
+                                <div>
+                                    <h2 class="subtitle  text-center">{{allbox[form.size].primaryPrice}} a
+                                        {{allbox[form.size].secondPrice}} por mês</h2>
+                                </div>
+                                <small class="d-block text-center title_2 title_scape"
+                                    style="font-size: 12px !important;">
+                                    Você sabia que 80% das pessoas escolhem um tamanho de box maior do que
+                                    elas precisam?
+                                </small>
+                                <br>
+                                <hr>
+                                <br>
+                                <strong class="d-block text-center subtitle title_scape">Para entender
+                                    melhor:</strong>
+                                    <br>
+                                <div class="grid_btn_ico">
+                                    <span @click="next(1)"
+                                        :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='sim'}">
+                                        <img src="./cdn/ico/atendimento.svg" class="ico_btn">
+                                        Quero falar com uma pessoa agora mesmo
+                                    </span>
+                                    <span @click="next(1)"
+                                        :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='nao'}">
+                                        <img src="./cdn/ico/cotacao.svg" class="ico_btn">
+                                        <b>
+                                            Ter uma cotação personalizada
+                                        </b> <br>
+                                        <small>(Menos de 2 minutos)</small>
+                                    </span>
+                                </div>
+                                <br />
+                            </div>
                             <br>
                             <div>
                                 <div @click="back" class="voltar">Voltar</div>
