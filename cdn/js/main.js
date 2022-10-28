@@ -15,7 +15,7 @@ const temp = new Temp()
 Vue.createApp({
     data() {
         return {
-            step: 3,
+            step: 5,
             steps: Steps,
             totalStep: 0,
             total: 0,
