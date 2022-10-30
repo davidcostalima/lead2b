@@ -86,7 +86,7 @@ export default class Produtos {
         return this.produto?.title || 'Não encontrado'
     }
     get_image() {
-        return `./assets/icos/${this.produto?.ico || ''}.svg`
+        return `./cdn/icons/${this.produto?.ico || ''}.svg`
     }
     get_cubico() {
         return this.produto?.cubico || 0

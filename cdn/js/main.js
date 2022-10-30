@@ -4,6 +4,10 @@ import SendBlue from "./module/sendBlue.js"
 import BoxPrice from "./module/BoxPrice.js"
 import Temp from "./module/Temp.js"
 import Steps from "./module/Steps.js"
+import Product from "./module/product.js"
+import inputForm from "./module/form.js"
+import month from "./module/month.js"
+import btns from "./module/btns.js"
 
 const table_price = new TablePrice()
 const whats = new WhatsApp()
@@ -15,15 +19,19 @@ const temp = new Temp()
 Vue.createApp({
     data() {
         return {
-            step: 5,
+            openBag: false,
+            btns,
+            month,
+            inputForm,
+            Prod: new Product(),
+            step: 4,
             steps: Steps,
             totalStep: 0,
             total: 0,
             onNext: true,
             cubagem: [],
             metros: 0,
-            allbox: box_price.get_all_Price(),
-            
+            allbox: box_price.get_all_Price(),            
             form: {
                 size: "PP",
                 nome: null,
@@ -35,8 +43,9 @@ Vue.createApp({
                 exato: null,
                 guard: null,
                 contato: null,
-                itens: null
+                itens: {}
             },
+            cart: {}
             
         }
     },

@@ -41,10 +41,11 @@ export default [
         itens: [],
     },
     {
-        title: "Orçamento estimado",
+        title: "Olá, Bruno. O seu orçamento fica entre:",
         subtitle: "",
         final: false,
         isBudget: true,
+        btn: [],
         month: [],
         form: [],
         question: [],
