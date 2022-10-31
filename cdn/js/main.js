@@ -15,7 +15,7 @@ const temp = new Temp()
 Vue.createApp({
     data() {
         return {
-            step: 5,
+            step: 2,
             steps: Steps,
             totalStep: 0,
             total: 0,
@@ -134,8 +134,7 @@ Vue.createApp({
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get(name)
         },
-        async sendBlue() { }
-
+        async sendBlue() { },
     },
     mounted() {
         const totalStep = this.steps.length + 6
