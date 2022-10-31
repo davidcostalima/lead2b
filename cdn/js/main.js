@@ -24,7 +24,7 @@ Vue.createApp({
             month,
             inputForm,
             Prod: new Product(),
-            step: 4,
+            step: 0,
             steps: Steps,
             totalStep: 0,
             total: 0,
@@ -34,10 +34,10 @@ Vue.createApp({
             allbox: box_price.get_all_Price(),            
             form: {
                 size: "PP",
-                nome: null,
-                sobreNome: null,
-                telefone: null,
-                email: null,
+                nome: "victor",
+                sobreNome: "Fernando",
+                telefone: "38998019210",
+                email: "victorfernandomagalhaes@gmail.com",
                 locacao: null,
                 pulou: null,
                 exato: null,
@@ -46,7 +46,6 @@ Vue.createApp({
                 itens: {}
             },
             cart: {}
-            
         }
     },
     methods: {
@@ -97,6 +96,7 @@ Vue.createApp({
         },
         async next(jump = 1) {
             this.sptep = this.step++
+            // document.querySelector('.progress')
         },
         isNext() {
             this.onNext = false
@@ -143,8 +143,21 @@ Vue.createApp({
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get(name)
         },
-        async sendBlue() { }
-
+        sendBlue() { 
+            blue.send(
+                this.form.nome,
+                this.form.email,
+                'Metro Max',
+                `<div>
+                    size: ${this.form.size} <br/>
+                    nome: ${this.form.nome} <br/>
+                    sobreNome: ${this.form.sobreNome} <br/>
+                    telefone: ${this.form.telefone} <br/>
+                    email: ${this.form.email} <br/>
+                    </div>
+                `
+            )
+        }
     },
     mounted() {
         const totalStep = this.steps.length + 6

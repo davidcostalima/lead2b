@@ -20,7 +20,7 @@
         <div class="fixed-top bg-white text-center">
             <img src="./cdn/images/logo.png" height="45" class="m-2">
             <div class="progress" style="height: 7px;">
-                <div class="progress-bar bg-danger" style="width: 25%"></div>
+                <div class="progress-bar bg-danger progress" style="width: 4%"></div>
             </div>
         </div>
 
@@ -42,8 +42,7 @@
                                     <span>{{l.area}}</span>
                                 </div>
                             </div>
-
-                            <form action="javascript:void(0)" v-if="e.form" @submit="next(1); newLead();">
+                            <form action="javascript:void(0)" v-if="e.form">
                                 <div class="inputs_lead">
                                     <div v-for="f in e.form">
                                         <label for="">{{inputForm[f].legenda}}</label>
@@ -53,7 +52,7 @@
                             </form>
                             
                             <div class="tempo_box" v-show="e.month.length > 1">
-                                <span v-for="m in month" @click="next(m.jump)"
+                                <span v-for="m in month" @click="next(m.jump)" 
                                     :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
                                     {{m.title}}
                                 </span>
@@ -123,7 +122,8 @@
 
                             <div style="display: flex; justify-content: space-between;">
                                 <div @click="back" class="voltar">Voltar</div>
-                                <div @click="next(1)" class="voltar avancar">Avançar</div>
+                                <div @click="next(1)" v-show="s!=1" class="voltar avancar">Avançar</div>
+                                <div @click="next(1); newLead(); set_data_pages();" v-show="s==1" class="voltar avancar">Avançar</div>
                             </div>
 
                             <div v-if="e.final">
