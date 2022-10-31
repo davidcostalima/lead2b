@@ -4,6 +4,10 @@ import SendBlue from "./module/sendBlue.js"
 import BoxPrice from "./module/BoxPrice.js"
 import Temp from "./module/Temp.js"
 import Steps from "./module/Steps.js"
+import Product from "./module/product.js"
+import inputForm from "./module/form.js"
+import month from "./module/month.js"
+import btns from "./module/btns.js"
 
 const table_price = new TablePrice()
 const whats = new WhatsApp()
@@ -15,29 +19,37 @@ const temp = new Temp()
 Vue.createApp({
     data() {
         return {
+<<<<<<< HEAD
             step: 2,
+=======
+            openBag: false,
+            btns,
+            month,
+            inputForm,
+            Prod: new Product(),
+            step: 0,
+>>>>>>> 81850248b4345be65d8280e1219582c3439ffa34
             steps: Steps,
             totalStep: 0,
             total: 0,
             onNext: true,
             cubagem: [],
             metros: 0,
-            allbox: box_price.get_all_Price(),
-            
+            allbox: box_price.get_all_Price(),            
             form: {
                 size: "PP",
-                nome: null,
-                sobreNome: null,
-                telefone: null,
-                email: null,
+                nome: "victor",
+                sobreNome: "Fernando",
+                telefone: "38998019210",
+                email: "victorfernandomagalhaes@gmail.com",
                 locacao: null,
                 pulou: null,
                 exato: null,
                 guard: null,
                 contato: null,
-                itens: null
+                itens: {}
             },
-            
+            cart: {}
         }
     },
     methods: {
@@ -88,6 +100,7 @@ Vue.createApp({
         },
         async next(jump = 1) {
             this.sptep = this.step++
+            // document.querySelector('.progress')
         },
         isNext() {
             this.onNext = false
@@ -134,7 +147,25 @@ Vue.createApp({
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get(name)
         },
+<<<<<<< HEAD
         async sendBlue() { },
+=======
+        sendBlue() { 
+            blue.send(
+                this.form.nome,
+                this.form.email,
+                'Metro Max',
+                `<div>
+                    size: ${this.form.size} <br/>
+                    nome: ${this.form.nome} <br/>
+                    sobreNome: ${this.form.sobreNome} <br/>
+                    telefone: ${this.form.telefone} <br/>
+                    email: ${this.form.email} <br/>
+                    </div>
+                `
+            )
+        }
+>>>>>>> 81850248b4345be65d8280e1219582c3439ffa34
     },
     mounted() {
         const totalStep = this.steps.length + 6

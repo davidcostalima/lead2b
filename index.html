@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metro Max</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./cdn/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"
-        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="./cdn/js/main.js" type="module" defer></script>
 </head>
+
 <body class="steps-bg">
     <div id="js-app">
+
         <div class="fixed-top bg-white text-center">
             <img src="./cdn/images/logo.png" height="45" class="m-2">
             <div class="progress" style="height: 7px;">
-                <div class="progress-bar bg-danger" style="width: 25%"></div>
+                <div class="progress-bar bg-danger progress" style="width: 4%"></div>
             </div>
         </div>
+
         <div v-for="(e, s) in steps" v-show="step == s">
             <div class="container-fluid">
                 <div class="container-lg">
@@ -30,6 +31,7 @@
                         <div>
                             <h1 class="title">{{e.title}}</h1>
                             <p class="text-center" v-show="e.subtitle.length > 1">{{e.subtitle}}</p>
+
                             <div class="sizes_box" v-show="e.tamanhos.length > 1">
                                 <div v-for="l in allbox" :class="{size_item: true, active: form.size==l.nome}"
                                     @click="next(); form.size=l.nome">
@@ -40,70 +42,35 @@
                                     <span>{{l.area}}</span>
                                 </div>
                             </div>
-                            <div v-show="e.form.length > 1">
-                                <form action="javascript:void(0)" @submit="next(1); sendBlue(); newLead(); set_data_pages()">
-                                    <div class="inputs_lead">
-                                        <div>
-                                            <label for="">Primeiro nome</label>
-                                            <input class="w-100" type="text" v-model="form.nome" required>
-                                        </div>
-                                        <div>
-                                            <label for="">Sobrenome</label>
-                                            <input class="w-100" type="text" v-model="form.sobreNome" required>
-                                        </div>
-                                        <div>
-                                            <label for="">WhatsApp (com DDD)</label>
-                                            <input class="w-100" type="text" v-model="form.telefone" required>
-                                        </div>
-                                        <div>
-                                            <label for="">Email</label>
-                                            <input class="w-100" type="email" v-model="form.email" required>
-                                        </div>
+                            <form action="javascript:void(0)" v-if="e.form">
+                                <div class="inputs_lead">
+                                    <div v-for="f in e.form">
+                                        <label for="">{{inputForm[f].legenda}}</label>
+                                        <input class="w-100" :type="inputForm[f].type" v-model="form[f]" required>
                                     </div>
-                                    
-                                </form>
-                            </div>
-                            <div>
-                                <div class="tempo_box" v-show="e.month.length > 1">
-                                    <span @click="next(1); form.locacao='1 a 3 meses'"
-                                        :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
-                                        1 a 3 meses
-                                    </span>
-                                    <span @click="next(1); form.locacao='4 a 6 meses'"
-                                        :class="{tempo_item: true, active: form.locacao=='4 a 6 meses'}">
-                                        4 a 6 meses
-                                    </span>
-                                    <span @click="next(1); form.locacao='7 a 12 meses'"
-                                        :class="{tempo_item: true, active: form.locacao=='7 a 12 meses'}">
-                                        7 a 12 meses
-                                    </span>
-                                    <span @click="next(1); form.locacao='Não sei'"
-                                        :class="{tempo_item: true, active: form.locacao=='Não sei'}">
-                                        Não sei
-                                    </span>
-    
                                 </div>
+                            </form>
+                            
+                            <div class="tempo_box" v-show="e.month.length > 1">
+                                <span v-for="m in month" @click="next(m.jump)" 
+                                    :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
+                                    {{m.title}}
+                                </span>
                             </div>
-                            <div v-show="s == 3">
-                                <h1 class="title_2 title_scape text-center">
-                                    Olá, {{form.nome}}. O seu orçamento fica entre:
-                                </h1>
-                                <br>
-                                <div>
-                                    <h2 class="subtitle  text-center">{{allbox[form.size].primaryPrice}} a
-                                        {{allbox[form.size].secondPrice}} por mês</h2>
-                                </div>
+
+                            <div v-if="e.isBudget">
+                                <h2 class="subtitle  text-center">
+                                    {{allbox[form.size].primaryPrice}} a
+                                    {{allbox[form.size].secondPrice}} por mês
+                                </h2>                          
                                 <small class="d-block text-center title_2 title_scape"
                                     style="font-size: 12px !important;">
                                     Você sabia que 80% das pessoas escolhem um tamanho de box maior do que
                                     elas precisam?
-                                </small>
-                                <br>
-                                <hr>
-                                <br>
+                                </small>                           
                                 <strong class="d-block text-center subtitle title_scape">Para entender
-                                    melhor:</strong>
-                                    <br>
+                                    melhor:
+                                </strong>
                                 <div class="grid_btn_ico">
                                     <span @click="next(1)"
                                         :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='sim'}">
@@ -119,124 +86,50 @@
                                         <small>(Menos de 2 minutos)</small>
                                     </span>
                                 </div>
-                                <br />
                             </div>
-                            <div v-show="s == 4">
-                                <div style="width: 100%;">
-                                    <div class="text-center w-guard">
-                                        <span :class="{call_item:true, active: form.guard=='{{e.btn?.[0]}}'}"
-                                            @click="next(); form.guard='{{e.btn?.[0]}}'">
-                                            <i class="bi bi-building"></i>
-                                            Da {{e.btn?.[0]}}
-                                        </span>
-                                        <span :class="{call_item:true, active: form.guard=='{{e.btn?.[1]}}'}"
-                                            @click="next(); form.guard='{{e.btn?.[1]}}'">
-                                            <i class="bi bi-house-door"></i>
-                                            Da {{e.btn?.[1]}}
-                                        </span>
-                                        <span :class="{call_item:true, active: form.guard=='{{e.btn?.[2]}}'}"
-                                            @click="next(); form.guard='{{e.btn?.[2]}}'">
-                                            <i class="bi bi-arrow-left-right"></i>
-                                            De {{e.btn?.[2]}}
-                                        </span>
-                                    </div>
+
+                            <div class="text-center w-guard" v-if="e.btn.length > 1">
+                                <span v-for="b in btns"
+                                :class="{call_item:true, active: form.guard==b.title}"
+                                    @click="next(b.jump); form.guard=b.title">
+                                    <i :class="'bi '+ b.ico"></i>
+                                    {{b.title}}
+                                </span>                                
+                            </div>                            
+
+                            <div v-show="e.itens" class="cubo-grid">
+                                <div v-for="idProd in e.itens" class="cubo">
+                                    {{Prod.set_product(idProd)}}
+                                    <span :style="{'background-image': 'url('+Prod.get_image()+')'}">
+                                        {{Prod.get_title()}}
+                                    </span>
+                                    <input type="number" value="0" min="0">
                                 </div>
                             </div>
-                            <br>
-                            <div v-show="s == 5">
-                                <div class="row" class="container-box">
-                        
-                                    <div class="col-12 col-md-4">
-                                        <div class="container-box" style="display: block;">
-                                            {{dataPrint()}}
-                                            <hr>
-                                            <ul>
-                                                <li>{{form.nome}} {{form.sobreNome}} </li>
-                                                <li>{{form.telefone}} </li>
-                                                <li>{{form.email}} </li>
-                                            </ul>
-                                            <hr>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div v-for="(c, i) in cubagem" class="container-box">
-                                    <div class="row">
-                                        <div class="col-12 col-md-8">
-                                            <div class="container-box">
-                                                <div>
-                                                    <h1 class="title fs-4">
-                                                        {{c.title}}
-                                                    </h1>
-                                                    <div v-show="!c.yesNot" class="cubo-grid">
-                                                        <div v-for="campo in c.fields" class="cubo">
-                                                            <span
-                                                                :style="{'background-image': 'url('+base+'/cdn/icons/'+campo.ico+'.svg)'}">
-                                                                {{campo.title}}
-                                                            </span>
-                                                            <input type="number" @input="calcularM3" v-model="campo.value">
-                                                        </div>
-                                                    </div>
-                                                    <div v-show="c.yesNot">
-                                                        <div class="text-center">
-                                                            <span :class="{link_confirm:true, active: form.exato=='nao'}"
-                                                                @click="next(c.saltNot); jump[c.tipo]=(c.saltNot-1)*-1">
-                                                                <i class="bi bi-hand-thumbs-down display-4"></i> <br />
-                                                                Não
-                                                            </span>
-                                                            <span :class="{link_confirm:true, active: form.exato=='sim'}"
-                                                                @click="next(1);jump[c.tipo]=0">
-                                                                <i class="bi bi-hand-thumbs-up display-4"></i> <br />
-                                                                Sim
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="box-btn-next" v-show="!c.yesNot">
-                                                        <input @click="next(c.saltNot, i)" type="submit" ref="info"
-                                                            class="voltar avancar" :value="'Avançar'">
-                                                    </div>
-                                                    <div @click="back(c.tipo)" class="voltar">Voltar</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-4">
-                                            <div class="container-box " style="display: block;">
-                                                <h1 class="title fs-6">
-                                                    Metragem:
-                                                    {{metros}}m3
-                                                </h1>
-                                                <div class="bg-danger text-white rounded-2 py-2 box-red">
-                                                    <ul v-for="item in cubagem">
-                                                        <li v-for="c in item.fields" v-show="c.value" style="font-size: 11px;">
-                                                            {{c.title}} - {{c.value}}
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                            <div v-if="e.question" class="text-center">
+                                <span :class="{link_confirm:true}" v-for="(q, qIndex) in e.question" @click="next(q)">
+                                    <i :class="{
+                                            'bi' : true ,
+                                            'bi-hand-thumbs-down': !qIndex, 
+                                            'bi-hand-thumbs-up' : qIndex,
+                                            'display-4' : true
+                                        }"></i>
+                                    <br />
+                                    {{qIndex ? 'SIM' : 'Não'}}
+                                </span>
                             </div>
-                            <br>
+
                             <div style="display: flex; justify-content: space-between;">
                                 <div @click="back" class="voltar">Voltar</div>
-                                <div @click="next(1)" class="voltar avancar" v-if="form.nome && form.sobreNome && form.telefone && form.email">Avançar</div>
+                                <div @click="next(1)" v-show="s!=1" class="voltar avancar">Avançar</div>
+                                <div @click="next(1); newLead(); set_data_pages();" v-show="s==1" class="voltar avancar">Avançar</div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="box-steps">
-            <div class="container-fluid">
-                <div class="container-lg">
-                    
-                    <div v-show="false" class="container-box">
-                        <div>
-                            <div>
+
+                            <div v-if="e.final">
                                 <h1 class="title_2 text-center">
-                                    Olá, {{form.nome}}. O seu orçamento <br>
-                                    é aproximadamente de: {{valorReal}}
+                                    Olá, {{'bruno'}}. O seu orçamento <br>
+                                    é aproximadamente de: {{5}}
                                 </h1>
                                 <h2 class="subtitle text-center">
                                     Metragem necessária: {{metros}}m³ <br>
@@ -252,13 +145,39 @@
                                     </div>
                                 </h2>
                             </div>
-                            <div @click="form.pulou == 'sim' ? step=4 : back()" class="voltar">Voltar</div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="btn-bag" @click="openBag=!openBag">
+            <i :class="{ 'bi': true, 'bi-bag': !openBag }"></i>
+            <i :class="{ 'bi': true, 'bi-x-lg': openBag }"></i>
+        </div>
+
+        <div :class="{ 'bg-danger': true, 'text-white': true, 'p-2': true, 'op-bag': true, 'open': openBag  }">
+            {{dataPrint()}} <br>
+            <small>Nome</small>: <br>
+            {{form.nome}} {{form.sobreNome}} <br>
+            <small>Telefone</small>: <br>
+            {{form.telefone}} <br>
+            <small>Email</small>: <br>
+            {{form.email}} <br>
+            <span> Metragem: {{metros}}m3 </span> <br>
+            <span>Itens</span> <br>
+            <ul v-for="item in cubagem">
+                <li v-for="c in item.fields" v-show="c.value"
+                    style="font-size: 11px;">
+                    {{c.title}} - {{c.value}}
+                </li>
+            </ul>
+        </div>
+       
+
     </div>
+
 </body>
 
 </html>
