@@ -20,7 +20,7 @@
         <div class="fixed-top bg-white text-center">
             <img src="./cdn/images/logo.png" height="45" class="m-2">
             <div class="progress" style="height: 7px;">
-                <div class="progress-bar bg-danger progress" style="width: 4%"></div>
+                <div class="progress-bar bg-danger progress" :style="{width: step * 100 / steps.length + '%'}"></div>
             </div>
         </div>
 
@@ -45,7 +45,7 @@
                             <form action="javascript:void(0)" v-if="e.form">
                                 <div class="inputs_lead">
                                     <div v-for="f in e.form">
-                                        <label for="">{{inputForm[f].legenda}}</label>
+                                        <label>{{inputForm[f].legenda}}</label>
                                         <input class="w-100" :type="inputForm[f].type" v-model="form[f]" required>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                     <span :style="{'background-image': 'url('+Prod.get_image()+')'}">
                                         {{Prod.get_title()}}
                                     </span>
-                                    <input type="number" value="0" min="0">
+                                    <input type="number" min="0" @input="autosave" v-model="form.product[idProd]">
                                 </div>
                             </div>
 
@@ -159,18 +159,22 @@
 
         <div :class="{ 'bg-danger': true, 'text-white': true, 'p-2': true, 'op-bag': true, 'open': openBag  }">
             {{dataPrint()}} <br>
+            <br>
             <small>Nome</small>: <br>
             {{form.nome}} {{form.sobreNome}} <br>
+            <br>
             <small>Telefone</small>: <br>
             {{form.telefone}} <br>
+            <br>
             <small>Email</small>: <br>
             {{form.email}} <br>
+            <br>
             <span> Metragem: {{metros}}m3 </span> <br>
-            <span>Itens</span> <br>
-            <ul v-for="item in cubagem">
-                <li v-for="c in item.fields" v-show="c.value"
+            <span>Itens:</span> <br>
+            <ul>
+                <li v-for="(c, key) in form.product"
                     style="font-size: 11px;">
-                    {{c.title}} - {{c.value}}
+                    {{key}} - {{c}}
                 </li>
             </ul>
         </div>

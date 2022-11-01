@@ -19,23 +19,22 @@ const temp = new Temp()
 Vue.createApp({
     data() {
         return {
-<<<<<<< HEAD
-            step: 2,
-=======
-            openBag: false,
+            openBag: true,
             btns,
             month,
             inputForm,
             Prod: new Product(),
-            step: 0,
->>>>>>> 81850248b4345be65d8280e1219582c3439ffa34
+            step: 15,
             steps: Steps,
             totalStep: 0,
             total: 0,
             onNext: true,
             cubagem: [],
             metros: 0,
-            allbox: box_price.get_all_Price(),            
+            allbox: box_price.get_all_Price(),       
+            // corpo do email com form e um foreatch no produto, montando o email, sendo 3 ao total, 
+            // 1º email com registro de pré cadastro do usuario, 2º email de fim das etapas para o david
+            // 3º email de fim de etapas para usuario.
             form: {
                 size: "PP",
                 nome: "victor",
@@ -47,7 +46,10 @@ Vue.createApp({
                 exato: null,
                 guard: null,
                 contato: null,
-                itens: {}
+                product: {},
+                itens: {
+
+                }
             },
             cart: {}
         }
@@ -64,9 +66,19 @@ Vue.createApp({
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
-                    </div>
+                </div>
                 `
             )
+        },
+        autosave(){
+            temp.save({
+                nome: this.form.nome,
+                sobreNome: this.form.sobreNome,
+                telefone: this.form.telefone,
+                email: this.form.email,
+                step: this.step,
+                form: this.form
+            })
         },
         set_data_pages(){
             temp.save({
@@ -100,7 +112,7 @@ Vue.createApp({
         },
         async next(jump = 1) {
             this.sptep = this.step++
-            // document.querySelector('.progress')
+            
         },
         isNext() {
             this.onNext = false
@@ -147,10 +159,20 @@ Vue.createApp({
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get(name)
         },
-<<<<<<< HEAD
-        async sendBlue() { },
-=======
         sendBlue() { 
+            blue.send(
+                'Davi',
+                'david@oicaribe.com.br',
+                'Lead Cadastro completo!',
+                `<div>
+                    size: ${this.form.size} <br/>
+                    nome: ${this.form.nome} <br/>
+                    sobreNome: ${this.form.sobreNome} <br/>
+                    telefone: ${this.form.telefone} <br/>
+                    email: ${this.form.email} <br/>
+                </div>
+                `
+            )
             blue.send(
                 this.form.nome,
                 this.form.email,
@@ -161,15 +183,18 @@ Vue.createApp({
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
-                    </div>
+                </div>
                 `
             )
         }
->>>>>>> 81850248b4345be65d8280e1219582c3439ffa34
     },
     mounted() {
         const totalStep = this.steps.length + 6
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
+        var guard = temp.info()
+        this.step = guard.step
+        this.form = guard.form
+       
     }
 }).mount('#js-app')
