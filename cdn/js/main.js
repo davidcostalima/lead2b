@@ -4,10 +4,11 @@ import SendBlue from "./module/sendBlue.js"
 import BoxPrice from "./module/BoxPrice.js"
 import Temp from "./module/Temp.js"
 import Steps from "./module/Steps.js"
-import Product from "./module/product.js"
+import Prod from "./module/product.js"
 import inputForm from "./module/form.js"
 import month from "./module/month.js"
 import btns from "./module/btns.js"
+import form from "./module/form.js"
 
 const table_price = new TablePrice()
 const whats = new WhatsApp()
@@ -19,11 +20,15 @@ const temp = new Temp()
 Vue.createApp({
     data() {
         return {
-            openBag: true,
+            openBag: false,
             btns,
             month,
             inputForm,
+<<<<<<< HEAD
             Prod: new Product(),
+=======
+            Prod,
+>>>>>>> 78367eaf9df3ecb5b588bfb45599612626be70e4
             step: 0,
             steps: Steps,
             totalStep: 0,
@@ -193,8 +198,8 @@ Vue.createApp({
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
         var guard = temp.info()
-        this.step = guard.step
-        this.form = guard.form
+       
+        this.form = {...this.form, ...guard.form }
        
     }
 }).mount('#js-app')
