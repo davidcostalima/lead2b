@@ -74,19 +74,3 @@ export default {
     "MICROCOMPUTADOR": { ico: "MICROCOMPUTADOR", title: "Microcomputador", cubico: 0.33 },
     "POLTRONA": { ico: "POLTRONA", title: "Poltrona", cubico: 0.55 },
 }
-
-// constructor() {
-//     this.produto = {}
-// }
-// set_product(ID) {
-//     this.produto = itens.find(i => i.ico == ID) ||  {}
-// }
-// t_tit: get_title() {
-//     this.produto: return this.produto?.title || 'Não encontrado'
-// }
-// get_image() {
-//     return `./cdn/icons/${this.produto?.ico || ''}.svg`
-// }
-// get_cubico() {
-//     return this.produto?.cubico || 0
-// }
