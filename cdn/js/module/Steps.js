@@ -77,7 +77,7 @@ export default [
         month: [],
         form: [],
         tamanhos: [],
-        question: [-1, 1],
+        question: [-1, 5],
         itens: [],
     },
     {
@@ -181,7 +181,7 @@ export default [
         month: [],
         form: [],
         tamanhos: [],
-        question: [-1, 3],
+        question: [-1, 2],
         itens: [],
 
     },
@@ -232,7 +232,7 @@ export default [
         month: [],
         form: [],
         tamanhos: [],
-        question: [],
+        question: [-1, 3],
         itens: [],
     },
     {
@@ -296,7 +296,7 @@ export default [
         month: [],
         form: [],
         tamanhos: [],
-        question: [-1, 3],
+        question: [-1, 2],
         itens: [],
     },
     {
@@ -343,7 +343,7 @@ export default [
         month: [],
         form: [],
         tamanhos: [],
-        question: true,
+        question: [-1, 2],
         itens: [],
     },
     {

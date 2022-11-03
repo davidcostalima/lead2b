@@ -33,9 +33,6 @@ Vue.createApp({
             cubagem: [],
             metros: 0,
             allbox: box_price.get_all_Price(),       
-            // corpo do email com form e um foreatch no produto, montando o email, sendo 3 ao total, 
-            // 1º email com registro de pré cadastro do usuario, 2º email de fim das etapas para o david
-            // 3º email de fim de etapas para usuario.
             form: {
                 size: "PP",
                 nome: "victor",
@@ -161,6 +158,8 @@ Vue.createApp({
             return urlParams.get(name)
         },
         sendBlue() { 
+            var produtos = Object.keys(this.form.product).map( k => `<li>${Prod[k].title} : ${this.form.product[k]}</li>` ).join('')
+
             blue.send(
                 'Davi',
                 'david@oicaribe.com.br',
@@ -171,6 +170,8 @@ Vue.createApp({
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
+                    itens: <br/>
+                    ${produtos}
                 </div>
                 `
             )
@@ -184,6 +185,8 @@ Vue.createApp({
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
+                    itens: <br/>
+                    ${produtos}
                 </div>
                 `
             )
