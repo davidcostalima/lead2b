@@ -109,8 +109,7 @@ Vue.createApp({
             this.step = 1
         },
         async next(jump = 1) {
-            this.sptep = this.step++
-            
+            this.step = this.step + jump
         },
         isNext() {
             this.onNext = false
