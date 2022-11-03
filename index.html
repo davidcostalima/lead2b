@@ -32,8 +32,8 @@
                             <h1 class="title">{{e.title}}</h1>
                             <p class="text-center" v-show="e.subtitle.length > 1">{{e.subtitle}}</p>
 
-                            <div class="sizes_box" v-show="e.tamanhos.length > 1">
-                                <div v-for="l in allbox" :class="{size_item: true, active: form.size==l.nome}"
+                            <div class="sizes_box" v-if="e.tamanhos.length > 1">
+                                <div v-for="l in allbox" :class="{size_item: true, active: form.size ==l.nome}"
                                     @click="next(1); form.size=l.nome">
                                     <div>
                                         <strong>{{l.nome}}</strong>
@@ -99,9 +99,9 @@
 
                             <div v-show="e.itens" class="cubo-grid">
                                 <div v-for="idProd in e.itens" class="cubo">
-                                    {{Prod.set_product(idProd)}}
-                                    <span :style="{'background-image': 'url('+Prod.get_image()+')'}">
-                                        {{Prod.get_title()}}
+                                    
+                                    <span :style="{'background-image': 'url(./cdn/icons/'+Prod[idProd].ico+'.svg)'}">
+                                        {{Prod[idProd].title}}
                                     </span>
                                     <input type="number" min="0" @input="autosave" v-model="form.product[idProd]">
                                 </div>
