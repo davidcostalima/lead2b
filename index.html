@@ -33,7 +33,7 @@
                             <p class="text-center" v-show="e.subtitle.length > 1">{{e.subtitle}}</p>
 
                             <div class="sizes_box" v-show="e.tamanhos.length > 1">
-                                <div v-for="l in allbox" :class="{size_item: true, active: form.size==l.nome}"
+                                <div v-for="l in allbox" :class="{size_item: true, active: form?.size==l.nome}"
                                     @click="next(); form.size=l.nome">
                                     <div>
                                         <strong>{{l.nome}}</strong>
@@ -42,18 +42,18 @@
                                     <span>{{l.area}}</span>
                                 </div>
                             </div>
-                            <form action="javascript:void(0)" v-if="e.form">
+                            <form action="javascript:void(0)" v-if="e.form.length > 1">
                                 <div class="inputs_lead">
                                     <div v-for="f in e.form">
-                                        <label>{{inputForm[f].legenda}}</label>
-                                        <input class="w-100" :type="inputForm[f].type" v-model="form[f]" required>
+                                        <label>{{inputForm?.[f]?.legenda}}</label>
+                                        <input class="w-100" :type="inputForm?.[f]?.type" v-model="form[f]" required>
                                     </div>
                                 </div>
                             </form>
                             
                             <div class="tempo_box" v-show="e.month.length > 1">
                                 <span v-for="m in month" @click="next(m.jump)" 
-                                    :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
+                                    :class="{tempo_item: true, active: form?.locacao=='1 a 3 meses'}">
                                     {{m.title}}
                                 </span>
                             </div>
