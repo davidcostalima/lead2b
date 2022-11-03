@@ -34,7 +34,7 @@
 
                             <div class="sizes_box" v-show="e.tamanhos.length > 1">
                                 <div v-for="l in allbox" :class="{size_item: true, active: form.size==l.nome}"
-                                    @click="next(); form.size=l.nome">
+                                    @click="next(1); form.size=l.nome">
                                     <div>
                                         <strong>{{l.nome}}</strong>
                                         <small>{{l.legend}}</small>
@@ -121,7 +121,9 @@
                             </div>
 
                             <div style="display: flex; justify-content: space-between;">
-                                <div @click="back" class="voltar">Voltar</div>
+                                <div>
+                                    <div @click="back" v-show="s!=0" class="voltar">Voltar</div>
+                                </div>
                                 <div @click="next(1)" v-show="s!=1" class="voltar avancar">Avançar</div>
                                 <div @click="next(1); newLead(); set_data_pages();" v-show="s==1" class="voltar avancar">Avançar</div>
                             </div>

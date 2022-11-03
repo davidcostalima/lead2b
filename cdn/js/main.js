@@ -24,7 +24,7 @@ Vue.createApp({
             month,
             inputForm,
             Prod: new Product(),
-            step: 15,
+            step: 0,
             steps: Steps,
             totalStep: 0,
             total: 0,
