@@ -32,15 +32,9 @@
                             <h1 class="title">{{e.title}}</h1>
                             <p class="text-center" v-show="e.subtitle.length > 1">{{e.subtitle}}</p>
 
-<<<<<<< HEAD
-                            <div class="sizes_box" v-show="e.tamanhos.length > 1">
-                                <div v-for="l in allbox" :class="{size_item: true, active: form?.size==l.nome}"
-                                    @click="next(); form.size=l.nome">
-=======
                             <div class="sizes_box" v-if="e.tamanhos.length > 1">
                                 <div v-for="l in allbox" :class="{size_item: true, active: form.size ==l.nome}"
                                     @click="next(1); form.size=l.nome">
->>>>>>> 78367eaf9df3ecb5b588bfb45599612626be70e4
                                     <div>
                                         <strong>{{l.nome}}</strong>
                                         <small>{{l.legend}}</small>

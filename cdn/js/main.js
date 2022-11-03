@@ -24,11 +24,7 @@ Vue.createApp({
             btns,
             month,
             inputForm,
-<<<<<<< HEAD
-            Prod: new Product(),
-=======
             Prod,
->>>>>>> 78367eaf9df3ecb5b588bfb45599612626be70e4
             step: 0,
             steps: Steps,
             totalStep: 0,
