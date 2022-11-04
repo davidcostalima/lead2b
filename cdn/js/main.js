@@ -4,10 +4,11 @@ import SendBlue from "./module/sendBlue.js"
 import BoxPrice from "./module/BoxPrice.js"
 import Temp from "./module/Temp.js"
 import Steps from "./module/Steps.js"
-import Product from "./module/product.js"
+import Prod from "./module/product.js"
 import inputForm from "./module/form.js"
 import month from "./module/month.js"
 import btns from "./module/btns.js"
+import form from "./module/form.js"
 
 const table_price = new TablePrice()
 const whats = new WhatsApp()
@@ -23,7 +24,7 @@ Vue.createApp({
             btns,
             month,
             inputForm,
-            Prod: new Product(),
+            Prod,
             step: 0,
             steps: Steps,
             totalStep: 0,
@@ -32,15 +33,12 @@ Vue.createApp({
             cubagem: [],
             metros: 0,
             allbox: box_price.get_all_Price(),       
-            // corpo do email com form e um foreatch no produto, montando o email, sendo 3 ao total, 
-            // 1º email com registro de pré cadastro do usuario, 2º email de fim das etapas para o david
-            // 3º email de fim de etapas para usuario.
             form: {
                 size: "PP",
-                nome: "victor",
-                sobreNome: "Fernando",
-                telefone: "38998019210",
-                email: "victorfernandomagalhaes@gmail.com",
+                nome: null,
+                sobreNome: null,
+                telefone: null,
+                email: null,
                 locacao: null,
                 pulou: null,
                 exato: null,
@@ -111,8 +109,7 @@ Vue.createApp({
             this.step = 1
         },
         async next(jump = 1) {
-            this.sptep = this.step++
-            
+            this.step = this.step + jump
         },
         isNext() {
             this.onNext = false
@@ -160,6 +157,8 @@ Vue.createApp({
             return urlParams.get(name)
         },
         sendBlue() { 
+            var produtos = Object.keys(this.form.product).map( k => `<li>${Prod[k].title} : ${this.form.product[k]}</li>` ).join('')
+
             blue.send(
                 'Davi',
                 'david@oicaribe.com.br',
@@ -170,6 +169,8 @@ Vue.createApp({
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
+                    itens: <br/>
+                    ${produtos}
                 </div>
                 `
             )
@@ -183,6 +184,8 @@ Vue.createApp({
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
+                    itens: <br/>
+                    ${produtos}
                 </div>
                 `
             )
@@ -193,8 +196,8 @@ Vue.createApp({
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
         var guard = temp.info()
-        this.step = guard.step
-        this.form = guard.form
+       
+        this.form = {...this.form, ...guard.form }
        
     }
 }).mount('#js-app')

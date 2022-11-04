@@ -32,8 +32,8 @@
                             <h1 class="title">{{e.title}}</h1>
                             <p class="text-center" v-show="e.subtitle.length > 1">{{e.subtitle}}</p>
 
-                            <div class="sizes_box" v-show="e.tamanhos.length > 1">
-                                <div v-for="l in allbox" :class="{size_item: true, active: form.size==l.nome}"
+                            <div class="sizes_box" v-if="e.tamanhos.length > 1">
+                                <div v-for="l in allbox" :class="{size_item: true, active: form.size ==l.nome}"
                                     @click="next(1); form.size=l.nome">
                                     <div>
                                         <strong>{{l.nome}}</strong>
@@ -42,18 +42,18 @@
                                     <span>{{l.area}}</span>
                                 </div>
                             </div>
-                            <form action="javascript:void(0)" v-if="e.form">
+                            <form action="javascript:void(0)" v-if="e.form.length > 1">
                                 <div class="inputs_lead">
                                     <div v-for="f in e.form">
-                                        <label>{{inputForm[f].legenda}}</label>
-                                        <input class="w-100" :type="inputForm[f].type" v-model="form[f]" required>
+                                        <label>{{inputForm?.[f]?.legenda}}</label>
+                                        <input class="w-100" :type="inputForm?.[f]?.type" v-model="form[f]" required>
                                     </div>
                                 </div>
                             </form>
                             
                             <div class="tempo_box" v-show="e.month.length > 1">
                                 <span v-for="m in month" @click="next(m.jump)" 
-                                    :class="{tempo_item: true, active: form.locacao=='1 a 3 meses'}">
+                                    :class="{tempo_item: true, active: form?.locacao=='1 a 3 meses'}">
                                     {{m.title}}
                                 </span>
                             </div>
@@ -99,9 +99,9 @@
 
                             <div v-show="e.itens" class="cubo-grid">
                                 <div v-for="idProd in e.itens" class="cubo">
-                                    {{Prod.set_product(idProd)}}
-                                    <span :style="{'background-image': 'url('+Prod.get_image()+')'}">
-                                        {{Prod.get_title()}}
+                                    
+                                    <span :style="{'background-image': 'url(./cdn/icons/'+Prod[idProd].ico+'.svg)'}">
+                                        {{Prod[idProd].title}}
                                     </span>
                                     <input type="number" min="0" @input="autosave" v-model="form.product[idProd]">
                                 </div>
@@ -122,13 +122,15 @@
 
                             <div style="display: flex; justify-content: space-between;">
                                 <div>
-                                    <div @click="back" v-show="s!=0" class="voltar">Voltar</div>
+                                    <div @click="back" v-show="s!=0 && s!=24" class="voltar">Voltar</div>
                                 </div>
-                                <div @click="next(1)" v-show="s!=1" class="voltar avancar">Avançar</div>
-                                <div @click="next(1); newLead(); set_data_pages();" v-show="s==1" class="voltar avancar">Avançar</div>
+                                <div @click="next(1)" v-show="s!=1 && s!=23 && s!=24" class="voltar avancar">Avançar</div>
+                                <div @click="next(1); newLead(); set_data_pages();" v-show="s==1 && s!=24" class="voltar avancar">Avançar</div>
+                                <div @click="next(1); sendBlue()" v-show="s==23 && s!=24" class="voltar avancar">Avançar</div>
                             </div>
 
                             <div v-if="e.final">
+                               
                                 <h1 class="title_2 text-center">
                                     Olá, {{'bruno'}}. O seu orçamento <br>
                                     é aproximadamente de: {{5}}
