@@ -19,7 +19,7 @@ const temp = new Temp()
 Vue.createApp({
     data() {
         return {
-            openBag: true,
+            openBag: false,
             btns,
             month,
             inputForm,
