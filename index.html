@@ -125,16 +125,17 @@
                                     <div @click="back" v-show="s!=0 && s!=24" class="voltar">Voltar</div>
                                 </div>
                                 <div @click="next(1)" v-show="s!=1 && s!=23 && s!=24" class="voltar avancar">Avançar</div>
-                                <div @click="next(1); newLead(); set_data_pages();" v-show="s==1 && s!=24" class="voltar avancar">Avançar</div>
+                                <div @click="next(1); newLead(); autosave()" v-show="s==1 && s!=24" class="voltar avancar">Avançar</div>
                                 <div @click="next(1); sendBlue()" v-show="s==23 && s!=24" class="voltar avancar">Avançar</div>
                             </div>
 
                             <div v-if="e.final">
                                
                                 <h1 class="title_2 text-center">
-                                    Olá, {{'bruno'}}. O seu orçamento <br>
+                                    Olá, {{form.nome}}. O seu orçamento <br>
                                     é aproximadamente de: {{5}}
                                 </h1>
+                                <br>
                                 <h2 class="subtitle text-center">
                                     Metragem necessária: {{metros}}m³ <br>
                                     O box necessário é de {{metrosReal(metros)}}m² e
