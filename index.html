@@ -125,7 +125,7 @@
                                     <div @click="back" v-show="s!=0 && s!=24" class="voltar">Voltar</div>
                                 </div>
                                 <div @click="next(1)" v-show="s!=1 && s!=23 && s!=24" class="voltar avancar">Avançar</div>
-                                <div @click="next(1); newLead(); autosave()" v-show="s==1 && s!=24" class="voltar avancar">Avançar</div>
+                                <div @click="next(1); autosave()" v-show="s==1 && s!=24" class="voltar avancar">Avançar</div>
                                 <div @click="next(1); sendBlue()" v-show="s==23 && s!=24" class="voltar avancar">Avançar</div>
                             </div>
 
