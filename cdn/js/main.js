@@ -25,7 +25,7 @@ Vue.createApp({
             month,
             inputForm,
             Prod,
-            step: 0,
+            step: 24,
             steps: Steps,
             totalStep: 0,
             total: 0,
@@ -142,11 +142,11 @@ Vue.createApp({
             let now = new Date
             return "Hoje é " + (now.getDate() + "").padStart(2, "0") + "/" + ((now.getMonth() + 1) + "").padStart(2, "0") + "/" + now.getFullYear()
         },
-        valorReal(metros) {
-            return table_price.valor(metros)
+        valorReal() {
+            return table_price.valor(this.calc())
         },
-        metrosReal(metros) {
-            return table_price.metros(metros)
+        metrosReal() {
+            return table_price.metros(this.calc())
         },
         whats() {
             whats.send('Olá')
@@ -169,30 +169,44 @@ Vue.createApp({
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
-                    metragem: 5m <br/>
-                    preço: R$ 5,00 <br/>
+                    metragem: ${metrosReal()}m³ <br/>
+                    preço: R$ ${valorReal()} <br/>
                     itens: <br/>
                     ${produtos}
                 </div>
                 `
             )
-            blue.send(
-                this.form.nome,
-                this.form.email,
-                'Metro Max',
-                `<div>
-                    size: ${this.form.size} <br/>
-                    nome: ${this.form.nome} <br/>
-                    sobreNome: ${this.form.sobreNome} <br/>
-                    telefone: ${this.form.telefone} <br/>
-                    email: ${this.form.email} <br/>
-                    metragem: 5m <br/>
-                    preço: R$ 5,00 <br/>
-                    itens: <br/>
-                    ${produtos}
-                </div>
-                `
-            )
+            // blue.send(
+            //     this.form.nome,
+            //     this.form.email,
+            //     'Metro Max',
+            //     `<div>
+            //         size: ${this.form.size} <br/>
+            //         nome: ${this.form.nome} <br/>
+            //         sobreNome: ${this.form.sobreNome} <br/>
+            //         telefone: ${this.form.telefone} <br/>
+            //         email: ${this.form.email} <br/>
+            //         metragem: 5m <br/>
+            //         preço: R$ 5,00 <br/>
+            //         itens: <br/>
+            //         ${produtos}
+            //     </div>
+            //     `
+            // )
+        },
+        calc(){
+            let itens = []
+            let total = 0
+            Object.keys(this.form.product).forEach(i => {
+                itens.push({
+                    id: i,
+                    quant: this.form.product[i],
+                    cubic: Prod[i].cubico,
+                    subTot: this.form.product[i] * Prod[i].cubico
+                })
+                total += this.form.product[i] * Prod[i].cubico
+            });
+            return total.toFixed(2)
         }
     },
     mounted() {
