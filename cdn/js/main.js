@@ -169,6 +169,8 @@ Vue.createApp({
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
+                    metragem: 5m <br/>
+                    preço: R$ 5,00 <br/>
                     itens: <br/>
                     ${produtos}
                 </div>
@@ -184,6 +186,8 @@ Vue.createApp({
                     sobreNome: ${this.form.sobreNome} <br/>
                     telefone: ${this.form.telefone} <br/>
                     email: ${this.form.email} <br/>
+                    metragem: 5m <br/>
+                    preço: R$ 5,00 <br/>
                     itens: <br/>
                     ${produtos}
                 </div>
