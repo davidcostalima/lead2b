@@ -70,7 +70,7 @@ body {
     justify-content: center;
 }
 
-.container-box > div {
+.container-box>div {
     width: 100%;
 }
 
@@ -241,7 +241,7 @@ input:checked~.box-model {
     background-color: #DDD;
     border-radius: var(--raio-p);
     padding: 20px;
-    height: 140px;
+    height: 160px;
 }
 
 .size_item.active>div,
@@ -517,15 +517,18 @@ input:checked~.box-model {
     overflow-y: scroll;
     scrollbar-color: #000;
 }
+
 .box-red::-webkit-scrollbar,
 .box-red::-webkit-scrollbar-track {
     background: transparent;
     width: 5px;
 }
+
 .box-red::-webkit-scrollbar-thumb {
     background-color: var(--cor-primary-900);
     border-radius: 50px;
 }
+
 .cubo input {
     display: flex;
     align-items: center;
@@ -557,7 +560,7 @@ input:checked~.box-model {
 }
 
 .size_item>div>small {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 @media (min-width: 800px) {
@@ -565,6 +568,7 @@ input:checked~.box-model {
     .container-box {
         padding: 50px !important;
     }
+
     .cubo-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -586,7 +590,7 @@ input:checked~.box-model {
         grid-template-columns: repeat(5, 1fr);
     }
 
-    
+
 
     .inputs_lead {
         grid-template-columns: repeat(1, 1fr);
@@ -669,6 +673,7 @@ input:checked~.box-model {
     height: 48px;
     cursor: pointer;
 }
+
 .op-bag {
     display: block;
     width: 250px;
@@ -680,8 +685,9 @@ input:checked~.box-model {
     padding: 100px 20px !important;
     transition: all .3s ease-in-out;
     overflow-y: scroll;
-    
+
 }
+
 .open {
     left: 0 !important;
 }

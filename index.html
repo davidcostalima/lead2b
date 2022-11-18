@@ -41,11 +41,12 @@
                 <div class="container-lg">
                     <div class="container-box">
                         <div>
+                            <h1 class="title"><strong v-show="s == 3">Olá {{form.nome}}</strong></h1>
                             <h1 class="title">{{e.title}}</h1>
                             <p class="text-center" v-show="e.subtitle.length > 1">{{e.subtitle}}</p>
 
                             <div class="sizes_box" v-if="e.tamanhos.length > 1">
-                                <div v-for="l in allbox" :class="{size_item: true, active: form.size ==l.nome}"
+                                <div v-for="l in allbox" :class="{size_item: true, active: form.size==l.nome}"
                                     @click="next(1); form.size=l.nome">
                                     <div>
                                         <strong>{{l.nome}}</strong>
@@ -80,11 +81,10 @@
                                     Você sabia que 80% das pessoas escolhem um tamanho de box maior do que
                                     elas precisam?
                                 </small>
-                                <strong class="d-block text-center subtitle title_scape">Para entender
-                                    melhor:
+                                <strong class="d-block text-center subtitle title_scape">{{form.nome}}, como você pretende fazer?
                                 </strong>
                                 <div class="grid_btn_ico">
-                                    <span @click="next(1)"
+                                    <span @click="next(1); whats()"
                                         :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='sim'}">
                                         <img src="./cdn/ico/atendimento.svg" class="ico_btn">
                                         Quero falar com uma pessoa agora mesmo
@@ -137,7 +137,7 @@
                                 </div>
                                 <div @click="next(1)" v-show="s!=1 && s!=23 && s!=24" class="voltar avancar">Avançar
                                 </div>
-                                <div @click="next(1); autosave()" v-show="s==1 && s!=24" class="voltar avancar">Avançar
+                                <div @click="next(1); autosave(); newLead()" v-show="s==1 && s!=24 && form['nome'] && form['sobreNome'] && form['telefone'] && form['email']" class="voltar avancar">Avançar
                                 </div>
                                 <div @click="next(1); sendBlue()" v-show="s==23 && s!=24" class="voltar avancar">Avançar
                                 </div>
