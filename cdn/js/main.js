@@ -32,7 +32,7 @@ Vue.createApp({
             onNext: true,
             cubagem: [],
             metros: 0,
-            allbox: box_price.get_all_Price(),       
+            allbox: box_price.get_all_Price(),
             form: {
                 size: "PP",
                 nome: null,
@@ -54,11 +54,8 @@ Vue.createApp({
     },
     methods: {
         newLead() {
-            blue.send(
-                'Davi',
-                'david@oicaribe.com.br',
-                'Novo Lead',
-                `<div>
+            let content = `
+                <div>
                     size: ${this.form.size} <br/>
                     nome: ${this.form.nome} <br/>
                     sobreNome: ${this.form.sobreNome} <br/>
@@ -66,9 +63,21 @@ Vue.createApp({
                     email: ${this.form.email} <br/>
                 </div>
                 `
+            blue.send(
+                'Davi',
+                'david@oicaribe.com.br',
+                'Novo Lead',
+                content
+            )
+
+            blue.send(
+                'Ruan Gustavo',
+                'ruangustavo@gmail.com',
+                'Novo Lead',
+                content
             )
         },
-        autosave(){
+        autosave() {
             temp.save({
                 nome: this.form.nome,
                 sobreNome: this.form.sobreNome,
@@ -78,7 +87,7 @@ Vue.createApp({
                 form: this.form
             })
         },
-        set_data_pages(){
+        set_data_pages() {
             temp.save({
                 nome: this.form.nome,
                 sobreNome: this.form.sobreNome,
@@ -114,7 +123,7 @@ Vue.createApp({
         isNext() {
             this.onNext = false
         },
-        
+
         save() {
         },
         forcerSubmit() {
@@ -156,14 +165,10 @@ Vue.createApp({
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get(name)
         },
-        sendBlue() { 
-            var produtos = Object.keys(this.form.product).map( k => `<li>${Prod[k].title} : ${this.form.product[k]}</li>` ).join('')
-
-            blue.send(
-                'Davi',
-                'david@oicaribe.com.br',
-                'Lead Cadastro completo!',
-                `<div>
+        sendBlue() {
+            var produtos = Object.keys(this.form.product).map(k => `<li>${Prod[k].title} : ${this.form.product[k]}</li>`).join('')
+            let content =  `
+                <div>
                     size: ${this.form.size} <br/>
                     nome: ${this.form.nome} <br/>
                     sobreNome: ${this.form.sobreNome} <br/>
@@ -175,26 +180,23 @@ Vue.createApp({
                     ${produtos}
                 </div>
                 `
+
+            blue.send(
+                'Davi',
+                'david@oicaribe.com.br',
+                'Lead Cadastro completo!',
+                content
             )
-            // blue.send(
-            //     this.form.nome,
-            //     this.form.email,
-            //     'Metro Max',
-            //     `<div>
-            //         size: ${this.form.size} <br/>
-            //         nome: ${this.form.nome} <br/>
-            //         sobreNome: ${this.form.sobreNome} <br/>
-            //         telefone: ${this.form.telefone} <br/>
-            //         email: ${this.form.email} <br/>
-            //         metragem: 5m <br/>
-            //         preço: R$ 5,00 <br/>
-            //         itens: <br/>
-            //         ${produtos}
-            //     </div>
-            //     `
-            // )
+
+            blue.send(
+                'Ruan Gustavo',
+                'ruangustavo@gmail.com',
+                'Novo Lead',
+                content
+            )
+         
         },
-        calc(){
+        calc() {
             let itens = []
             let total = 0
             Object.keys(this.form.product).forEach(i => {
@@ -214,8 +216,8 @@ Vue.createApp({
         this.totalStep = Array(totalStep).fill(Math.random())
         this.calcularM3()
         var guard = temp.info()
-       
-        this.form = {...this.form, ...guard.form }
-       
+
+        this.form = { ...this.form, ...guard.form }
+
     }
 }).mount('#js-app')

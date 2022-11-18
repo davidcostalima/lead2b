@@ -12,9 +12,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="./cdn/js/main.js" type="module" defer></script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MZN4LTD');
+    </script>
 </head>
 
 <body class="steps-bg">
+
+    <noscript><iframe src="ns" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
     <div id="js-app">
 
         <div class="fixed-top bg-white text-center">
@@ -50,9 +62,9 @@
                                     </div>
                                 </div>
                             </form>
-                            
+
                             <div class="tempo_box" v-show="e.month.length > 1">
-                                <span v-for="m in month" @click="next(m.jump)" 
+                                <span v-for="m in month" @click="next(m.jump)"
                                     :class="{tempo_item: true, active: form?.locacao=='1 a 3 meses'}">
                                     {{m.title}}
                                 </span>
@@ -62,12 +74,12 @@
                                 <h2 class="subtitle  text-center">
                                     {{allbox[form.size].primaryPrice}} a
                                     {{allbox[form.size].secondPrice}} por mês
-                                </h2>                          
+                                </h2>
                                 <small class="d-block text-center title_2 title_scape"
                                     style="font-size: 12px !important;">
                                     Você sabia que 80% das pessoas escolhem um tamanho de box maior do que
                                     elas precisam?
-                                </small>                           
+                                </small>
                                 <strong class="d-block text-center subtitle title_scape">Para entender
                                     melhor:
                                 </strong>
@@ -89,17 +101,16 @@
                             </div>
 
                             <div class="text-center w-guard" v-if="e.btn.length > 1">
-                                <span v-for="b in btns"
-                                :class="{call_item:true, active: form.guard==b.title}"
+                                <span v-for="b in btns" :class="{call_item:true, active: form.guard==b.title}"
                                     @click="next(b.jump); form.guard=b.title">
                                     <i :class="'bi '+ b.ico"></i>
                                     {{b.title}}
-                                </span>                                
-                            </div>                            
+                                </span>
+                            </div>
 
                             <div v-show="e.itens" class="cubo-grid">
                                 <div v-for="idProd in e.itens" class="cubo">
-                                    
+
                                     <span :style="{'background-image': 'url(./cdn/icons/'+Prod[idProd].ico+'.svg)'}">
                                         {{Prod[idProd].title}}
                                     </span>
@@ -124,13 +135,16 @@
                                 <div>
                                     <div @click="back" v-show="s!=0 && s!=24" class="voltar">Voltar</div>
                                 </div>
-                                <div @click="next(1)" v-show="s!=1 && s!=23 && s!=24" class="voltar avancar">Avançar</div>
-                                <div @click="next(1); autosave()" v-show="s==1 && s!=24" class="voltar avancar">Avançar</div>
-                                <div @click="next(1); sendBlue()" v-show="s==23 && s!=24" class="voltar avancar">Avançar</div>
+                                <div @click="next(1)" v-show="s!=1 && s!=23 && s!=24" class="voltar avancar">Avançar
+                                </div>
+                                <div @click="next(1); autosave()" v-show="s==1 && s!=24" class="voltar avancar">Avançar
+                                </div>
+                                <div @click="next(1); sendBlue()" v-show="s==23 && s!=24" class="voltar avancar">Avançar
+                                </div>
                             </div>
 
                             <div v-if="e.final">
-                               
+
                                 <h1 class="title_2 text-center">
                                     Olá, {{form.nome}}. O seu orçamento <br>
                                     é aproximadamente de: {{valorReal()}}
@@ -177,13 +191,12 @@
             <span> Metragem: {{metrosReal()}}m³ </span> <br>
             <span>Itens:</span> <br>
             <ul>
-                <li v-for="(c, key) in form.product"
-                    style="font-size: 11px;">
+                <li v-for="(c, key) in form.product" style="font-size: 11px;">
                     {{key}} - {{c}}
                 </li>
             </ul>
         </div>
-       
+
 
     </div>
 
