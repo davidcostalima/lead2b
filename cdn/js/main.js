@@ -191,7 +191,7 @@ Vue.createApp({
             blue.send(
                 'Ruan Gustavo',
                 'ruangustavo@gmail.com',
-                'Novo Lead',
+                'Lead Cadastro completo!',
                 content
             )
          
