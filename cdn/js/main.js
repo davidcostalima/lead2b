@@ -79,7 +79,7 @@ Vue.createApp({
       });
     },
     mascaraNumber(){
-      console.log(this.$refs.input_number);
+      console.log(this.$refs.input_number.value);
     },
     set_data_pages() {
       temp.save({
