@@ -110,11 +110,10 @@
 
                             <div v-show="e.itens" class="cubo-grid">
                                 <div v-for="idProd in e.itens" class="cubo">
-
                                     <span style="font-size: 15px !important;" :style="{'background-image': 'url(./cdn/icons/'+Prod[idProd].ico+'.svg)'}">
                                         {{Prod[idProd].title}}
                                     </span>
-                                    <input type="number" min="0" @input="autosave" v-model="form.product[idProd]">
+                                    <input type="text" min="0" @input="autosave;mascaraNumber()" v-model="form.product[idProd]" ref="input_number">
                                 </div>
                             </div>
 

@@ -24,7 +24,7 @@ Vue.createApp({
       month,
       inputForm,
       Prod,
-      step: 0,
+      step: 6,
       steps: Steps,
       totalStep: 0,
       total: 0,
@@ -77,6 +77,9 @@ Vue.createApp({
         step: this.step,
         form: this.form,
       });
+    },
+    mascaraNumber(){
+      console.log(this.$refs.input_number);
     },
     set_data_pages() {
       temp.save({
