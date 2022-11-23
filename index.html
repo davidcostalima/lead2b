@@ -50,7 +50,7 @@
                                     @click="next(1); form.size=l.nome">
                                     <div>
                                         <strong>{{l.nome}}</strong>
-                                        <small>{{l.legend}}</small>
+                                        <small style="font-size: 17px;">{{l.legend}}</small>
                                     </div>
                                     <span>{{l.area}}</span>
                                 </div>
@@ -77,19 +77,19 @@
                                     {{allbox[form.size].secondPrice}} por mês
                                 </h2>
                                 <small class="d-block text-center title_2 title_scape"
-                                    style="font-size: 12px !important;">
+                                    style="font-size: 15px !important;">
                                     Você sabia que 80% das pessoas escolhem um tamanho de box maior do que
                                     elas precisam?
                                 </small>
                                 <strong class="d-block text-center subtitle title_scape">{{form.nome}}, como você pretende fazer?
                                 </strong>
                                 <div class="grid_btn_ico">
-                                    <span @click="next(1); whats()"
+                                    <span style="font-size: 16px !important;" @click="next(1); whats()"
                                         :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='sim'}">
                                         <img src="./cdn/ico/atendimento.svg" class="ico_btn">
                                         Quero falar com uma pessoa agora mesmo
                                     </span>
-                                    <span @click="next(1)"
+                                    <span style="font-size: 16px !important;" @click="next(1)"
                                         :class="{ 'text-center': true, call_item_salt:true, active: form.pulou=='nao'}">
                                         <img src="./cdn/ico/cotacao.svg" class="ico_btn">
                                         <b>
@@ -111,7 +111,7 @@
                             <div v-show="e.itens" class="cubo-grid">
                                 <div v-for="idProd in e.itens" class="cubo">
 
-                                    <span :style="{'background-image': 'url(./cdn/icons/'+Prod[idProd].ico+'.svg)'}">
+                                    <span style="font-size: 15px !important;" :style="{'background-image': 'url(./cdn/icons/'+Prod[idProd].ico+'.svg)'}">
                                         {{Prod[idProd].title}}
                                     </span>
                                     <input type="number" min="0" @input="autosave" v-model="form.product[idProd]">
@@ -133,13 +133,13 @@
 
                             <div style="display: flex; justify-content: space-between;">
                                 <div>
-                                    <div @click="back" v-show="s!=0 && s!=24" class="voltar">Voltar</div>
+                                    <div @click="back" v-show="s!=0 && s!=23" class="voltar">Voltar</div>
                                 </div>
-                                <div @click="next(1)" v-show="s!=1 && s!=23 && s!=24" class="voltar avancar">Avançar
+                                <div @click="next(1)" v-show="s!=1 && s!=23 && s!=23" class="voltar avancar">Avançar
                                 </div>
-                                <div @click="next(1); autosave(); newLead()" v-show="s==1 && s!=24 && form['nome'] && form['sobreNome'] && form['telefone'] && form['email']" class="voltar avancar">Avançar
+                                <div @click="next(1); autosave(); newLead()" v-show="s==1 && s!=23 && form['nome'] && form['sobreNome'] && form['telefone'] && form['email']" class="voltar avancar">Avançar
                                 </div>
-                                <div @click="next(1); sendBlue()" v-show="s==23 && s!=24" class="voltar avancar">Avançar
+                                <div @click="next(1); sendBlue()" v-show="s==23 && s!=23" class="voltar avancar">Avançar
                                 </div>
                             </div>
 
@@ -147,19 +147,19 @@
 
                                 <h1 class="title_2 text-center">
                                     Olá, {{form.nome}}. O seu orçamento <br>
-                                    é aproximadamente de: {{valorReal()}}
+                                    é aproximadamente de: R$ {{valorReal()}}
                                 </h1>
                                 <br>
                                 <h2 class="subtitle text-center">
                                     Metragem necessária: {{metrosReal()}}m³ <br>
                                     O box necessário é de {{calc()}}m² e
                                     o valor é de R${{valorReal()}} por mês. <br>
-                                    Falar com alguém agora mesmo! <br>
+                                    Fale conosco agora mesmo! <br>
                                     <div class="text-center mt-4">
                                         <span class="btn btn-success"
                                             @click="form.contato='whatsapp'; finish(); whats()">
                                             <i class="bi bi-whatsapp"></i>
-                                            <span class="ms-2">Entrem em contato por WhatsApp</span>
+                                            <span class="ms-2">Conversar no WhatsApp</span>
                                         </span>
                                     </div>
                                 </h2>

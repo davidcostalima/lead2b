@@ -385,7 +385,7 @@ export default [
         ]
     },
     {
-        title: "Entre em contato por WhatsApp",
+        title: "",
         subtitle: "",
         final: true,
         isBudget: false,

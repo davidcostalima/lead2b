@@ -52,14 +52,18 @@ Vue.createApp({
   methods: {
     newLead() {
       let content = `
-                <div>
-                    size: ${this.form.size} <br/>
-                    nome: ${this.form.nome} <br/>
-                    sobreNome: ${this.form.sobreNome} <br/>
-                    telefone: ${this.form.telefone} <br/>
-                    email: ${this.form.email} <br/>
-                </div>
-                `;
+                  <div>
+                  Tamanho: ${this.form.size} <br/>
+                  Nome: ${this.form.nome} <br/>
+                  Sobrenome: ${this.form.sobreNome} <br/>
+                  Telefone: ${this.form.telefone} <br/>
+                  Email: ${this.form.email} <br/>
+                  Metragem: ${metrosReal()}m³ <br/>
+                  Preço: R$ ${valorReal()} <br/>
+                  Itens: <br/>
+                  ${produtos}
+              </div>
+              `;
       blue.send("Davi", "david@oicaribe.com.br", "Novo Lead", content);
 
       blue.send("Ruan Gustavo", "ruangustavo@gmail.com", "Novo Lead", content);
@@ -170,14 +174,14 @@ Vue.createApp({
         .join("");
       let content = `
                 <div>
-                    size: ${this.form.size} <br/>
-                    nome: ${this.form.nome} <br/>
-                    sobreNome: ${this.form.sobreNome} <br/>
-                    telefone: ${this.form.telefone} <br/>
-                    email: ${this.form.email} <br/>
-                    metragem: ${metrosReal()}m³ <br/>
-                    preço: R$ ${valorReal()} <br/>
-                    itens: <br/>
+                    Tamanho: ${this.form.size} <br/>
+                    Nome: ${this.form.nome} <br/>
+                    Sobrenome: ${this.form.sobreNome} <br/>
+                    Telefone: ${this.form.telefone} <br/>
+                    Email: ${this.form.email} <br/>
+                    Metragem: ${metrosReal()}m³ <br/>
+                    Preço: R$ ${valorReal()} <br/>
+                    Itens: <br/>
                     ${produtos}
                 </div>
                 `;
