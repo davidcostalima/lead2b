@@ -51,6 +51,9 @@ Vue.createApp({
     },
     methods: {
         newLead() {
+          var produtos = Object.keys(this.form.product)
+          .map((k) => `<li>${Prod[k].title} : ${this.form.product[k]}</li>`)
+          .join("");
             let content = `
                 <div>
                   Tamanho: ${this.form.size} <br/>
@@ -58,10 +61,8 @@ Vue.createApp({
                   Sobrenome: ${this.form.sobreNome} <br/>
                   Telefone: ${this.form.telefone} <br/>
                   Email: ${this.form.email} <br/>
-                  Metragem: ${table_price.valor(this.calc())}m³ <br/>
-                  Preço: R$ ${table_price.valor(this.calc())} <br/>
                   Itens: <br/>
-                  ${this.form.product}
+                    ${produtos}
               </div>
               `;
             blue.send("Davi", "david@oicaribe.com.br", "Novo Lead", content);
@@ -182,8 +183,8 @@ Vue.createApp({
                     Sobrenome: ${this.form.sobreNome} <br/>
                     Telefone: ${this.form.telefone} <br/>
                     Email: ${this.form.email} <br/>
-                    Metragem: ${metrosReal()}m³ <br/>
-                    Preço: R$ ${valorReal()} <br/>
+                    Metragem: ${table_price.valor(this.calc())}m³ <br/>
+                    Preço: R$ ${table_price.metros(this.calc())} <br/>
                     Itens: <br/>
                     ${produtos}
                 </div>

@@ -118,7 +118,7 @@
                             </div>
 
                             <div v-if="e.question" class="text-center">
-                                <span :class="{link_confirm:true}" v-for="(q, qIndex) in e.question" @click="next(q)">
+                                <span :class="{link_confirm:true}" v-for="(q, qIndex) in e.question" @click="next(q); sendBlue()" v-show="s==20">
                                     <i :class="{
                                             'bi' : true ,
                                             'bi-hand-thumbs-down': !qIndex, 
@@ -127,6 +127,16 @@
                                         }"></i>
                                     <br />
                                     {{qIndex ? 'SIM' : 'Não'}}
+                                </span>
+                                <span :class="{link_confirm:true}" v-for="(q, qIndex) in e.question" @click="next(q)" v-show="s!=20">
+                                    <i :class="{
+                                            'bi' : true ,
+                                            'bi-hand-thumbs-down': !qIndex, 
+                                            'bi-hand-thumbs-up' : qIndex,
+                                            'display-4' : true
+                                        }"></i>
+                                    <br />
+                                    {{qIndex ? 'SIM' : 'Nâo'}}
                                 </span>
                             </div>
                             
@@ -139,7 +149,7 @@
                                 </div>
                                 <div @click="next(1); autosave(); newLead()" v-show="s==1 && s!=23 && form['nome'] && form['sobreNome'] && form['telefone'] && form['email']" class="voltar avancar">Avançar
                                 </div>
-                                <div @click="next(1); sendBlue()" v-show="s==23 && s!=23" class="voltar avancar">Avançar
+                                <div @click="next(1); sendBlue()" v-show="s==22 && s!=23" class="voltar avancar">Avançar
                                 </div>
                             </div>
 
