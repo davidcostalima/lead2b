@@ -41,8 +41,8 @@
                 <div class="container-lg">
                     <div class="container-box">
                         <div>
-                            <h1 class="title"><strong v-show="s == 3">Olá {{form.nome}}</strong></h1>
-                            <h1 class="title">{{e.title}}</h1>
+                            <!-- <h1 class="title"></h1> -->
+                            <h1 class="title"><strong v-show="s == 3">Olá {{form.nome}}, </strong>{{e.title}}</h1>
                             <p class="text-center" v-show="e.subtitle.length > 1">{{e.subtitle}}</p>
 
                             <div class="sizes_box" v-if="e.tamanhos.length > 1">
@@ -81,6 +81,7 @@
                                     Você sabia que 80% das pessoas escolhem um tamanho de box maior do que
                                     elas precisam?
                                 </small>
+                                <br>
                                 <strong class="d-block text-center subtitle title_scape">{{form.nome}}, como você pretende fazer?
                                 </strong>
                                 <div class="grid_btn_ico">
@@ -163,13 +164,14 @@
                                 <h2 class="subtitle text-center">
                                     Metragem necessária: {{metrosReal()}}m³ <br>
                                     O box necessário é de {{calc()}}m² e
-                                    o valor é de R${{valorReal()}} por mês. <br>
+                                    o valor é de R$ {{valorReal()}} por mês. <br>
+                                    <br>
                                     Fale conosco agora mesmo! <br>
                                     <div class="text-center mt-4">
-                                        <span class="btn btn-success"
+                                        <span class="btn btn-success w-25" style="padding-block: 15px;"
                                             @click="form.contato='whatsapp'; finish(); whats()">
                                             <i class="bi bi-whatsapp"></i>
-                                            <span class="ms-2">Conversar no WhatsApp</span>
+                                            <span class="ms-2" style="font-size: 17px;">Conversar no WhatsApp</span>
                                         </span>
                                     </div>
                                 </h2>

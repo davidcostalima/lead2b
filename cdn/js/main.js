@@ -183,8 +183,8 @@ Vue.createApp({
                     Sobrenome: ${this.form.sobreNome} <br/>
                     Telefone: ${this.form.telefone} <br/>
                     Email: ${this.form.email} <br/>
-                    Metragem: ${table_price.valor(this.calc())}m³ <br/>
-                    Preço: R$ ${table_price.metros(this.calc())} <br/>
+                    Metragem: ${metrosReal()}m³ <br/>
+                    Preço: R$ ${valorReal()} <br/>
                     Itens: <br/>
                     ${produtos}
                 </div>
@@ -193,16 +193,22 @@ Vue.createApp({
             blue.send(
                 "Davi",
                 "david@oicaribe.com.br",
-                "Lead Cadastro completo!",
+                "Novo Cadastro de Interesse I MetroMax Self Storage",
                 content
             );
 
             blue.send(
                 "Ruan Gustavo",
                 "ruangustavo@gmail.com",
-                "Lead Cadastro completo!",
+                "Novo Cadastro de Interesse I MetroMax Self Storage",
                 content
             );
+            blue.send(
+              "Ruan Gustavo",
+              "victorfernandomagalhaes@gmail.com",
+              "Novo Cadastro de Interesse I MetroMax Self Storage",
+              content
+          );
         },
         calc() {
             let itens = [];
