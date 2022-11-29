@@ -146,7 +146,7 @@
                                 <div>
                                     <div @click="back" v-show="s!=0 && s!=23" class="voltar">Voltar</div>
                                 </div>
-                                <div @click="next(1)" v-show="s!=1 && s!=23 && s!=23" class="voltar avancar">Avançar
+                                <div @click="next(1)" v-show="s!=1 && s!=22 && s!=23" class="voltar avancar">Avançar
                                 </div>
                                 <div @click="next(1); autosave(); newLead()" v-show="s==1 && s!=23 && form['nome'] && form['sobreNome'] && form['telefone'] && form['email']" class="voltar avancar">Avançar
                                 </div>
