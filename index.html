@@ -162,7 +162,7 @@
                                 </h1>
                                 <br>
                                 <h2 class="subtitle text-center">
-                                    Metragem necessária: {{metrosReal()}}m³ <br>
+                                    Metragem necessária: {{calc()}}m³ <br>
                                     O box necessário é de {{calc()}}m² e
                                     o valor é de R$ {{valorReal()}} por mês. <br>
                                     <br>
@@ -200,7 +200,7 @@
             <small>Email</small>: <br>
             {{form.email}} <br>
             <br>
-            <span> Metragem: {{metrosReal()}}m³ </span> <br>
+            <span> Metragem: {{calc()}}m³ </span> <br>
             <span>Itens:</span> <br>
             <ul>
                 <li v-for="(c, key) in form.product" style="font-size: 11px;">

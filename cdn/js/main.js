@@ -203,14 +203,6 @@ Vue.createApp({
         "Novo Cadastro de Interesse I MetroMax Self Storage",
         content
       );
-      console.log(
-        blue.send(
-          "Ruan Gustavo",
-          "victorfernandomagalhaes@gmail.com",
-          "Novo Cadastro de Interesse I MetroMax Self Storage",
-          content
-        )
-      );
     },
     calc() {
       let itens = [];
@@ -222,7 +214,7 @@ Vue.createApp({
           cubic: Prod[i].cubico,
           subTot: this.form.product[i] * Prod[i].cubico,
         });
-        total += this.form.product[i] * Prod[i].cubico;
+        total += +this.form.product[i] * +Prod[i].cubico;
       });
       return total.toFixed(2);
     },
